@@ -1,0 +1,81 @@
+﻿@model DentAda.Business.ViewModel.Administration.AboutUsVM
+@{
+    Layout = "~/Views/Shared/_AjaxLayout.cshtml";
+}
+@section pageLevelInlineScripts {
+    <script>
+
+        jQuery(document).ready(function () {
+            $("#customFile").on("change", function (event) {
+                var image = document.querySelector("#instrumentImage");
+                image.src = URL.createObjectURL(event.target.files[0]);
+            });
+        });
+    </script>
+}
+@section pageLevelStyles {
+
+}
+@section pageLevelInlineStyles {
+
+}
+@section pageLevelPlugins {
+
+
+}
+@using (Html.BeginForm("FileUpload", "AboutUs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="kt-portlet__body">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Şubeler:</label>
+            <div class="col-10">
+                <div class="kt-radio-inline">
+                    <label class="kt-radio">
+                        @Html.RadioButtonFor(m => m.Department, "1") Çayyolu
+                        <span></span>
+                    </label>
+                    <label class="kt-radio">
+                        @Html.RadioButtonFor(m => m.Department, "2") Polatlı
+                        <span></span>
+                    </label>
+                    <label class="kt-radio">
+                        @Html.RadioButtonFor(m => m.Department, "3") Hepsi
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Hakkımızda:</label>
+            <div class="col-10">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @data_provide = "markdown", @rows = "10" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Görsel:</label>
+            <div class="col-10">
+                <div class="custom-file col-4">
+                    <input type="file" name="files" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label"></label>
+            <div class="col-10">
+                <img alt="" id="instrumentImage"
+                     class="img-thumbnail" style="max-width:800px" />
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__foot">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <button type="submit" class="btn btn-brand">Submit</button>
+                <button type="submit" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+}

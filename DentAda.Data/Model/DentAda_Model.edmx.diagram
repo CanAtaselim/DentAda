@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="247518cabb32414b8c01865854aecb12" Name="Diagram1">
+        <EntityTypeShape EntityType="DentAdaModel.ANNOUNCEMENT" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="DentAdaModel.City" Width="1.5" PointX="3" PointY="24.625" />
+        <EntityTypeShape EntityType="DentAdaModel.ConnectionLog" Width="1.5" PointX="7.75" PointY="3" />
+        <EntityTypeShape EntityType="DentAdaModel.Country" Width="1.5" PointX="0.75" PointY="25.25" />
+        <EntityTypeShape EntityType="DentAdaModel.Event" Width="1.5" PointX="8.75" PointY="6" />
+        <EntityTypeShape EntityType="DentAdaModel.Exception" Width="1.5" PointX="8.75" PointY="11" />
+        <EntityTypeShape EntityType="DentAdaModel.ExceptionFeedBack" Width="1.5" PointX="10.75" PointY="3" />
+        <EntityTypeShape EntityType="DentAdaModel.Role" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="DentAdaModel.RoleAuthorization" Width="1.5" PointX="3" PointY="20.625" />
+        <EntityTypeShape EntityType="DentAdaModel.RoleSideMenu" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="DentAdaModel.RoleTopMenu" Width="1.5" PointX="6" PointY="10.125" />
+        <EntityTypeShape EntityType="DentAdaModel.Sessions" Width="1.5" PointX="10.75" PointY="7" />
+        <EntityTypeShape EntityType="DentAdaModel.SideMenu" Width="1.5" PointX="0.75" PointY="15" />
+        <EntityTypeShape EntityType="DentAdaModel.SystemUser" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="DentAdaModel.SystemUserRole" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="DentAdaModel.SystemUserRoleLocation" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="DentAdaModel.SystemUserRoleParameter" Width="1.5" PointX="10.75" PointY="10" />
+        <EntityTypeShape EntityType="DentAdaModel.SystemUserTicket" Width="1.5" PointX="5.75" PointY="14" />
+        <EntityTypeShape EntityType="DentAdaModel.TopMenu" Width="1.5" PointX="1.5" PointY="36.25" />
+        <EntityTypeShape EntityType="DentAdaModel.Town" Width="1.5" PointX="3" PointY="30.25" />
+        <EntityTypeShape EntityType="DentAdaModel.Village" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="DentAdaModel.CDC" Width="1.5" PointX="12.75" PointY="3" />
+        <AssociationConnector Association="DentAdaModel.FK_ANNOUNCEMENT_SystemUser" />
+        <AssociationConnector Association="DentAdaModel.FK_City_Country" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_City" />
+        <AssociationConnector Association="DentAdaModel.FK_Town_City" />
+        <AssociationConnector Association="DentAdaModel.FK_Village_City" />
+        <AssociationConnector Association="DentAdaModel.FK_Village_City1" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Country" />
+        <AssociationConnector Association="DentAdaModel.FK_RoleAuthorization_Role" />
+        <AssociationConnector Association="DentAdaModel.FK_RoleSideMenu_Role" />
+        <AssociationConnector Association="DentAdaModel.FK_RoleTopMenu_Role" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRole_Role" />
+        <AssociationConnector Association="DentAdaModel.FK_RoleSideMenu_SideMenu" />
+        <AssociationConnector Association="DentAdaModel.FK_RoleTopMenu_TopMenu" />
+        <AssociationConnector Association="DentAdaModel.FK_SideMenu_TopMenu" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRole_SystemUser" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_SystemUser" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_SystemUserRole" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Town" />
+        <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Village" />
+        <AssociationConnector Association="DentAdaModel.FK_Village_Town" />
+        <EntityTypeShape EntityType="DentAdaModel.AboutUs" Width="1.5" PointX="13.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

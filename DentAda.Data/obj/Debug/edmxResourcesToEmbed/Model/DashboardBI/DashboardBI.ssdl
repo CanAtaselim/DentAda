@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SinBI_DashboardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ANNOUNCEMENT">
+    <Key>
+      <PropertyRef Name="IdAnnouncement" />
+    </Key>
+    <Property Name="IdAnnouncement" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="MessageSubject" Type="nvarchar" MaxLength="128" />
+    <Property Name="MessageContent" Type="nvarchar(max)" />
+    <Property Name="MessageDate" Type="datetime" />
+    <Property Name="MessageIcon" Type="nvarchar" MaxLength="128" />
+    <Property Name="Priority" Type="smallint" Nullable="false" />
+    <Property Name="Area" Type="nvarchar" MaxLength="64" />
+    <Property Name="IsVisibleToMain" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="IdCity" />
+    </Key>
+    <Property Name="IdCity" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCountryRef" Type="bigint" />
+    <Property Name="CityCode" Type="int" />
+    <Property Name="TakbisCityCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="TrafficCode" Type="nvarchar" MaxLength="3" />
+    <Property Name="DivisionId" Type="uniqueidentifier" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="CityGeometry" Type="geometry" />
+    <Property Name="CentroidGeometry" Type="geometry" />
+    <Property Name="CentroidCity" Type="geometry" />
+  </EntityType>
+  <EntityType Name="ConnectionLog">
+    <Key>
+      <PropertyRef Name="IdConnectionLog" />
+    </Key>
+    <Property Name="IdConnectionLog" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="64" />
+    <Property Name="IdSystemUserRef" Type="bigint" />
+    <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogDate" Type="datetime" Nullable="false" />
+    <Property Name="ErrorCode" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="IdCountry" />
+    </Key>
+    <Property Name="IdCountry" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryName_English" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryPhoneCode" Type="nvarchar" MaxLength="15" />
+    <Property Name="CountryId" Type="uniqueidentifier" />
+    <Property Name="ISOCodeA2" Type="nvarchar" MaxLength="5" />
+    <Property Name="CountryGroup" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="IdEvent" />
+    </Key>
+    <Property Name="IdEvent" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="ControllerName" Type="nvarchar(max)" />
+    <Property Name="MethodName" Type="nvarchar(max)" />
+    <Property Name="FunctionName" Type="nvarchar(max)" />
+    <Property Name="EventSource" Type="nvarchar(max)" />
+    <Property Name="EventDate" Type="datetime" Nullable="false" />
+    <Property Name="ExecutionTime" Type="bigint" />
+    <Property Name="MachineName" Type="nvarchar(max)" />
+    <Property Name="MachineIp" Type="nvarchar(max)" />
+    <Property Name="ClientBrowser" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Exception">
+    <Key>
+      <PropertyRef Name="IdException" />
+    </Key>
+    <Property Name="IdException" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="ErrorMessage" Type="nvarchar(max)" />
+    <Property Name="InnerException" Type="nvarchar(max)" />
+    <Property Name="StackTrace" Type="nvarchar(max)" />
+    <Property Name="Area" Type="nvarchar(max)" />
+    <Property Name="Controller" Type="nvarchar(max)" />
+    <Property Name="Action" Type="nvarchar(max)" />
+    <Property Name="ExCode" Type="uniqueidentifier" />
+    <Property Name="ClientBrowser" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="ExceptionFeedBack">
+    <Key>
+      <PropertyRef Name="IdExceptionFeedBack" />
+    </Key>
+    <Property Name="IdExceptionFeedBack" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="FeedBack" Type="nvarchar(max)" />
+    <Property Name="ExCode" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdParentRoleRef" Type="bigint" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleDescription" Type="nvarchar" MaxLength="512" />
+    <Property Name="StaticRole" Type="bit" Nullable="false" />
+    <Property Name="LocationAdmin" Type="bit" />
+    <Property Name="RoleCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="IsRoleDistribution" Type="bit" />
+    <Property Name="DefaultPage" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="RoleAuthorization">
+    <Key>
+      <PropertyRef Name="IdRoleAuthorization" />
+    </Key>
+    <Property Name="IdRoleAuthorization" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRoleRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="Area" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="64" />
+    <Property Name="IsForbidden" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleSideMenu">
+    <Key>
+      <PropertyRef Name="IdRoleSideMenu" />
+    </Key>
+    <Property Name="IdRoleSideMenu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdRoleRef" Type="bigint" />
+    <Property Name="IdSideMenuRef" Type="bigint" />
+  </EntityType>
+  <EntityType Name="RoleTopMenu">
+    <Key>
+      <PropertyRef Name="IdRoleTopMenu" />
+    </Key>
+    <Property Name="IdRoleTopMenu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdRoleRef" Type="bigint" Nullable="false" />
+    <Property Name="IdTopMenuRef" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="900" Nullable="false" />
+    <Property Name="Value" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ExpiresAtTime" Type="datetimeoffset" Precision="7" Nullable="false" />
+    <Property Name="SlidingExpirationInSeconds" Type="bigint" />
+    <Property Name="AbsoluteExpiration" Type="datetimeoffset" Precision="7" />
+  </EntityType>
+  <EntityType Name="SideMenu">
+    <Key>
+      <PropertyRef Name="IdSideMenu" />
+    </Key>
+    <Property Name="IdSideMenu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdParentSideMenu" Type="bigint" />
+    <Property Name="IdTopMenuRef" Type="bigint" />
+    <Property Name="Area" Type="nvarchar" MaxLength="24" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="64" />
+    <Property Name="Action" Type="nvarchar" MaxLength="64" />
+    <Property Name="SideMenuName" Type="nvarchar" MaxLength="64" />
+    <Property Name="SideMenuDescription" Type="nvarchar" MaxLength="1024" />
+    <Property Name="SideMenuStatus" Type="smallint" />
+    <Property Name="SideMenuOrder" Type="int" />
+    <Property Name="IconUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="ItemBackgroundColor" Type="nvarchar" MaxLength="64" />
+    <Property Name="ItemTextColor" Type="nvarchar" MaxLength="64" />
+    <Property Name="ItemIconColor" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Username" Type="nvarchar" MaxLength="128" />
+    <Property Name="Password" Type="nvarchar" MaxLength="64" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+    <Property Name="LastPasswordChangeDate" Type="datetime" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="LastPassword" Type="nvarchar" MaxLength="128" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="Gender" Type="smallint" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="MobilePhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailConfirmation" Type="smallint" Nullable="false" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+    <Property Name="ProfilePicture" Type="varbinary(max)" />
+    <Property Name="TbsUserId" Type="uniqueidentifier" />
+    <Property Name="ProfilePictureURL" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SystemUserRole">
+    <Key>
+      <PropertyRef Name="IdSystemUserRole" />
+    </Key>
+    <Property Name="IdSystemUserRole" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="bigint" Nullable="false" />
+    <Property Name="IdRoleRef" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemUserRoleLocation">
+    <Key>
+      <PropertyRef Name="IdSystemUserRoleLocation" />
+    </Key>
+    <Property Name="IdSystemUserRoleLocation" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="bigint" Nullable="false" />
+    <Property Name="IdSystemUserRoleRef" Type="bigint" Nullable="false" />
+    <Property Name="IdCountryRef" Type="bigint" />
+    <Property Name="IdCityRef" Type="bigint" />
+    <Property Name="IdTownRef" Type="bigint" />
+    <Property Name="IdVillageRef" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SystemUserRoleParameter">
+    <Key>
+      <PropertyRef Name="IdSystemUserRoleParameter" />
+    </Key>
+    <Property Name="IdSystemUserRoleParameter" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="bigint" />
+    <Property Name="IdSystemUserRoleRef" Type="bigint" />
+    <Property Name="IdRoleRef" Type="bigint" />
+    <Property Name="ParameterAdmin" Type="bit" />
+    <Property Name="SchemaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdParameterRef" Type="bigint" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="100" />
+    <Property Name="NameColumnRef" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValueColumnRef" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SystemUserTicket">
+    <Key>
+      <PropertyRef Name="IdTicket" />
+    </Key>
+    <Property Name="IdTicket" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TopMenu">
+    <Key>
+      <PropertyRef Name="IdTopMenu" />
+    </Key>
+    <Property Name="IdTopMenu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="Area" Type="nvarchar" MaxLength="24" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="64" />
+    <Property Name="Action" Type="nvarchar" MaxLength="64" />
+    <Property Name="TopMenuName" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="TopMenuDescription" Type="nvarchar" MaxLength="1024" />
+    <Property Name="TopMenuStatus" Type="smallint" />
+    <Property Name="TopMenuOrder" Type="int" />
+    <Property Name="IconUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="ItemBackgroundColor" Type="nvarchar" MaxLength="64" />
+    <Property Name="ItemTextColor" Type="nvarchar" MaxLength="64" />
+    <Property Name="ItemIconColor" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="IdTown" />
+    </Key>
+    <Property Name="IdTown" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCityRef" Type="bigint" />
+    <Property Name="TownCode" Type="int" />
+    <Property Name="TakbisTownCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="TownName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="TownId" Type="uniqueidentifier" />
+    <Property Name="TownGeometry" Type="geometry" />
+    <Property Name="CentroidGeometry" Type="geometry" />
+    <Property Name="CentroidTown" Type="geometry" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="IdVillage" />
+    </Key>
+    <Property Name="IdVillage" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdTownRef" Type="bigint" />
+    <Property Name="IdCityRef" Type="bigint" />
+    <Property Name="VillageCode" Type="int" />
+    <Property Name="TakbisVillageCode" Type="int" />
+    <Property Name="VillageType" Type="smallint" />
+    <Property Name="VillageName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="TownId" Type="uniqueidentifier" />
+    <Property Name="VillageId" Type="uniqueidentifier" />
+    <Property Name="Centroid_Weighted" Type="geometry" />
+    <Property Name="BBox_MinPoint" Type="geometry" />
+    <Property Name="BBox_MaxPoint" Type="geometry" />
+  </EntityType>
+  <EntityType Name="Dashboard">
+    <Key>
+      <PropertyRef Name="IdDashboard" />
+    </Key>
+    <Property Name="IdDashboard" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+    <Property Name="DashboardName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="DashboarUrl" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataSourceChart">
+    <Key>
+      <PropertyRef Name="IdDataSourceChart" />
+    </Key>
+    <Property Name="IdDataSourceChart" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdChartRef" Type="bigint" Nullable="false" />
+    <Property Name="IdDataSourceObjectRef" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataSourceConnect">
+    <Key>
+      <PropertyRef Name="IdDataSourceConnect" />
+    </Key>
+    <Property Name="IdDataSourceConnect" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdCorparationSourceTypeRef" Type="bigint" Nullable="false" />
+    <Property Name="DataSourceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerAddressPort" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DatabaseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConnectionInfo" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="DataSourceObject">
+    <Key>
+      <PropertyRef Name="IdDataSourceObject" />
+    </Key>
+    <Property Name="IdDataSourceObject" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdDataSourceConnectRef" Type="bigint" Nullable="false" />
+    <Property Name="IdScriptTypeRef" Type="bigint" Nullable="false" />
+    <Property Name="IdDashboardRef" Type="bigint" Nullable="false" />
+    <Property Name="DataSourceObjectName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ScriptName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Query" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DataSourceObjectDetail">
+    <Key>
+      <PropertyRef Name="IdDataSourceObjectDetail" />
+    </Key>
+    <Property Name="IdDataSourceObjectDetail" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdDataSouceObjectRef" Type="bigint" Nullable="false" />
+    <Property Name="ParamaterName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ParamaterAlias" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsFilter" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleDashboard">
+    <Key>
+      <PropertyRef Name="IdRoleDashboard" />
+    </Key>
+    <Property Name="IdRoleDashboard" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdDashboardRef" Type="bigint" Nullable="false" />
+    <Property Name="IdRoleRef" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CDC">
+    <Key>
+      <PropertyRef Name="IdCDC" />
+    </Key>
+    <Property Name="IdCDC" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="OperationType" Type="smallint" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="TablePrimaryKeyName" Type="nvarchar" MaxLength="150" />
+    <Property Name="TableId" Type="bigint" />
+    <Property Name="TableIdGuid" Type="uniqueidentifier" />
+    <Property Name="Source" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MyDashboard">
+    <Key>
+      <PropertyRef Name="IdMyDashboard" />
+    </Key>
+    <Property Name="IdMyDashboard" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemConnectLog">
+    <Key>
+      <PropertyRef Name="IdSystemConnectLog" />
+    </Key>
+    <Property Name="IdSystemConnectLog" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdCreatedUserRef" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IdChangeRequestRef" Type="bigint" />
+    <Property Name="IdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="IdMessageCodeRef" Type="bigint" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ConnectDate" Type="datetime" Nullable="false" />
+    <Property Name="ConnectIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ANNOUNCEMENT_SystemUser">
+    <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
+    <End Role="ANNOUNCEMENT" Type="Self.ANNOUNCEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="ANNOUNCEMENT">
+        <PropertyRef Name="OperationIdUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="IdCountry" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="IdCountryRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceChart_DataSourceObject">
+    <End Role="DataSourceObject" Type="Self.DataSourceObject" Multiplicity="1" />
+    <End Role="DataSourceChart" Type="Self.DataSourceChart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSourceObject">
+        <PropertyRef Name="IdDataSourceObject" />
+      </Principal>
+      <Dependent Role="DataSourceChart">
+        <PropertyRef Name="IdDataSourceObjectRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceObject_Dashboard">
+    <End Role="Dashboard" Type="Self.Dashboard" Multiplicity="1" />
+    <End Role="DataSourceObject" Type="Self.DataSourceObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dashboard">
+        <PropertyRef Name="IdDashboard" />
+      </Principal>
+      <Dependent Role="DataSourceObject">
+        <PropertyRef Name="IdDashboardRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceObject_DataSourceConnect">
+    <End Role="DataSourceConnect" Type="Self.DataSourceConnect" Multiplicity="1" />
+    <End Role="DataSourceObject" Type="Self.DataSourceObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSourceConnect">
+        <PropertyRef Name="IdDataSourceConnect" />
+      </Principal>
+      <Dependent Role="DataSourceObject">
+        <PropertyRef Name="IdDataSourceConnectRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceObjectDetail_DataSourceObject">
+    <End Role="DataSourceObject" Type="Self.DataSourceObject" Multiplicity="1" />
+    <End Role="DataSourceObjectDetail" Type="Self.DataSourceObjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DataSourceObject">
+        <PropertyRef Name="IdDataSourceObject" />
+      </Principal>
+      <Dependent Role="DataSourceObjectDetail">
+        <PropertyRef Name="IdDataSouceObjectRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleAuthorization_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RoleAuthorization" Type="Self.RoleAuthorization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleAuthorization">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleDashboard_Dashboard">
+    <End Role="Dashboard" Type="Self.Dashboard" Multiplicity="1" />
+    <End Role="RoleDashboard" Type="Self.RoleDashboard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dashboard">
+        <PropertyRef Name="IdDashboard" />
+      </Principal>
+      <Dependent Role="RoleDashboard">
+        <PropertyRef Name="IdDashboardRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleSideMenu_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleSideMenu">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleSideMenu_SideMenu">
+    <End Role="SideMenu" Type="Self.SideMenu" Multiplicity="0..1" />
+    <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SideMenu">
+        <PropertyRef Name="IdSideMenu" />
+      </Principal>
+      <Dependent Role="RoleSideMenu">
+        <PropertyRef Name="IdSideMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleTopMenu_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RoleTopMenu" Type="Self.RoleTopMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleTopMenu">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleTopMenu_TopMenu">
+    <End Role="TopMenu" Type="Self.TopMenu" Multiplicity="0..1" />
+    <End Role="RoleTopMenu" Type="Self.RoleTopMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopMenu">
+        <PropertyRef Name="IdTopMenu" />
+      </Principal>
+      <Dependent Role="RoleTopMenu">
+        <PropertyRef Name="IdTopMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SideMenu_TopMenu">
+    <End Role="TopMenu" Type="Self.TopMenu" Multiplicity="0..1" />
+    <End Role="SideMenu" Type="Self.SideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopMenu">
+        <PropertyRef Name="IdTopMenu" />
+      </Principal>
+      <Dependent Role="SideMenu">
+        <PropertyRef Name="IdTopMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="SystemUserRole">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRole_SystemUser">
+    <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
+    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="SystemUserRole">
+        <PropertyRef Name="IdSystemUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="IdCountry" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdCountryRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_SystemUser">
+    <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdSystemUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_SystemUserRole">
+    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUserRole">
+        <PropertyRef Name="IdSystemUserRole" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdSystemUserRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Town">
+    <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="IdTown" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdTownRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Village">
+    <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="IdVillage" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdVillageRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Town_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Town" Type="Self.Town" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Town">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_City1">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Town">
+    <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="IdTown" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdTownRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Role_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMINISTRATION">
+    <Parameter Name="TbsUserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="SystemUserId" Type="bigint" Mode="In" />
+  </Function>
+  <EntityContainer Name="SinBI_DashboardModelStoreContainer">
+    <EntitySet Name="ANNOUNCEMENT" EntityType="Self.ANNOUNCEMENT" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="ConnectionLog" EntityType="Self.ConnectionLog" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Exception" EntityType="Self.Exception" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="ExceptionFeedBack" EntityType="Self.ExceptionFeedBack" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="RoleAuthorization" EntityType="Self.RoleAuthorization" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="RoleSideMenu" EntityType="Self.RoleSideMenu" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="RoleTopMenu" EntityType="Self.RoleTopMenu" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SideMenu" EntityType="Self.SideMenu" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SystemUser" EntityType="Self.SystemUser" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SystemUserRole" EntityType="Self.SystemUserRole" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SystemUserRoleLocation" EntityType="Self.SystemUserRoleLocation" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SystemUserRoleParameter" EntityType="Self.SystemUserRoleParameter" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="SystemUserTicket" EntityType="Self.SystemUserTicket" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="TopMenu" EntityType="Self.TopMenu" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Town" EntityType="Self.Town" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Village" EntityType="Self.Village" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Dashboard" EntityType="Self.Dashboard" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="DataSourceChart" EntityType="Self.DataSourceChart" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="DataSourceConnect" EntityType="Self.DataSourceConnect" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="DataSourceObject" EntityType="Self.DataSourceObject" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="DataSourceObjectDetail" EntityType="Self.DataSourceObjectDetail" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="RoleDashboard" EntityType="Self.RoleDashboard" Schema="BI" store:Type="Tables" />
+    <EntitySet Name="CDC" EntityType="Self.CDC" Schema="CDC" store:Type="Tables" />
+    <EntitySet Name="MyDashboard" EntityType="Self.MyDashboard" Schema="DB" store:Type="Tables" />
+    <EntitySet Name="SystemConnectLog" EntityType="Self.SystemConnectLog" Schema="LOG" store:Type="Tables" />
+    <AssociationSet Name="FK_ANNOUNCEMENT_SystemUser" Association="Self.FK_ANNOUNCEMENT_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="ANNOUNCEMENT" EntitySet="ANNOUNCEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceChart_DataSourceObject" Association="Self.FK_DataSourceChart_DataSourceObject">
+      <End Role="DataSourceObject" EntitySet="DataSourceObject" />
+      <End Role="DataSourceChart" EntitySet="DataSourceChart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceObject_Dashboard" Association="Self.FK_DataSourceObject_Dashboard">
+      <End Role="Dashboard" EntitySet="Dashboard" />
+      <End Role="DataSourceObject" EntitySet="DataSourceObject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceObject_DataSourceConnect" Association="Self.FK_DataSourceObject_DataSourceConnect">
+      <End Role="DataSourceConnect" EntitySet="DataSourceConnect" />
+      <End Role="DataSourceObject" EntitySet="DataSourceObject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceObjectDetail_DataSourceObject" Association="Self.FK_DataSourceObjectDetail_DataSourceObject">
+      <End Role="DataSourceObject" EntitySet="DataSourceObject" />
+      <End Role="DataSourceObjectDetail" EntitySet="DataSourceObjectDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleAuthorization_Role" Association="Self.FK_RoleAuthorization_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleAuthorization" EntitySet="RoleAuthorization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleDashboard_Dashboard" Association="Self.FK_RoleDashboard_Dashboard">
+      <End Role="Dashboard" EntitySet="Dashboard" />
+      <End Role="RoleDashboard" EntitySet="RoleDashboard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleSideMenu_Role" Association="Self.FK_RoleSideMenu_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleSideMenu_SideMenu" Association="Self.FK_RoleSideMenu_SideMenu">
+      <End Role="SideMenu" EntitySet="SideMenu" />
+      <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleTopMenu_Role" Association="Self.FK_RoleTopMenu_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleTopMenu_TopMenu" Association="Self.FK_RoleTopMenu_TopMenu">
+      <End Role="TopMenu" EntitySet="TopMenu" />
+      <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SideMenu_TopMenu" Association="Self.FK_SideMenu_TopMenu">
+      <End Role="TopMenu" EntitySet="TopMenu" />
+      <End Role="SideMenu" EntitySet="SideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRole_Role" Association="Self.FK_SystemUserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRole_SystemUser" Association="Self.FK_SystemUserRole_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_City" Association="Self.FK_SystemUserRoleLocation_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Country" Association="Self.FK_SystemUserRoleLocation_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUser" Association="Self.FK_SystemUserRoleLocation_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUserRole" Association="Self.FK_SystemUserRoleLocation_SystemUserRole">
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Town" Association="Self.FK_SystemUserRoleLocation_Town">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Village" Association="Self.FK_SystemUserRoleLocation_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Town_City" Association="Self.FK_Town_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Town" EntitySet="Town" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_City" Association="Self.FK_Village_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_City1" Association="Self.FK_Village_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Town" Association="Self.FK_Village_Town">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

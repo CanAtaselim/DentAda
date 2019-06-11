@@ -1,0 +1,6 @@
+D:\Projects\Dashboard_v2\DashboardBI.Common\bin\Debug\DashboardBI.Common.dll
+D:\Projects\Dashboard_v2\DashboardBI.Common\bin\Debug\DashboardBI.Common.pdb
+D:\Projects\Dashboard_v2\DashboardBI.Common\obj\Debug\DashboardBI.Common.csproj.CoreCompileInputs.cache
+D:\Projects\Dashboard_v2\DashboardBI.Common\obj\Debug\DashboardBI.Common.dll
+D:\Projects\Dashboard_v2\DashboardBI.Common\obj\Debug\DashboardBI.Common.pdb
+D:\Projects\Dashboard_v2\DashboardBI.Common\obj\Debug\DashboardBI.Common.csprojAssemblyReference.cache

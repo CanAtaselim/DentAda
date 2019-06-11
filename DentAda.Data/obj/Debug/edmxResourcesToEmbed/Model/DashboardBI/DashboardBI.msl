@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SinBI_DashboardModelStoreContainer" CdmEntityContainer="SinBI_DashboardEntities">
+    <FunctionImportMapping FunctionImportName="Role_List" FunctionName="SinBI_DashboardModel.Store.Role_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SinBI_DashboardModel.Role_List_Result">
+          <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+          <ScalarProperty Name="TbsUserId" ColumnName="TbsUserId" />
+          <ScalarProperty Name="LocationAdmin" ColumnName="LocationAdmin" />
+          <ScalarProperty Name="IdParentRole" ColumnName="IdParentRole" />
+          <ScalarProperty Name="ParentRoleName" ColumnName="ParentRoleName" />
+          <ScalarProperty Name="ParentRoleCode" ColumnName="ParentRoleCode" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+          <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
+          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="IdTown" ColumnName="IdTown" />
+          <ScalarProperty Name="TownName" ColumnName="TownName" />
+          <ScalarProperty Name="IdVillage" ColumnName="IdVillage" />
+          <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+          <ScalarProperty Name="IdSystemUserRoleLocation" ColumnName="IdSystemUserRoleLocation" />
+          <ScalarProperty Name="IdSystemUserRole" ColumnName="IdSystemUserRole" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ANNOUNCEMENTs">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.ANNOUNCEMENT">
+        <MappingFragment StoreEntitySet="ANNOUNCEMENT">
+          <ScalarProperty Name="IsVisibleToMain" ColumnName="IsVisibleToMain" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="MessageIcon" ColumnName="MessageIcon" />
+          <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+          <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+          <ScalarProperty Name="MessageSubject" ColumnName="MessageSubject" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdAnnouncement" ColumnName="IdAnnouncement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CentroidCity" ColumnName="CentroidCity" />
+          <ScalarProperty Name="CentroidGeometry" ColumnName="CentroidGeometry" />
+          <ScalarProperty Name="CityGeometry" ColumnName="CityGeometry" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+          <ScalarProperty Name="TrafficCode" ColumnName="TrafficCode" />
+          <ScalarProperty Name="TakbisCityCode" ColumnName="TakbisCityCode" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="IdCountryRef" ColumnName="IdCountryRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConnectionLogs">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.ConnectionLog">
+        <MappingFragment StoreEntitySet="ConnectionLog">
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="IdSystemUserRef" ColumnName="IdSystemUserRef" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="IdConnectionLog" ColumnName="IdConnectionLog" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryGroup" ColumnName="CountryGroup" />
+          <ScalarProperty Name="ISOCodeA2" ColumnName="ISOCodeA2" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryPhoneCode" ColumnName="CountryPhoneCode" />
+          <ScalarProperty Name="CountryName_English" ColumnName="CountryName_English" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="ClientBrowser" ColumnName="ClientBrowser" />
+          <ScalarProperty Name="MachineIp" ColumnName="MachineIp" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="ExecutionTime" ColumnName="ExecutionTime" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="EventSource" ColumnName="EventSource" />
+          <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdEvent" ColumnName="IdEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exceptions">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Exception">
+        <MappingFragment StoreEntitySet="Exception">
+          <ScalarProperty Name="ClientBrowser" ColumnName="ClientBrowser" />
+          <ScalarProperty Name="ExCode" ColumnName="ExCode" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdException" ColumnName="IdException" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExceptionFeedBacks">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.ExceptionFeedBack">
+        <MappingFragment StoreEntitySet="ExceptionFeedBack">
+          <ScalarProperty Name="ExCode" ColumnName="ExCode" />
+          <ScalarProperty Name="FeedBack" ColumnName="FeedBack" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdExceptionFeedBack" ColumnName="IdExceptionFeedBack" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
+          <ScalarProperty Name="IsRoleDistribution" ColumnName="IsRoleDistribution" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+          <ScalarProperty Name="LocationAdmin" ColumnName="LocationAdmin" />
+          <ScalarProperty Name="StaticRole" ColumnName="StaticRole" />
+          <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IdParentRoleRef" ColumnName="IdParentRoleRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleAuthorizations">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.RoleAuthorization">
+        <MappingFragment StoreEntitySet="RoleAuthorization">
+          <ScalarProperty Name="IsForbidden" ColumnName="IsForbidden" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="IdRoleAuthorization" ColumnName="IdRoleAuthorization" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleSideMenus">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.RoleSideMenu">
+        <MappingFragment StoreEntitySet="RoleSideMenu">
+          <ScalarProperty Name="IdSideMenuRef" ColumnName="IdSideMenuRef" />
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdRoleSideMenu" ColumnName="IdRoleSideMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleTopMenus">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.RoleTopMenu">
+        <MappingFragment StoreEntitySet="RoleTopMenu">
+          <ScalarProperty Name="IdTopMenuRef" ColumnName="IdTopMenuRef" />
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdRoleTopMenu" ColumnName="IdRoleTopMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Session">
+        <MappingFragment StoreEntitySet="Sessions">
+          <ScalarProperty Name="AbsoluteExpiration" ColumnName="AbsoluteExpiration" />
+          <ScalarProperty Name="SlidingExpirationInSeconds" ColumnName="SlidingExpirationInSeconds" />
+          <ScalarProperty Name="ExpiresAtTime" ColumnName="ExpiresAtTime" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SideMenus">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SideMenu">
+        <MappingFragment StoreEntitySet="SideMenu">
+          <ScalarProperty Name="ItemIconColor" ColumnName="ItemIconColor" />
+          <ScalarProperty Name="ItemTextColor" ColumnName="ItemTextColor" />
+          <ScalarProperty Name="ItemBackgroundColor" ColumnName="ItemBackgroundColor" />
+          <ScalarProperty Name="IconUrl" ColumnName="IconUrl" />
+          <ScalarProperty Name="SideMenuOrder" ColumnName="SideMenuOrder" />
+          <ScalarProperty Name="SideMenuStatus" ColumnName="SideMenuStatus" />
+          <ScalarProperty Name="SideMenuDescription" ColumnName="SideMenuDescription" />
+          <ScalarProperty Name="SideMenuName" ColumnName="SideMenuName" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="IdTopMenuRef" ColumnName="IdTopMenuRef" />
+          <ScalarProperty Name="IdParentSideMenu" ColumnName="IdParentSideMenu" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdSideMenu" ColumnName="IdSideMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUser">
+          <ScalarProperty Name="ProfilePictureURL" ColumnName="ProfilePictureURL" />
+          <ScalarProperty Name="TbsUserId" ColumnName="TbsUserId" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EmailConfirmation" ColumnName="EmailConfirmation" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastPassword" ColumnName="LastPassword" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastPasswordChangeDate" ColumnName="LastPasswordChangeDate" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="IdNo" ColumnName="IdNo" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserRoles">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemUserRole">
+        <MappingFragment StoreEntitySet="SystemUserRole">
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="IdSystemUserRef" ColumnName="IdSystemUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdSystemUserRole" ColumnName="IdSystemUserRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserRoleLocations">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemUserRoleLocation">
+        <MappingFragment StoreEntitySet="SystemUserRoleLocation">
+          <ScalarProperty Name="IdVillageRef" ColumnName="IdVillageRef" />
+          <ScalarProperty Name="IdTownRef" ColumnName="IdTownRef" />
+          <ScalarProperty Name="IdCityRef" ColumnName="IdCityRef" />
+          <ScalarProperty Name="IdCountryRef" ColumnName="IdCountryRef" />
+          <ScalarProperty Name="IdSystemUserRoleRef" ColumnName="IdSystemUserRoleRef" />
+          <ScalarProperty Name="IdSystemUserRef" ColumnName="IdSystemUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdSystemUserRoleLocation" ColumnName="IdSystemUserRoleLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserRoleParameters">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemUserRoleParameter">
+        <MappingFragment StoreEntitySet="SystemUserRoleParameter">
+          <ScalarProperty Name="ValueColumnRef" ColumnName="ValueColumnRef" />
+          <ScalarProperty Name="NameColumnRef" ColumnName="NameColumnRef" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="IdParameterRef" ColumnName="IdParameterRef" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="SchemaName" ColumnName="SchemaName" />
+          <ScalarProperty Name="ParameterAdmin" ColumnName="ParameterAdmin" />
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="IdSystemUserRoleRef" ColumnName="IdSystemUserRoleRef" />
+          <ScalarProperty Name="IdSystemUserRef" ColumnName="IdSystemUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdSystemUserRoleParameter" ColumnName="IdSystemUserRoleParameter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserTickets">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemUserTicket">
+        <MappingFragment StoreEntitySet="SystemUserTicket">
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="IdUserRef" ColumnName="IdUserRef" />
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TopMenus">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.TopMenu">
+        <MappingFragment StoreEntitySet="TopMenu">
+          <ScalarProperty Name="ItemIconColor" ColumnName="ItemIconColor" />
+          <ScalarProperty Name="ItemTextColor" ColumnName="ItemTextColor" />
+          <ScalarProperty Name="ItemBackgroundColor" ColumnName="ItemBackgroundColor" />
+          <ScalarProperty Name="IconUrl" ColumnName="IconUrl" />
+          <ScalarProperty Name="TopMenuOrder" ColumnName="TopMenuOrder" />
+          <ScalarProperty Name="TopMenuStatus" ColumnName="TopMenuStatus" />
+          <ScalarProperty Name="TopMenuDescription" ColumnName="TopMenuDescription" />
+          <ScalarProperty Name="TopMenuName" ColumnName="TopMenuName" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdTopMenu" ColumnName="IdTopMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Town">
+        <MappingFragment StoreEntitySet="Town">
+          <ScalarProperty Name="CentroidTown" ColumnName="CentroidTown" />
+          <ScalarProperty Name="CentroidGeometry" ColumnName="CentroidGeometry" />
+          <ScalarProperty Name="TownGeometry" ColumnName="TownGeometry" />
+          <ScalarProperty Name="TownId" ColumnName="TownId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="TownName" ColumnName="TownName" />
+          <ScalarProperty Name="TakbisTownCode" ColumnName="TakbisTownCode" />
+          <ScalarProperty Name="TownCode" ColumnName="TownCode" />
+          <ScalarProperty Name="IdCityRef" ColumnName="IdCityRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdTown" ColumnName="IdTown" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Villages">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Village">
+        <MappingFragment StoreEntitySet="Village">
+          <ScalarProperty Name="BBox_MaxPoint" ColumnName="BBox_MaxPoint" />
+          <ScalarProperty Name="BBox_MinPoint" ColumnName="BBox_MinPoint" />
+          <ScalarProperty Name="Centroid_Weighted" ColumnName="Centroid_Weighted" />
+          <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+          <ScalarProperty Name="TownId" ColumnName="TownId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+          <ScalarProperty Name="VillageType" ColumnName="VillageType" />
+          <ScalarProperty Name="TakbisVillageCode" ColumnName="TakbisVillageCode" />
+          <ScalarProperty Name="VillageCode" ColumnName="VillageCode" />
+          <ScalarProperty Name="IdCityRef" ColumnName="IdCityRef" />
+          <ScalarProperty Name="IdTownRef" ColumnName="IdTownRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdVillage" ColumnName="IdVillage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dashboards">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.Dashboard">
+        <MappingFragment StoreEntitySet="Dashboard">
+          <ScalarProperty Name="DashboarUrl" ColumnName="DashboarUrl" />
+          <ScalarProperty Name="DashboardName" ColumnName="DashboardName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdDashboard" ColumnName="IdDashboard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSourceCharts">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.DataSourceChart">
+        <MappingFragment StoreEntitySet="DataSourceChart">
+          <ScalarProperty Name="IdDataSourceObjectRef" ColumnName="IdDataSourceObjectRef" />
+          <ScalarProperty Name="IdChartRef" ColumnName="IdChartRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdDataSourceChart" ColumnName="IdDataSourceChart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSourceConnects">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.DataSourceConnect">
+        <MappingFragment StoreEntitySet="DataSourceConnect">
+          <ScalarProperty Name="ConnectionInfo" ColumnName="ConnectionInfo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DatabaseName" ColumnName="DatabaseName" />
+          <ScalarProperty Name="ServerAddressPort" ColumnName="ServerAddressPort" />
+          <ScalarProperty Name="ServerAddress" ColumnName="ServerAddress" />
+          <ScalarProperty Name="DataSourceName" ColumnName="DataSourceName" />
+          <ScalarProperty Name="IdCorparationSourceTypeRef" ColumnName="IdCorparationSourceTypeRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdDataSourceConnect" ColumnName="IdDataSourceConnect" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSourceObjects">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.DataSourceObject">
+        <MappingFragment StoreEntitySet="DataSourceObject">
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="ScriptName" ColumnName="ScriptName" />
+          <ScalarProperty Name="DataSourceObjectName" ColumnName="DataSourceObjectName" />
+          <ScalarProperty Name="IdDashboardRef" ColumnName="IdDashboardRef" />
+          <ScalarProperty Name="IdScriptTypeRef" ColumnName="IdScriptTypeRef" />
+          <ScalarProperty Name="IdDataSourceConnectRef" ColumnName="IdDataSourceConnectRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdDataSourceObject" ColumnName="IdDataSourceObject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSourceObjectDetails">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.DataSourceObjectDetail">
+        <MappingFragment StoreEntitySet="DataSourceObjectDetail">
+          <ScalarProperty Name="IsFilter" ColumnName="IsFilter" />
+          <ScalarProperty Name="ParamaterAlias" ColumnName="ParamaterAlias" />
+          <ScalarProperty Name="ParamaterName" ColumnName="ParamaterName" />
+          <ScalarProperty Name="IdDataSouceObjectRef" ColumnName="IdDataSouceObjectRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdDataSourceObjectDetail" ColumnName="IdDataSourceObjectDetail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleDashboards">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.RoleDashboard">
+        <MappingFragment StoreEntitySet="RoleDashboard">
+          <ScalarProperty Name="IdRoleRef" ColumnName="IdRoleRef" />
+          <ScalarProperty Name="IdDashboardRef" ColumnName="IdDashboardRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdRoleDashboard" ColumnName="IdRoleDashboard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CDCs">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.CDC">
+        <MappingFragment StoreEntitySet="CDC">
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="TableIdGuid" ColumnName="TableIdGuid" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="TablePrimaryKeyName" ColumnName="TablePrimaryKeyName" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdCDC" ColumnName="IdCDC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyDashboards">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.MyDashboard">
+        <MappingFragment StoreEntitySet="MyDashboard">
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdMyDashboard" ColumnName="IdMyDashboard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemConnectLogs">
+      <EntityTypeMapping TypeName="SinBI_DashboardModel.SystemConnectLog">
+        <MappingFragment StoreEntitySet="SystemConnectLog">
+          <ScalarProperty Name="ConnectIP" ColumnName="ConnectIP" />
+          <ScalarProperty Name="ConnectDate" ColumnName="ConnectDate" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IdMessageCodeRef" ColumnName="IdMessageCodeRef" />
+          <ScalarProperty Name="IdUserRef" ColumnName="IdUserRef" />
+          <ScalarProperty Name="IdChangeRequestRef" ColumnName="IdChangeRequestRef" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IdCreatedUserRef" ColumnName="IdCreatedUserRef" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdSystemConnectLog" ColumnName="IdSystemConnectLog" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

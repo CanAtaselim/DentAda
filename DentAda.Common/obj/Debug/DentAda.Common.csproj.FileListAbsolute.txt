@@ -1,0 +1,17 @@
+D:\Projects\SinFW_Zero\SinFW_Zero.Common\bin\Debug\DentAda.Common.dll
+D:\Projects\SinFW_Zero\SinFW_Zero.Common\bin\Debug\DentAda.Common.pdb
+D:\Projects\SinFW_Zero\SinFW_Zero.Common\obj\Debug\DentAda.Common.csproj.CoreCompileInputs.cache
+D:\Projects\SinFW_Zero\SinFW_Zero.Common\obj\Debug\DentAda.Common.dll
+D:\Projects\SinFW_Zero\SinFW_Zero.Common\obj\Debug\DentAda.Common.pdb
+C:\Projects\DentAda\SinFW_Zero.Common\bin\Debug\DentAda.Common.dll
+C:\Projects\DentAda\SinFW_Zero.Common\bin\Debug\DentAda.Common.pdb
+C:\Projects\DentAda\SinFW_Zero.Common\obj\Debug\DentAda.Common.csprojAssemblyReference.cache
+C:\Projects\DentAda\SinFW_Zero.Common\obj\Debug\DentAda.Common.csproj.CoreCompileInputs.cache
+C:\Projects\DentAda\SinFW_Zero.Common\obj\Debug\DentAda.Common.dll
+C:\Projects\DentAda\SinFW_Zero.Common\obj\Debug\DentAda.Common.pdb
+C:\Projects\DentAda\DentAda.Common\bin\Debug\DentAda.Common.dll
+C:\Projects\DentAda\DentAda.Common\bin\Debug\DentAda.Common.pdb
+C:\Projects\DentAda\DentAda.Common\obj\Debug\DentAda.Common.csproj.CoreCompileInputs.cache
+C:\Projects\DentAda\DentAda.Common\obj\Debug\DentAda.Common.dll
+C:\Projects\DentAda\DentAda.Common\obj\Debug\DentAda.Common.pdb
+C:\Projects\DentAda\DentAda.Common\obj\Debug\DentAda.Common.csprojAssemblyReference.cache

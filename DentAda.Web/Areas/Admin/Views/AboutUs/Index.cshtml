@@ -1,0 +1,41 @@
+﻿@section pageLevelInlineScripts {
+    <script>
+        jQuery(document).ready(function () {
+
+        });
+    </script>
+}
+@section pageLevelStyles {
+
+}
+@section pageLevelInlineStyles {
+
+}
+@section pageLevelPlugins {
+
+
+}
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="flaticon2-calendar-2"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                Hakkımızda
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Yeni Kayıt </button>&nbsp;
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("Edit")
+
+
+
+
+</div>
+
