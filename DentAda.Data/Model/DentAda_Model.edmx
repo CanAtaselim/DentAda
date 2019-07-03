@@ -410,30 +410,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RoleAuthorization_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="RoleAuthorization" Type="Self.RoleAuthorization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="IdRole" />
-            </Principal>
-            <Dependent Role="RoleAuthorization">
-              <PropertyRef Name="IdRoleRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoleSideMenu_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="IdRole" />
-            </Principal>
-            <Dependent Role="RoleSideMenu">
-              <PropertyRef Name="IdRoleRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RoleSideMenu_SideMenu">
           <End Role="SideMenu" Type="Self.SideMenu" Multiplicity="0..1" />
           <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
@@ -443,18 +419,6 @@
             </Principal>
             <Dependent Role="RoleSideMenu">
               <PropertyRef Name="IdSideMenuRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoleTopMenu_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="RoleTopMenu" Type="Self.RoleTopMenu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="IdRole" />
-            </Principal>
-            <Dependent Role="RoleTopMenu">
-              <PropertyRef Name="IdRoleRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -479,102 +443,6 @@
             </Principal>
             <Dependent Role="SideMenu">
               <PropertyRef Name="IdTopMenuRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRole_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="IdRole" />
-            </Principal>
-            <Dependent Role="SystemUserRole">
-              <PropertyRef Name="IdRoleRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRole_SystemUser">
-          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
-          <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUser">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="SystemUserRole">
-              <PropertyRef Name="IdSystemUserRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="IdCity" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdCityRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_Country">
-          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="IdCountry" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdCountryRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_SystemUser">
-          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUser">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdSystemUserRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_SystemUserRole">
-          <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SystemUserRole">
-              <PropertyRef Name="IdSystemUserRole" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdSystemUserRoleRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_Town">
-          <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Town">
-              <PropertyRef Name="IdTown" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdTownRef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SystemUserRoleLocation_Village">
-          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
-          <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Village">
-              <PropertyRef Name="IdVillage" />
-            </Principal>
-            <Dependent Role="SystemUserRoleLocation">
-              <PropertyRef Name="IdVillageRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -627,7 +495,6 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="Role_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMINISTRATION">
-          <Parameter Name="TbsUserId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="SystemUserId" Type="bigint" Mode="In" />
         </Function>
         <EntityContainer Name="DentAdaModelStoreContainer">
@@ -662,21 +529,9 @@
             <End Role="Country" EntitySet="Country" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleAuthorization_Role" Association="Self.FK_RoleAuthorization_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="RoleAuthorization" EntitySet="RoleAuthorization" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoleSideMenu_Role" Association="Self.FK_RoleSideMenu_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
-          </AssociationSet>
           <AssociationSet Name="FK_RoleSideMenu_SideMenu" Association="Self.FK_RoleSideMenu_SideMenu">
             <End Role="SideMenu" EntitySet="SideMenu" />
             <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoleTopMenu_Role" Association="Self.FK_RoleTopMenu_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
           </AssociationSet>
           <AssociationSet Name="FK_RoleTopMenu_TopMenu" Association="Self.FK_RoleTopMenu_TopMenu">
             <End Role="TopMenu" EntitySet="TopMenu" />
@@ -685,38 +540,6 @@
           <AssociationSet Name="FK_SideMenu_TopMenu" Association="Self.FK_SideMenu_TopMenu">
             <End Role="TopMenu" EntitySet="TopMenu" />
             <End Role="SideMenu" EntitySet="SideMenu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRole_Role" Association="Self.FK_SystemUserRole_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRole_SystemUser" Association="Self.FK_SystemUserRole_SystemUser">
-            <End Role="SystemUser" EntitySet="SystemUser" />
-            <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_City" Association="Self.FK_SystemUserRoleLocation_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_Country" Association="Self.FK_SystemUserRoleLocation_Country">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_SystemUser" Association="Self.FK_SystemUserRoleLocation_SystemUser">
-            <End Role="SystemUser" EntitySet="SystemUser" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_SystemUserRole" Association="Self.FK_SystemUserRoleLocation_SystemUserRole">
-            <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_Town" Association="Self.FK_SystemUserRoleLocation_Town">
-            <End Role="Town" EntitySet="Town" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SystemUserRoleLocation_Village" Association="Self.FK_SystemUserRoleLocation_Village">
-            <End Role="Village" EntitySet="Village" />
-            <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
           </AssociationSet>
           <AssociationSet Name="FK_Town_City" Association="Self.FK_Town_City">
             <End Role="City" EntitySet="City" />
@@ -741,8 +564,7 @@
       <Schema Namespace="DentAdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DentAdaEntities" annotation:LazyLoadingEnabled="true">
           <FunctionImport Name="Role_List" ReturnType="Collection(DentAdaModel.Role_List_Result)">
-            <Parameter Name="TbsUserId" Mode="In" Type="Guid" />
-            <Parameter Name="SystemUserId" Mode="In" Type="Int64" />
+          <Parameter Name="SystemUserId" Mode="In" Type="Int64" />
           </FunctionImport>
           <EntitySet Name="ANNOUNCEMENT" EntityType="DentAdaModel.ANNOUNCEMENT" />
           <EntitySet Name="City" EntityType="DentAdaModel.City" />
@@ -850,8 +672,6 @@
         </EntityContainer>
         <ComplexType Name="Role_List_Result">
           <Property Type="Int64" Name="SystemUserId" Nullable="true" />
-          <Property Type="Guid" Name="TbsUserId" Nullable="true" />
-          <Property Type="Boolean" Name="LocationAdmin" Nullable="true" />
           <Property Type="Int64" Name="IdParentRole" Nullable="true" />
           <Property Type="String" Name="ParentRoleName" Nullable="true" MaxLength="128" />
           <Property Type="String" Name="ParentRoleCode" Nullable="true" MaxLength="25" />
@@ -859,15 +679,6 @@
           <Property Type="String" Name="RoleName" Nullable="false" MaxLength="128" />
           <Property Type="String" Name="RoleCode" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="DefaultPage" Nullable="true" MaxLength="150" />
-          <Property Type="Int64" Name="IdCountry" Nullable="true" />
-          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="50" />
-          <Property Type="Int64" Name="IdCity" Nullable="true" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="64" />
-          <Property Type="Int64" Name="IdTown" Nullable="true" />
-          <Property Type="String" Name="TownName" Nullable="true" MaxLength="32" />
-          <Property Type="Int64" Name="IdVillage" Nullable="true" />
-          <Property Type="String" Name="VillageName" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="IdSystemUserRoleLocation" Nullable="true" />
           <Property Type="Int64" Name="IdSystemUserRole" Nullable="false" />
         </ComplexType>
         <EntityType Name="ANNOUNCEMENT">
@@ -1541,8 +1352,6 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="DentAdaModel.Role_List_Result">
                 <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
-                <ScalarProperty Name="TbsUserId" ColumnName="TbsUserId" />
-                <ScalarProperty Name="LocationAdmin" ColumnName="LocationAdmin" />
                 <ScalarProperty Name="IdParentRole" ColumnName="IdParentRole" />
                 <ScalarProperty Name="ParentRoleName" ColumnName="ParentRoleName" />
                 <ScalarProperty Name="ParentRoleCode" ColumnName="ParentRoleCode" />
@@ -1550,15 +1359,6 @@
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
                 <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="IdTown" ColumnName="IdTown" />
-                <ScalarProperty Name="TownName" ColumnName="TownName" />
-                <ScalarProperty Name="IdVillage" ColumnName="IdVillage" />
-                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
-                <ScalarProperty Name="IdSystemUserRoleLocation" ColumnName="IdSystemUserRoleLocation" />
                 <ScalarProperty Name="IdSystemUserRole" ColumnName="IdSystemUserRole" />
               </ComplexTypeMapping>
             </ResultMapping>

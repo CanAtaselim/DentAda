@@ -14,8 +14,6 @@ namespace DentAda.Data.Model
     public partial class Role_List_Result
     {
         public Nullable<long> SystemUserId { get; set; }
-        public Nullable<System.Guid> TbsUserId { get; set; }
-        public Nullable<bool> LocationAdmin { get; set; }
         public Nullable<long> IdParentRole { get; set; }
         public string ParentRoleName { get; set; }
         public string ParentRoleCode { get; set; }
@@ -23,15 +21,6 @@ namespace DentAda.Data.Model
         public string RoleName { get; set; }
         public string RoleCode { get; set; }
         public string DefaultPage { get; set; }
-        public Nullable<long> IdCountry { get; set; }
-        public string CountryName { get; set; }
-        public Nullable<long> IdCity { get; set; }
-        public string CityName { get; set; }
-        public Nullable<long> IdTown { get; set; }
-        public string TownName { get; set; }
-        public Nullable<long> IdVillage { get; set; }
-        public string VillageName { get; set; }
-        public Nullable<long> IdSystemUserRoleLocation { get; set; }
         public long IdSystemUserRole { get; set; }
     }
 }

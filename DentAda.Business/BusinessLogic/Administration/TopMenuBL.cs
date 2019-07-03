@@ -9,6 +9,7 @@ using DentAda.Data.UnitOfWork.DentAda;
 using DentAda.Data.Repository;
 using static DentAda.Common._Enumeration.IsOperationDeleted;
 using System.Web.Mvc;
+using DentAda.Data.DataCommon;
 
 namespace DentAda.Business.BusinessLogic.Administration
 {

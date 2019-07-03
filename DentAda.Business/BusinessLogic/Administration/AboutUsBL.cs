@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace DentAda.Business.BusinessLogic.Administration
 {
+
     public class AboutUsBL : BaseBL<AboutUs, AboutUsVM>
     {
         private IUnitOfWork _unitOfWork;
@@ -34,7 +35,17 @@ namespace DentAda.Business.BusinessLogic.Administration
 
             }).ToList();
         }
+        public List<AboutUsVM> GetVMExtended(Expression<Func<AboutUs, bool>> filter = null, Func<IQueryable<AboutUs>, IOrderedQueryable<AboutUs>> orderBy = null, int? take = default(int?), int? skip = default(int?), string orderByS = null, short? orderByDirection = null, params Expression<Func<AboutUs, object>>[] includes)
+        {
+            return CRUD.QueryExtended(filter, orderBy, take, skip, orderByS, orderByDirection, includes).Select(s => new AboutUsVM
+            {
+                IdAboutUs = s.IdAboutUs,
+                Description = s.Description,
+                Department = s.Department,
+                Picture = s.Picture
 
+            }).ToList();
+        }
         public override void Save()
         {
             _unitOfWork.Save();

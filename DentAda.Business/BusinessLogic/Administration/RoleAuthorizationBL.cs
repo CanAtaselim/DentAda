@@ -1,6 +1,7 @@
 ﻿using DentAda.Business.BusinessLogic.Base;
 using DentAda.Business.ViewModel;
 using DentAda.Business.ViewModel.Administration;
+using DentAda.Data.DataCommon;
 using DentAda.Data.Model;
 using DentAda.Data.Repository;
 using DentAda.Data.UnitOfWork.DentAda;

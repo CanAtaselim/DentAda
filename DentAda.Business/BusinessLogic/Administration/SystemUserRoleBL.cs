@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using DentAda.Data.UnitOfWork.DentAda;
 using DentAda.Data.Repository;
 using System.Transactions;
+using DentAda.Data.DataCommon;
 
 namespace DentAda.Business.BusinessLogic
 {

@@ -405,30 +405,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RoleAuthorization_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="RoleAuthorization" Type="Self.RoleAuthorization" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="IdRole" />
-      </Principal>
-      <Dependent Role="RoleAuthorization">
-        <PropertyRef Name="IdRoleRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RoleSideMenu_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-    <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="IdRole" />
-      </Principal>
-      <Dependent Role="RoleSideMenu">
-        <PropertyRef Name="IdRoleRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_RoleSideMenu_SideMenu">
     <End Role="SideMenu" Type="Self.SideMenu" Multiplicity="0..1" />
     <End Role="RoleSideMenu" Type="Self.RoleSideMenu" Multiplicity="*" />
@@ -438,18 +414,6 @@
       </Principal>
       <Dependent Role="RoleSideMenu">
         <PropertyRef Name="IdSideMenuRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RoleTopMenu_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="RoleTopMenu" Type="Self.RoleTopMenu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="IdRole" />
-      </Principal>
-      <Dependent Role="RoleTopMenu">
-        <PropertyRef Name="IdRoleRef" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -474,102 +438,6 @@
       </Principal>
       <Dependent Role="SideMenu">
         <PropertyRef Name="IdTopMenuRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRole_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="IdRole" />
-      </Principal>
-      <Dependent Role="SystemUserRole">
-        <PropertyRef Name="IdRoleRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRole_SystemUser">
-    <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
-    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SystemUser">
-        <PropertyRef Name="IdUser" />
-      </Principal>
-      <Dependent Role="SystemUserRole">
-        <PropertyRef Name="IdSystemUserRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="City">
-        <PropertyRef Name="IdCity" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdCityRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_Country">
-    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Country">
-        <PropertyRef Name="IdCountry" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdCountryRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_SystemUser">
-    <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SystemUser">
-        <PropertyRef Name="IdUser" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdSystemUserRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_SystemUserRole">
-    <End Role="SystemUserRole" Type="Self.SystemUserRole" Multiplicity="1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SystemUserRole">
-        <PropertyRef Name="IdSystemUserRole" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdSystemUserRoleRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_Town">
-    <End Role="Town" Type="Self.Town" Multiplicity="0..1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Town">
-        <PropertyRef Name="IdTown" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdTownRef" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SystemUserRoleLocation_Village">
-    <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
-    <End Role="SystemUserRoleLocation" Type="Self.SystemUserRoleLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Village">
-        <PropertyRef Name="IdVillage" />
-      </Principal>
-      <Dependent Role="SystemUserRoleLocation">
-        <PropertyRef Name="IdVillageRef" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -622,7 +490,6 @@
     </ReferentialConstraint>
   </Association>
   <Function Name="Role_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMINISTRATION">
-    <Parameter Name="TbsUserId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="SystemUserId" Type="bigint" Mode="In" />
   </Function>
   <EntityContainer Name="DentAdaModelStoreContainer">
@@ -657,21 +524,9 @@
       <End Role="Country" EntitySet="Country" />
       <End Role="City" EntitySet="City" />
     </AssociationSet>
-    <AssociationSet Name="FK_RoleAuthorization_Role" Association="Self.FK_RoleAuthorization_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="RoleAuthorization" EntitySet="RoleAuthorization" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RoleSideMenu_Role" Association="Self.FK_RoleSideMenu_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
-    </AssociationSet>
     <AssociationSet Name="FK_RoleSideMenu_SideMenu" Association="Self.FK_RoleSideMenu_SideMenu">
       <End Role="SideMenu" EntitySet="SideMenu" />
       <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RoleTopMenu_Role" Association="Self.FK_RoleTopMenu_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
     </AssociationSet>
     <AssociationSet Name="FK_RoleTopMenu_TopMenu" Association="Self.FK_RoleTopMenu_TopMenu">
       <End Role="TopMenu" EntitySet="TopMenu" />
@@ -680,38 +535,6 @@
     <AssociationSet Name="FK_SideMenu_TopMenu" Association="Self.FK_SideMenu_TopMenu">
       <End Role="TopMenu" EntitySet="TopMenu" />
       <End Role="SideMenu" EntitySet="SideMenu" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRole_Role" Association="Self.FK_SystemUserRole_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRole_SystemUser" Association="Self.FK_SystemUserRole_SystemUser">
-      <End Role="SystemUser" EntitySet="SystemUser" />
-      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_City" Association="Self.FK_SystemUserRoleLocation_City">
-      <End Role="City" EntitySet="City" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_Country" Association="Self.FK_SystemUserRoleLocation_Country">
-      <End Role="Country" EntitySet="Country" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUser" Association="Self.FK_SystemUserRoleLocation_SystemUser">
-      <End Role="SystemUser" EntitySet="SystemUser" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUserRole" Association="Self.FK_SystemUserRoleLocation_SystemUserRole">
-      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_Town" Association="Self.FK_SystemUserRoleLocation_Town">
-      <End Role="Town" EntitySet="Town" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SystemUserRoleLocation_Village" Association="Self.FK_SystemUserRoleLocation_Village">
-      <End Role="Village" EntitySet="Village" />
-      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
     </AssociationSet>
     <AssociationSet Name="FK_Town_City" Association="Self.FK_Town_City">
       <End Role="City" EntitySet="City" />

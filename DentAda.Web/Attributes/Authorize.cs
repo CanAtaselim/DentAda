@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DentAda.Web.WebCommon;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace DentAda.Web.Attributes
 {
@@ -23,8 +24,9 @@ namespace DentAda.Web.Attributes
             var controller = (BaseController)filterContext.Controller;
             try
             {
-                Task<AuthenticateInfo> authInfo = filterContext.HttpContext.Authentication.GetAuthenticateInfoAsync("DentAda_CookieMiddlewareInstance");
-                if (authInfo.Result.Principal != null && authInfo.Result.Principal.Identity.IsAuthenticated == true)
+                var authInfo = filterContext.HttpContext.User;
+
+                if (authInfo.Identity.IsAuthenticated == true)
                 {
                     AdministrationBLLocator _locator = new AdministrationBLLocator();
                     if (filterContext.HttpContext.Request.Headers["X-Requested-With"] != "XMLHttpRequest")
@@ -37,7 +39,7 @@ namespace DentAda.Web.Attributes
                     }
                     if (Roles != null && Roles.Length > 0)
                     {
-                        IEnumerable<Claim> claims = authInfo.Result.Principal.Claims;
+                        IEnumerable<Claim> claims = authInfo.Claims;
                         string identity = claims.Where(x => x.Type.ToLower().EndsWith("name")).FirstOrDefault().Value;
                         string userId = claims.Where(x => x.Type.ToLower().EndsWith("nameidentifier")).FirstOrDefault().Value;
                         List<Role_List_Result> userAuth = JsonConvert.DeserializeObject<List<Role_List_Result>>(filterContext.HttpContext.Session.GetString("UserData"));

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DentAda.Business.BusinessLogic.Locator;
+﻿using DentAda.Business.BusinessLogic.Locator;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace DentAda.Web
 {
@@ -24,34 +21,32 @@ namespace DentAda.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            /*
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            services.AddMvc();
+            services.AddAuthentication(options =>
             {
-                AuthenticationScheme = "DBYSCookieMiddlewareInstance",
-                LoginPath = new PathString("/Auth/Login/Unauthorized/"),
-                AccessDeniedPath = new PathString("/Auth/Login/Forbidden/"),
-                AutomaticAuthenticate = false,
-                AutomaticChallenge = true
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(obj =>
+            {
+                obj.LoginPath = new PathString("/Auth/Login/Unauthorized");
             });
-            app.UseSession();
-            */
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(120);
+            });
 
-            services.AddAuthentication("DentAda_CookieMiddlewareInstance")
-                .AddCookie(obj =>
-                {
-                    obj.LoginPath = new PathString("/Auth/Login/Unauthorized/");
-                });
-
-            var builder = services.AddMvc();
             services.AddTransient<AdministrationBLLocator>();
+            services.AddTransient<AuthBLLocator>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {

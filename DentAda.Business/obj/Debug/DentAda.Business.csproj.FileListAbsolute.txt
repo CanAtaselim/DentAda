@@ -104,6 +104,7 @@ C:\Projects\DentAda\SinFW_Zero.Business\obj\Debug\DentAda.Business.csproj.CoreCo
 C:\Projects\DentAda\SinFW_Zero.Business\obj\Debug\DentAda.Business.csproj.CopyComplete
 C:\Projects\DentAda\SinFW_Zero.Business\obj\Debug\DentAda.Business.dll
 C:\Projects\DentAda\SinFW_Zero.Business\obj\Debug\DentAda.Business.pdb
+C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Business.dll.config
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Business.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Business.pdb
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Common.dll
@@ -118,13 +119,7 @@ C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.Razor.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.Razor.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\Z.EntityFramework.Extensions.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\netstandard.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.Extensions.Primitives.dll
-C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Text.Encodings.Web.dll
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Common.pdb
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Data.pdb
 C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Data.dll.config
@@ -137,15 +132,9 @@ C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.Razor.xml
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.xml
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
 C:\Projects\DentAda\DentAda.Business\bin\Debug\Z.EntityFramework.Extensions.xml
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
-C:\Projects\DentAda\DentAda.Business\bin\Debug\Microsoft.Extensions.Primitives.xml
-C:\Projects\DentAda\DentAda.Business\bin\Debug\System.Text.Encodings.Web.xml
 C:\Projects\DentAda\DentAda.Business\obj\Debug\DentAda.Business.csprojAssemblyReference.cache
 C:\Projects\DentAda\DentAda.Business\obj\Debug\DentAda.Business.csproj.CoreCompileInputs.cache
 C:\Projects\DentAda\DentAda.Business\obj\Debug\DentAda.Business.csproj.CopyComplete
 C:\Projects\DentAda\DentAda.Business\obj\Debug\DentAda.Business.dll
 C:\Projects\DentAda\DentAda.Business\obj\Debug\DentAda.Business.pdb
-C:\Projects\DentAda\DentAda.Business\bin\Debug\DentAda.Business.dll.config

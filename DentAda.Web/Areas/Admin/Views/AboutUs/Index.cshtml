@@ -1,7 +1,11 @@
 ﻿@section pageLevelInlineScripts {
     <script>
-        jQuery(document).ready(function () {
 
+        jQuery(document).ready(function () {
+            $(".btnCancel").click(function () {
+                var container = $("#deneme1");
+                $.get("/Admin/AboutUs/GetMyViewComponent", function (data) { container.html(data); });
+            });
         });
     </script>
 }
@@ -32,10 +36,8 @@
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("Edit")
-
-
-
-
+    <div id="deneme1">
+        @await Component.InvokeAsync("Edit", new { department = 1})
+    </div>
 </div>
 

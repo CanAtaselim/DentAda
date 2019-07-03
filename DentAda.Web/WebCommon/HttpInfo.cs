@@ -1,13 +1,14 @@
-﻿using DentAda.Data.DataCommon;
-using DentAda.Data.Model;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Authentication;
 using Newtonsoft.Json;
+using DentAda.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DentAda.Data.Model;
+using DentAda.Data.DataCommon;
 
 namespace DentAda.Web.WebCommon
 {
@@ -15,19 +16,15 @@ namespace DentAda.Web.WebCommon
     {
         public static HttpRequestInfo GetRequestInfo(HttpContext context)
         {
-            Task<AuthenticateInfo> authInfo = context.Authentication.GetAuthenticateInfoAsync("DentAda_CookieMiddlewareInstance");
             int userId = -1;
-            long workingModuleId = -1;
 
 
             List<Role_List_Result> userAuth = new List<Role_List_Result>();
-            if (authInfo.Result.Principal != null)
+            if (context.User.Identity.IsAuthenticated == true)
             {
-                IEnumerable<Claim> claims = authInfo.Result.Principal.Claims;
+                IEnumerable<Claim> claims = context.User.Claims;
                 userId = int.Parse(claims.Where(x => x.Type.ToLower().EndsWith("nameidentifier")).FirstOrDefault().Value);
                 userAuth = JsonConvert.DeserializeObject<List<Role_List_Result>>(context.Session.GetString("UserData"));
-
-
             }
             return new HttpRequestInfo()
             {
@@ -35,7 +32,6 @@ namespace DentAda.Web.WebCommon
                 IpAddress = context.Connection.RemoteIpAddress.ToString(),
                 Roles = userAuth.Select(x => x.RoleCode).ToList(),
                 UserAuth = userAuth,
-                WorkingModuleId = workingModuleId
             };
         }
         public static DateTime GetDateTimeFromString(string date)
@@ -78,7 +74,7 @@ namespace DentAda.Web.WebCommon
     }
     public class UserInfo
     {
-        public List<Role_List_Result> UserRoles { get; set; }
+        //public List<Role_List_Result> UserRoles { get; set; }
         public List<string> AreaList { get; set; }
     }
 

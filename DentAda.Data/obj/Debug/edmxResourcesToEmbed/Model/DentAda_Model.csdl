@@ -2,7 +2,6 @@
 <Schema Namespace="DentAdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="DentAdaEntities" annotation:LazyLoadingEnabled="true">
     <FunctionImport Name="Role_List" ReturnType="Collection(DentAdaModel.Role_List_Result)">
-      <Parameter Name="TbsUserId" Mode="In" Type="Guid" />
       <Parameter Name="SystemUserId" Mode="In" Type="Int64" />
     </FunctionImport>
     <EntitySet Name="ANNOUNCEMENT" EntityType="DentAdaModel.ANNOUNCEMENT" />
@@ -111,8 +110,6 @@
   </EntityContainer>
   <ComplexType Name="Role_List_Result">
     <Property Type="Int64" Name="SystemUserId" Nullable="true" />
-    <Property Type="Guid" Name="TbsUserId" Nullable="true" />
-    <Property Type="Boolean" Name="LocationAdmin" Nullable="true" />
     <Property Type="Int64" Name="IdParentRole" Nullable="true" />
     <Property Type="String" Name="ParentRoleName" Nullable="true" MaxLength="128" />
     <Property Type="String" Name="ParentRoleCode" Nullable="true" MaxLength="25" />
@@ -120,15 +117,6 @@
     <Property Type="String" Name="RoleName" Nullable="false" MaxLength="128" />
     <Property Type="String" Name="RoleCode" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="DefaultPage" Nullable="true" MaxLength="150" />
-    <Property Type="Int64" Name="IdCountry" Nullable="true" />
-    <Property Type="String" Name="CountryName" Nullable="true" MaxLength="50" />
-    <Property Type="Int64" Name="IdCity" Nullable="true" />
-    <Property Type="String" Name="CityName" Nullable="true" MaxLength="64" />
-    <Property Type="Int64" Name="IdTown" Nullable="true" />
-    <Property Type="String" Name="TownName" Nullable="true" MaxLength="32" />
-    <Property Type="Int64" Name="IdVillage" Nullable="true" />
-    <Property Type="String" Name="VillageName" Nullable="true" MaxLength="100" />
-    <Property Type="Int64" Name="IdSystemUserRoleLocation" Nullable="true" />
     <Property Type="Int64" Name="IdSystemUserRole" Nullable="false" />
   </ComplexType>
   <EntityType Name="ANNOUNCEMENT">

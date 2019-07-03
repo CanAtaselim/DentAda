@@ -372,7 +372,6 @@ C:\Projects\DentAda\DentAda.Data\bin\Debug\EntityFramework.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
-C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.Extensions.Primitives.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Newtonsoft.Json.dll
 C:\Projects\DentAda\DentAda.Data\bin\Debug\System.Buffers.dll
@@ -389,7 +388,6 @@ C:\Projects\DentAda\DentAda.Data\bin\Debug\EntityFramework.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
-C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Microsoft.Extensions.Primitives.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\Newtonsoft.Json.xml
 C:\Projects\DentAda\DentAda.Data\bin\Debug\System.Buffers.xml

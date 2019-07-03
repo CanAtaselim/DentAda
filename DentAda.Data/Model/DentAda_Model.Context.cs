@@ -51,17 +51,13 @@ namespace DentAda.Data.Model
         public virtual DbSet<CDC> CDC { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
     
-        public virtual ObjectResult<Role_List_Result> Role_List(Nullable<System.Guid> tbsUserId, Nullable<long> systemUserId)
+        public virtual ObjectResult<Role_List_Result> Role_List(Nullable<long> systemUserId)
         {
-            var tbsUserIdParameter = tbsUserId.HasValue ?
-                new ObjectParameter("TbsUserId", tbsUserId) :
-                new ObjectParameter("TbsUserId", typeof(System.Guid));
-    
             var systemUserIdParameter = systemUserId.HasValue ?
                 new ObjectParameter("SystemUserId", systemUserId) :
                 new ObjectParameter("SystemUserId", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Role_List_Result>("Role_List", tbsUserIdParameter, systemUserIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Role_List_Result>("Role_List", systemUserIdParameter);
         }
     }
 }

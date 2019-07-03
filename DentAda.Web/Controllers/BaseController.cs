@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DentAda.Data.DataCommon;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using DentAda.Data.Repository;
 using DentAda.Web.WebCommon;
+using DentAda.Data.DataCommon;
 
 namespace DentAda.Web
 {

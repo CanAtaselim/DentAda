@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
-using DentAda.Data.DataCommon;
 using DentAda.Data.Model;
+using DentAda.Web.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DentAda.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = new string[] { "SYSTEM_ADMIN", "ADMIN" })]
     public class AboutUsController : BaseController
     {
         private AdministrationBLLocator _administrationBLLocator;
@@ -30,27 +31,41 @@ namespace DentAda.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult FileUpload(IList<IFormFile> files, AboutUsVM model)
         {
-        
 
-            byte[] imageData = GetFormImageToByte(files[0]);
+            byte[] imageData = null;
+            if (files.Count > 0)
+            {
+                imageData = GetFormImageToByte(files[0]);
+            }
 
-            AboutUs au = new AboutUs();
-            au.Department = model.Department;
-            au.Description = model.Description;
-            au.Picture = imageData;
-            au.OperationDate = DateTime.Now;
-            au.OperationIdUserRef = 1;
-            au.OperationIP = "ss";
-            au.OperationIsDeleted = 1;
-            _administrationBLLocator.AboutUsBL.CRUD.Insert(au);
+
+            AboutUs aboutUs = new AboutUs();
+            aboutUs.Department = model.Department;
+            aboutUs.Description = model.Description;
+            aboutUs.Picture = imageData;
+            aboutUs.OperationDate = DateTime.Now;
+            aboutUs.OperationIdUserRef = HttpRequestInfo.UserID;
+            aboutUs.OperationIP = HttpRequestInfo.IpAddress;
+            aboutUs.OperationIsDeleted = 1;
+
+
+
+            if (model.IdAboutUs == 0)
+            {
+                _administrationBLLocator.AboutUsBL.CRUD.Insert(aboutUs);
+            }
+            else
+            {
+                aboutUs.IdAboutUs = model.IdAboutUs;
+                _administrationBLLocator.AboutUsBL.CRUD.Update(aboutUs, HttpRequestInfo);
+            }
             _administrationBLLocator.AboutUsBL.Save();
-
-
-
-
-
-
             return View();
+        }
+
+        public IActionResult ReInvokeEditComponent(int Department)
+        {
+            return ViewComponent("Edit", new { department = Department });
         }
 
         public static byte[] GetFormImageToByte(IFormFile image)

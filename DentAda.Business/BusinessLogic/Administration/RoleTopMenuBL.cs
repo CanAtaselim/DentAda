@@ -1,5 +1,6 @@
 ﻿using DentAda.Business.BusinessLogic.Base;
 using DentAda.Business.ViewModel;
+using DentAda.Data.DataCommon;
 using DentAda.Data.Model;
 using DentAda.Data.Repository;
 using DentAda.Data.UnitOfWork.DentAda;
@@ -52,7 +53,7 @@ namespace DentAda.Business.BusinessLogic
 
         public List<Role_List_Result> GetUserRoleDetails(Guid? tbsUserId, long? userId = 0)
         {
-            return EntityForSP.Role_List(tbsUserId, userId).ToList();
+            return EntityForSP.Role_List(userId).ToList();
         }
 
         //public List<DistributedAuthoritiesByUserList_Result> GetDistributedAuthoritiesByUserList(long? userId = 0)

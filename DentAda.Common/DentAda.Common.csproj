@@ -49,6 +49,7 @@
     <Compile Include="DentAda_Exception.cs" />
     <Compile Include="DentAda_Logging.cs" />
     <Compile Include="FilterParameter.cs" />
+    <Compile Include="HashingParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionVariable.cs" />
     <Compile Include="_Enumeration.cs" />

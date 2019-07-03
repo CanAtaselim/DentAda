@@ -7,8 +7,8 @@ using System.Reflection;
 using System.Xml.Linq;
 using DentAda.Common;
 using DentAda.Data.Model;
-using Microsoft.AspNetCore.Routing;
 using DentAda.Data.DataCommon;
+using System.Web.Routing;
 
 namespace DentAda.Data.Repository
 {
@@ -414,13 +414,5 @@ namespace DentAda.Data.Repository
             }
         }
 
-    }
-    public class HttpRequestInfo
-    {
-        public long UserID { get; set; }
-        public string IpAddress { get; set; }
-        public List<string> Roles { get; set; }
-        public List<Role_List_Result> UserAuth { get; set; }
-        public object UserName { get; set; }
     }
 }

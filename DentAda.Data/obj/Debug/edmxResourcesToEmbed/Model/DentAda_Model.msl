@@ -5,8 +5,6 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="DentAdaModel.Role_List_Result">
           <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
-          <ScalarProperty Name="TbsUserId" ColumnName="TbsUserId" />
-          <ScalarProperty Name="LocationAdmin" ColumnName="LocationAdmin" />
           <ScalarProperty Name="IdParentRole" ColumnName="IdParentRole" />
           <ScalarProperty Name="ParentRoleName" ColumnName="ParentRoleName" />
           <ScalarProperty Name="ParentRoleCode" ColumnName="ParentRoleCode" />
@@ -14,15 +12,6 @@
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
           <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
-          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-          <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-          <ScalarProperty Name="CityName" ColumnName="CityName" />
-          <ScalarProperty Name="IdTown" ColumnName="IdTown" />
-          <ScalarProperty Name="TownName" ColumnName="TownName" />
-          <ScalarProperty Name="IdVillage" ColumnName="IdVillage" />
-          <ScalarProperty Name="VillageName" ColumnName="VillageName" />
-          <ScalarProperty Name="IdSystemUserRoleLocation" ColumnName="IdSystemUserRoleLocation" />
           <ScalarProperty Name="IdSystemUserRole" ColumnName="IdSystemUserRole" />
         </ComplexTypeMapping>
       </ResultMapping>

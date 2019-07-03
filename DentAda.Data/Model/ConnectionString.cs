@@ -14,9 +14,9 @@ namespace DentAda.Data.Model
             {
                 if (System.Configuration.ConfigurationManager.AppSettings.Get("EnvMode") == "Prod")
                 {
-                    return @"metadata=res://*/Model.DentAda_Model.csdl|res://*/Model.DentAda_Model.ssdl|res://*/Model.DentAda_Model.msl;provider=System.Data.SqlClient; provider connection string=""data source=(LocalDB)\LocalDBDemo;initial catalog=DentAda;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework""";
+                    return @"metadata=res://*/Model.DentAda_Model.csdl|res://*/Model.DentAda_Model.ssdl|res://*/Model.DentAda_Model.msl;provider=System.Data.SqlClient; provider connection string=""data source=(LocalDB)\MSSQLLocalDB;initial catalog=DentAda;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework""";
                 }
-                return @"metadata=res://*/Model.DentAda_Model.csdl|res://*/Model.DentAda_Model.ssdl|res://*/Model.DentAda_Model.msl;provider=System.Data.SqlClient; provider connection string=""data source=(LocalDB)\LocalDBDemo;initial catalog=DentAda;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework""";
+                return @"metadata=res://*/Model.DentAda_Model.csdl|res://*/Model.DentAda_Model.ssdl|res://*/Model.DentAda_Model.msl;provider=System.Data.SqlClient; provider connection string=""data source=(LocalDB)\MSSQLLocalDB;initial catalog=DentAda;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework""";
             }
         }
 

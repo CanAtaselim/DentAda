@@ -34,11 +34,11 @@ namespace DentAda.Web.Filters
                 Message = context.Exception.Message,
                 StackTrace = context.Exception.StackTrace
             };
-            Task<AuthenticateInfo> authInfo = context.HttpContext.Authentication.GetAuthenticateInfoAsync("DentAda_CookieMiddlewareInstance");
+            var authInfo = context.HttpContext.User;
             int userId = -1;
-            if (authInfo.Result.Principal != null)
+            if (authInfo != null)
             {
-                IEnumerable<Claim> claims = authInfo.Result.Principal.Claims;
+                IEnumerable<Claim> claims = authInfo.Claims;
                 userId = int.Parse(claims.Where(x => x.Type.ToLower().EndsWith("nameidentifier")).FirstOrDefault().Value);
             }
             GlobalExceptionObject ex = new GlobalExceptionObject();
