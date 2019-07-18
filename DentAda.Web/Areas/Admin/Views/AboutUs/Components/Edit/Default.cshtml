@@ -4,8 +4,9 @@
 }
 @section pageLevelInlineScripts {
     <script>
+        jQuery(document).ready(function ()
+        {
 
-        jQuery(document).ready(function () {
             $("#customFile").on("change", function (event) {
                 var image = document.querySelector("#instrumentImage");
                 image.src = URL.createObjectURL(event.target.files[0]);
@@ -16,7 +17,7 @@
                 reInvokeComponent(that);
             });
 
-            $(".rbpolatli").change(function () {
+            $(".rbPolatli").change(function () {
                 var that = this;
                 reInvokeComponent(that);
             });
@@ -25,16 +26,104 @@
                 server.ajaxCall(
                     "@Url.Action("ReInvokeEditComponent", new { area = "Admin", controller = "AboutUs" })", //İstek Adresi
                     function (result) { // success function callback
-                        $("#deneme1").html(result);
+                        $("#editContent").html(result);
                     },
                     function (err) { // error function callback
-                        if (err) { swal("Hata", err, "error"); }
+                        if (err) { swal.fire("Hata", err, "error"); }
                     },
                     { Department: $(that).val() }, //data
                     this, // context erişimi için successcallback içerisinde thatLocal olarak kullanılabilir
                     'post' // istek yöntemi
                 );
             }
+            $(".btnSave").click(function (event) {
+                event.preventDefault();
+
+                var fileUpload = $("#customFile").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                if (files.length > 0) {
+                    fileData.append(files[0].name, files[0]);
+                } else {
+                    fileData.append("Picture", $("#Picture").val());
+                }
+                fileData.append("IdAboutUs", $("#IdAboutUs").val());
+                fileData.append("Department",$("input[name='Department']:checked").val());
+                fileData.append( "Description", $( "#Description" ).val() );
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Save", new { area = "Admin", controller = "AboutUs" })",
+                    contentType: false,
+                    processData: false,
+                    beforeSend: KTApp.blockPage({
+                        overlayColor: '#333',
+                        type: 'v2',
+                        state: 'success',
+                        message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
+                    }),
+                   data: fileData,
+                   success: function (result) {
+                          KTApp.unblockPage();
+                       if (result.status == "1") {
+                        swal.fire("Başarılı", result.message, "success");
+                       }
+                    },
+                   error: function (err) {
+                        KTApp.unblockPage();
+                        if (err) { swal.fire("Hata", err, "error"); }
+                    }
+                });
+            });
+
+            $(".btnDel").click(function (event) {
+                event.preventDefault();
+
+
+                swal.fire({
+                  title: 'Bu kaydı silmek istediğinizden emin misiniz?',
+                  text: "You won't be able to revert this!",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Evet'
+                }).then((result) => {
+                  if (result.value) {
+                        server.ajaxCall(
+                            "@Url.Action("Delete", new { area = "Admin", controller = "AboutUs" })", //İstek Adresi
+                            function (result) { // success function callback
+
+                                if (result.status == 1)
+                                {
+                                    swal.fire({
+                                        title: "Başarılı!",
+                                        text: result.message,
+                                        type: "success"
+                                    }).then(function() {
+                                        reInvokeComponent();
+                                    });
+                                } else
+                                {
+                                    swal.fire({
+                                        title: "Hata!",
+                                        text: result.message,
+                                        type: "error"
+                                    });
+                                }
+
+                            },
+                            function (err) { // error function callback
+                                if (err) { swal.fire("Hata", err, "error"); }
+                            },
+                            { idAboutUs: $(".btnDel").data("id")}, //data
+                            this, // context erişimi için successcallback içerisinde thatLocal olarak kullanılabilir
+                            'post' // istek yöntemi
+                        );
+                  }
+                })
+            });
         });
     </script>
 }
@@ -49,21 +138,23 @@
 
 }
 
-
-@using (Html.BeginForm("FileUpload", "AboutUs", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+<form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
     @Html.HiddenFor(m => m.IdAboutUs)
     <div class="kt-portlet__body">
+        <div class="kt-align-right">
+            <button type="button" class="btn btn-danger btn-elevate btn-elevate-air btnDel" data-id="@Model.IdAboutUs"><i class="flaticon-delete"></i> Sil </button>&nbsp;
+        </div>
+
         <div class="form-group row">
             <label class="col-2 col-form-label">Şubeler:</label>
             <div class="col-10">
                 <div class="kt-radio-inline">
                     <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu", @checked = "checked" }) Çayyolu
+                        @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
                         <span></span>
                     </label>
                     <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbpolatli" }) Polatlı
+                        @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
                         <span></span>
                     </label>
                 </div>
@@ -84,28 +175,27 @@
                 </div>
             </div>
         </div>
-        @if (Model != null)
-        {
-            @if (Model.Picture != null)
-            {
-                <div class="form-group row">
-                    <label class="col-2 col-form-label"></label>
-                    <div class="col-10">
-
-                        <img alt="" id="instrumentImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:300px" />
-                    </div>
-                </div>
-            }
-        }
-
+        <div class="form-group row">
+            <label class="col-2 col-form-label"></label>
+            <div class="col-10">
+                @Html.HiddenFor(m => m.Picture)
+                @if (Model != null && Model.Picture != null)
+                {
+                    <img alt="" id="instrumentImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:300px" />
+                }
+                else
+                {
+                    <img alt="" id="instrumentImage" class="img-thumbnail" style="max-height:300px" />
+                }
+            </div>
+        </div>
     </div>
     <div class="kt-portlet__foot">
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-10">
-                <button type="submit" class="btn btn-brand">Submit</button>
-                <button class="btn btn-secondary">Cancel</button>
+                <button type="button" class="btn btn-brand btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
             </div>
         </div>
     </div>
-}
+</form>

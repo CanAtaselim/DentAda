@@ -52,7 +52,7 @@ namespace DentAda.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{area=Admin}/{controller=Dashboard}/{action=Start}");
+                    template: "{area=Admin}/{controller=AboutUs}/{action=Index}");
             });
         }
     }

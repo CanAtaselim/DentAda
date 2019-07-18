@@ -110,7 +110,7 @@ namespace DentAda.Web.Areas.Auth.Controllers
                             HttpContext.Session.SetString("UserData", JsonConvert.SerializeObject(roleDetails.ToList()));
                             HttpContext.Session.SetString("UserInfo", JsonConvert.SerializeObject(_adminlocator.SystemUserBL.GetVM(filter: x => x.IdUser == userId).FirstOrDefault()));
                             ConnectionLog(0, loginVM.UserName, systemUser.IdUser);
-                            return RedirectToAction("Start", "Dashboard", new { area = "Main" });
+                            return RedirectToAction("Index", "AboutUs", new { area = "Admin" });
                         }
                         else
                         {

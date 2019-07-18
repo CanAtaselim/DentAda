@@ -62,25 +62,6 @@ namespace DentAda.Web.Attributes
                             }
                             filterContext.Result = controller.RedirectToAction("Forbidden", "Login", new { area = "Auth" });
                         }
-
-                        else
-                        {
-                            //if (locationAdminRoles.Count() > 0)
-                            //{
-                            //    controller.ViewBag.cities = _locator.CityBL.GetVMWithPermission(orderBy: o => o.OrderBy(x => x.CITYNAME), roleCode: locationAdminRoles.First());
-                            //}
-                            //else
-                            //{
-                            //    List<long?> cityIds = userAuth.Where(x => x.ROLECODE == validRoles.First() && x.IDCITY != null).Select(s => s.IDCITY).ToList();
-                            //    if (cityIds.Count() > 0)
-                            //    {
-                            //        controller.ViewBag.cities = _locator.CityBL.GetVMWithPermission(
-                            //            filter: x => cityIds.Any(a => a == x.IDCITY), orderBy: o => o.OrderBy(x => x.CITYNAME),
-                            //            roleCode: validRoles.First()
-                            //          );
-                            //    }
-                            //}
-                        }
                     }
                     return;
 

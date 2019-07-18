@@ -1,11 +1,7 @@
 ﻿@section pageLevelInlineScripts {
     <script>
-
         jQuery(document).ready(function () {
-            $(".btnCancel").click(function () {
-                var container = $("#deneme1");
-                $.get("/Admin/AboutUs/GetMyViewComponent", function (data) { container.html(data); });
-            });
+
         });
     </script>
 }
@@ -30,14 +26,14 @@
                 Hakkımızda
             </h3>
         </div>
-        <div class="kt-portlet__head-toolbar">
+        @*<div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-actions">
                 <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Yeni Kayıt </button>&nbsp;
             </div>
-        </div>
+        </div>*@
     </div>
-    <div id="deneme1">
-        @await Component.InvokeAsync("Edit", new { department = 1})
+    <div id="editContent">
+        @await Component.InvokeAsync("Edit")
     </div>
 </div>
 

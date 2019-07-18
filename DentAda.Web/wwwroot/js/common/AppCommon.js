@@ -3,15 +3,22 @@
         var thatLocal = that;
         $.ajax({
             cache: false,
-
+            beforeSend: KTApp.blockPage({
+                    overlayColor: '#333',
+                    type: 'v2',
+                    state: 'success',
+                    message: bSendMsg === null ? "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..." : bSendMsg
+            }),
             url: url,
             data: data,
             success: function (result) {
+                KTApp.unblockPage();
                 successCB(result, thatLocal);
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                if (xhr.responseJSON.status == 4) {
-                    swal({
+                KTApp.unblockPage();
+                if (xhr.responseJSON.status === 4) {
+                    swal.fire({
                         title: "Beklenmedik Bir Hata Oluştu!",
                         text: "Dilerseniz Hatayla İlgili Geri Bildirimde Bulunun:",
                         type: "input",
@@ -27,27 +34,26 @@
                             if (inputValue === false) return false;
 
                             if (inputValue === "") {
-                                swal.showInputError("Geribildirim için birşeyler yazın!");
-                                return false
+                                swal.fire.showInputError("Geribildirim için birşeyler yazın!");
+                                return false;
                             }
                             $.ajax({
                                 cache: false,
                                 url: '/administration/ExceptionFeedBack/Feedback',
                                 data: { feedback: inputValue, exCode: xhr.responseJSON.data.errCode },
                                 success: function (result) {
-                                    swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                    swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {
-                                    swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                    swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                                 },
                                 type: 'post'
                             });
 
                         });
                 }
-
-                else if (xhr.responseJSON.status == 2) {
-                    swal({
+                else if (xhr.responseJSON.status === 2) {
+                    swal.fire({
                         title: "Oturum Sona Erdi!",
                         text: "Şifrenizi Girerek Oturuma Devam Edebilirsiniz",
                         type: "input",
@@ -63,18 +69,18 @@
                         function (inputValue) {
                             if (inputValue === false) window.location = "/auth/login/signout";
                             if (inputValue === "") {
-                                swal.showInputError("Şifre alanı boş olamaz!");
-                                return false
+                                swal.fire.showInputError("Şifre alanı boş olamaz!");
+                                return false;
                             }
                             $.ajax({
                                 cache: false,
                                 url: '/auth/login/UnauthorizedAjax',
                                 data: { UserName: uIdNo, Password: inputValue },
                                 success: function (result) {
-                                    if (result.status == 1)
-                                        swal("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
+                                    if (result.status === 1)
+                                        swal.fire("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
                                     else {
-                                        swal({
+                                        swal.fire({
                                             title: "Giriş Başarısız!",
                                             text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                             type: "error",
@@ -88,7 +94,7 @@
                                     }
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {
-                                    swal({
+                                    swal.fire({
                                         title: "Hata Oluştu!",
                                         text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                         type: "error",
@@ -104,29 +110,36 @@
 
                         });
                 }
-
-                else if (xhr.responseJSON.status == 3) {
-                    swal("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
+                else if (xhr.responseJSON.status === 3) {
+                    swal.fire("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
                 }
-                else if (xhr.responseJSON.status == 0) {
+                else if (xhr.responseJSON.status === 0) {
                     errCB(xhr.responseJSON.message);
                 }
             },
-            type: type == null ? "post" : type
+            type: type === null ? "post" : type
         });
     },
     ajaxCallBackProcess: function (url, successCB, errCB, data, bSendMsg, that, type) {
         var thatLocal = that;
         $.ajax({
             cache: false,
+            beforeSend: KTApp.blockPage({
+                overlayColor: '#333',
+                type: 'v2',
+                state: 'success',
+                message: bSendMsg === null ? "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..." : bSendMsg
+            }),
             url: url,
             data: data,
             success: function (result) {
+                KTApp.unblockPage();
                 successCB(result, thatLocal);
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                if (xhr.responseJSON.status == 4) {
-                    swal({
+                KTApp.unblockPage();
+                if (xhr.responseJSON.status === 4) {
+                    swal.fire({
                         title: "Beklenmedik Bir Hata Oluştu!",
                         text: "Dilerseniz Hatayla İlgili Geri Bildirimde Bulunun:",
                         type: "input",
@@ -142,18 +155,18 @@
                             if (inputValue === false) return false;
 
                             if (inputValue === "") {
-                                swal.showInputError("Geribildirim için birşeyler yazın!");
-                                return false
+                                swal.fire.showInputError("Geribildirim için birşeyler yazın!");
+                                return false;
                             }
                             $.ajax({
                                 cache: false,
                                 url: '/administration/ExceptionFeedBack/Feedback',
                                 data: { feedback: inputValue, exCode: xhr.responseJSON.data.errCode },
                                 success: function (result) {
-                                    swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                    swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {
-                                    swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                    swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                                 },
                                 type: 'post'
                             });
@@ -161,8 +174,8 @@
                         });
                 }
 
-                else if (xhr.responseJSON.status == 2) {
-                    swal({
+                else if (xhr.responseJSON.status === 2) {
+                    swal.fire({
                         title: "Oturum Sona Erdi!",
                         text: "Şifrenizi Girerek Oturuma Devam Edebilirsiniz",
                         type: "input",
@@ -178,7 +191,7 @@
                         function (inputValue) {
                             if (inputValue === false) window.location = "/auth/login/signout";
                             if (inputValue === "") {
-                                swal.showInputError("Şifre alanı boş olamaz!");
+                                swal.fire.showInputError("Şifre alanı boş olamaz!");
                                 return false
                             }
                             $.ajax({
@@ -186,10 +199,10 @@
                                 url: '/auth/login/UnauthorizedAjax',
                                 data: { UserName: uIdNo, Password: inputValue },
                                 success: function (result) {
-                                    if (result.status == 1)
-                                        swal("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
+                                    if (result.status === 1)
+                                        swal.fire("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
                                     else {
-                                        swal({
+                                        swal.fire({
                                             title: "Giriş Başarısız!",
                                             text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                             type: "error",
@@ -203,7 +216,7 @@
                                     }
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {
-                                    swal({
+                                    swal.fire({
                                         title: "Hata Oluştu!",
                                         text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                         type: "error",
@@ -220,14 +233,14 @@
                         });
                 }
 
-                else if (xhr.responseJSON.status == 3) {
-                    swal("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
+                else if (xhr.responseJSON.status === 3) {
+                    swal.fire("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
                 }
-                else if (xhr.responseJSON.status == 0) {
+                else if (xhr.responseJSON.status === 0) {
                     errCB(xhr.responseJSON.message);
                 }
             },
-            type: type == null ? "post" : type
+            type: type === null ? "post" : type
         });
     }
     ,
@@ -251,8 +264,8 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
             successCB(result, thatLocal);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            if (xhr.responseJSON.status == 4) {
-                swal({
+            if (xhr.responseJSON.status === 4) {
+                swal.fire({
                     title: "Beklenmedik Bir Hata Oluştu!",
                     text: "Dilerseniz Hatayla İlgili Geri Bildirimde Bulunun:",
                     type: "input",
@@ -268,7 +281,7 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
                         if (inputValue === false) return false;
 
                         if (inputValue === "") {
-                            swal.showInputError("Geribildirim için birşeyler yazın!");
+                            swal.fire.showInputError("Geribildirim için birşeyler yazın!");
                             return false
                         }
                         $.ajax({
@@ -276,18 +289,18 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
                             url: '/administration/ExceptionFeedBack/Feedback',
                             data: { feedback: inputValue, exCode: xhr.responseJSON.data.errCode },
                             success: function (result) {
-                                swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                swal("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
+                                swal.fire("Güzel!", "Geribildirim başarı ile kaydedildi. Teşekkürler.");
                             },
                             type: 'post'
                         });
 
                     });
             }
-            else if (xhr.responseJSON.status == 2) {
-                swal({
+            else if (xhr.responseJSON.status === 2) {
+                swal.fire({
                     title: "Oturum Sona Erdi!",
                     text: "Şifrenizi Girerek Oturuma Devam Edebilirsiniz",
                     type: "input",
@@ -303,7 +316,7 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
                     function (inputValue) {
                         if (inputValue === false) window.location = "/auth/login/signout";
                         if (inputValue === "") {
-                            swal.showInputError("Şifre alanı boş olamaz!");
+                            swal.fire.showInputError("Şifre alanı boş olamaz!");
                             return false
                         }
                         $.ajax({
@@ -311,10 +324,10 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
                             url: '/auth/login/UnauthorizedAjax',
                             data: { UserName: uIdNo, Password: inputValue },
                             success: function (result) {
-                                if (result.status == 1)
-                                    swal("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
+                                if (result.status === 1)
+                                    swal.fire("Giriş Başarılı!", "Oturuma Devam Edebilirsiniz.", "success");
                                 else {
-                                    swal({
+                                    swal.fire({
                                         title: "Giriş Başarısız!",
                                         text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                         type: "error",
@@ -328,7 +341,7 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
                                 }
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                swal({
+                                swal.fire({
                                     title: "Hata Oluştu!",
                                     text: "Giriş Sayfasına Yönlendirileceksiniz!",
                                     type: "error",
@@ -344,14 +357,14 @@ function ajaxCall(url, successCB, errCB, data, bSendMsg, that, type) {
 
                     });
             }
-            else if (xhr.responseJSON.status == 3) {
-                swal("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
+            else if (xhr.responseJSON.status === 3) {
+                swal.fire("Yetkisiz İşlem", xhr.responseJSON.message, "warning");
             }
-            else if (xhr.responseJSON.status == 0) {
+            else if (xhr.responseJSON.status === 0) {
                 errCB(xhr.responseJSON.message);
             }
         },
-        type: type == null ? "post" : type
+        type: type === null ? "post" : type
     });
 }
 

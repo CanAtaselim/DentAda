@@ -18,8 +18,17 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.AboutUs
 
         public Task<IViewComponentResult> InvokeAsync(int department)
         {
-            AboutUsVM aboutUs = _administrationBLLocator.AboutUsBL.GetVM(filter: m => m.Department == department && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).FirstOrDefault();
-            return Task.FromResult<IViewComponentResult>(View(aboutUs));
+            AboutUsVM aboutUs = new AboutUsVM();
+            if (department > 0)
+            {
+                aboutUs = _administrationBLLocator.AboutUsBL.GetVM(filter: m => m.Department == department && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, orderBy: o => o.OrderBy(x => x.Department)).FirstOrDefault();
+            }
+            else
+            {
+                aboutUs = _administrationBLLocator.AboutUsBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, orderBy: o => o.OrderBy(x => x.Department)).FirstOrDefault();
+            }
+
+            return Task.FromResult<IViewComponentResult>(View(aboutUs ?? new AboutUsVM()));
         }
 
     }
