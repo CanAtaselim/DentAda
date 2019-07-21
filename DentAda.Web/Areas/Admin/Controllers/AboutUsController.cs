@@ -9,56 +9,33 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Text.RegularExpressions;
 
-    /// <summary>
-    /// Defines the <see cref="AboutUsController" />
-    /// </summary>
     [Area("Admin")]
     [Authorize(Roles = new string[] { "SYSTEM_ADMIN", "ADMIN" })]
     public class AboutUsController : BaseController
     {
-        /// <summary>
-        /// Defines the _administrationBLLocator
-        /// </summary>
         private AdministrationBLLocator _administrationBLLocator;
 
-        /// <summary>
-        /// Defines the _env
-        /// </summary>
-        private IHostingEnvironment _env;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AboutUsController"/> class.
-        /// </summary>
-        /// <param name="administrationBLLocator">The administrationBLLocator<see cref="AdministrationBLLocator"/></param>
-        /// <param name="env">The env<see cref="IHostingEnvironment"/></param>
         public AboutUsController(AdministrationBLLocator administrationBLLocator, IHostingEnvironment env) : base(env)
         {
             _administrationBLLocator = administrationBLLocator;
-            _env = env;
         }
 
-        /// <summary>
-        /// The Index
-        /// </summary>
-        /// <returns>The <see cref="IActionResult"/></returns>
         public IActionResult Index()
         {
             return View();
         }
 
-        /// <summary>
-        /// The FileUpload
-        /// </summary>
-        /// <param name="model">The model<see cref="AboutUsVM"/></param>
-        /// <returns>The <see cref="IActionResult"/></returns>
         [HttpPost]
-
         public IActionResult Save(AboutUsVM model)
         {
-            AjaxMessage aMsg = new AjaxMessage();
+             AjaxMessage aMsg = new AjaxMessage();
 
             var files = Request.Form.Files;
             byte[] imageData = null;
@@ -129,21 +106,11 @@
             }
             return Json(aMsg);
         }
-        /// <summary>
-        /// The ReInvokeEditComponent
-        /// </summary>
-        /// <param name="Department">The Department<see cref="int"/></param>
-        /// <returns>The <see cref="IActionResult"/></returns>
         public IActionResult ReInvokeEditComponent(int Department)
         {
-            return ViewComponent("Edit", new { department = Department });
+            return ViewComponent("AboutUsEdit", new { department = Department });
         }
 
-        /// <summary>
-        /// The GetFormImageToByte
-        /// </summary>
-        /// <param name="image">The image<see cref="IFormFile"/></param>
-        /// <returns>The <see cref="byte[]"/></returns>
         public static byte[] GetFormImageToByte(IFormFile image)
         {
             byte[] data = null;

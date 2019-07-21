@@ -50,6 +50,10 @@ namespace DentAda.Data.Model
         public virtual DbSet<Village> Village { get; set; }
         public virtual DbSet<CDC> CDC { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
+        public virtual DbSet<Faculties> Faculties { get; set; }
+        public virtual DbSet<Universities> Universities { get; set; }
+        public virtual DbSet<UniversityDepartment> UniversityDepartment { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
     
         public virtual ObjectResult<Role_List_Result> Role_List(Nullable<long> systemUserId)
         {

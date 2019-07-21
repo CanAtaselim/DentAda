@@ -107,6 +107,19 @@ namespace DentAda.Data.UnitOfWork.DentAda
         private IGenericRepository<AboutUs> _aboutUsRepository;
         public IGenericRepository<AboutUs> AboutUsRepository => _aboutUsRepository ?? (_aboutUsRepository = new GenericRepository<AboutUs>(_context));
 
+        private IGenericRepository<Person> _personRepository;
+        public IGenericRepository<Person> PersonRepository => _personRepository ?? (_personRepository = new GenericRepository<Person>(_context));
+
+        private IGenericRepository<Universities> _universitiesRepository;
+        public IGenericRepository<Universities> UniversitiesRepository => _universitiesRepository ?? (_universitiesRepository = new GenericRepository<Universities>(_context));
+
+        private IGenericRepository<UniversityDepartment> _universityDepartmentRepository;
+        public IGenericRepository<UniversityDepartment> UniversityDepartmentRepository => _universityDepartmentRepository ?? (_universityDepartmentRepository = new GenericRepository<UniversityDepartment>(_context));
+
+        private IGenericRepository<Faculties> _facultiesRepository;
+        public IGenericRepository<Faculties> FacultiesRepository => _facultiesRepository ?? (_facultiesRepository = new GenericRepository<Faculties>(_context));
+
+
         #endregion
 
         private readonly DentAdaEntities _context;

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DentAda.Web.Areas.Admin.ViewComponents.AboutUs
 {
-    public class EditViewComponent : ViewComponent
+    public class AboutUsEdit : ViewComponent
     {
         private AdministrationBLLocator _administrationBLLocator;
-        public EditViewComponent(AdministrationBLLocator administrationBLLocator)
+        public AboutUsEdit(AdministrationBLLocator administrationBLLocator)
         {
             _administrationBLLocator = administrationBLLocator;
         }

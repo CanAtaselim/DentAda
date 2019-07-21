@@ -1,6 +1,7 @@
 ﻿@section pageLevelInlineScripts {
     <script>
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function ()
+        {
 
         });
     </script>
@@ -27,13 +28,13 @@
             </h3>
         </div>
         @*<div class="kt-portlet__head-toolbar">
-            <div class="kt-portlet__head-actions">
-                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Yeni Kayıt </button>&nbsp;
-            </div>
-        </div>*@
+                <div class="kt-portlet__head-actions">
+                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Yeni Kayıt </button>&nbsp;
+                </div>
+            </div>*@
     </div>
     <div id="editContent">
-        @await Component.InvokeAsync("Edit")
+            @await Component.InvokeAsync("AboutUsEdit")
     </div>
 </div>
 

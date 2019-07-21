@@ -126,6 +126,40 @@
     <Property Name="FeedBack" Type="nvarchar(max)" />
     <Property Name="ExCode" Type="uniqueidentifier" />
   </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="IdFaculty" />
+    </Key>
+    <Property Name="IdFaculty" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdUniversity" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="IdPerson" />
+    </Key>
+    <Property Name="IdPerson" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdUniversity" Type="bigint" />
+    <Property Name="IdFaculty" Type="bigint" />
+    <Property Name="IdUniversityDepartment" Type="bigint" />
+    <Property Name="Department" Type="smallint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+    <Property Name="Gsm" Type="nvarchar" MaxLength="11" />
+    <Property Name="About" Type="nvarchar(max)" />
+    <Property Name="Picture" Type="image" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="IdRole" />
@@ -343,6 +377,29 @@
     <Property Name="CentroidGeometry" Type="geometry" />
     <Property Name="CentroidTown" Type="geometry" />
   </EntityType>
+  <EntityType Name="Universities">
+    <Key>
+      <PropertyRef Name="IdUniversity" />
+    </Key>
+    <Property Name="IdUniversity" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UniversityDepartment">
+    <Key>
+      <PropertyRef Name="IdUniversityDepartment" />
+    </Key>
+    <Property Name="IdUniversityDepartment" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="IdFaculty" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
   <EntityType Name="Village">
     <Key>
       <PropertyRef Name="IdVillage" />
@@ -402,6 +459,54 @@
       </Principal>
       <Dependent Role="City">
         <PropertyRef Name="IdCountryRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculties_Faculties">
+    <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Faculties">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="IdFaculty" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdFaculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Universities">
+    <End Role="Universities" Type="Self.Universities" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_UniversityDepartment">
+    <End Role="UniversityDepartment" Type="Self.UniversityDepartment" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UniversityDepartment">
+        <PropertyRef Name="IdUniversityDepartment" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversityDepartment" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -501,6 +606,8 @@
     <EntitySet Name="Event" EntityType="Self.Event" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Exception" EntityType="Self.Exception" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="ExceptionFeedBack" EntityType="Self.ExceptionFeedBack" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="RoleAuthorization" EntityType="Self.RoleAuthorization" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="RoleSideMenu" EntityType="Self.RoleSideMenu" Schema="ADMINISTRATION" store:Type="Tables" />
@@ -514,6 +621,8 @@
     <EntitySet Name="SystemUserTicket" EntityType="Self.SystemUserTicket" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="TopMenu" EntityType="Self.TopMenu" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Town" EntityType="Self.Town" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="Universities" EntityType="Self.Universities" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="UniversityDepartment" EntityType="Self.UniversityDepartment" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Village" EntityType="Self.Village" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="CDC" EntityType="Self.CDC" Schema="CDC" store:Type="Tables" />
     <AssociationSet Name="FK_ANNOUNCEMENT_SystemUser" Association="Self.FK_ANNOUNCEMENT_SystemUser">
@@ -523,6 +632,22 @@
     <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
       <End Role="Country" EntitySet="Country" />
       <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculties_Faculties" Association="Self.FK_Faculties_Faculties">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Faculties" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Faculties" Association="Self.FK_Person_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Universities" Association="Self.FK_Person_Universities">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_UniversityDepartment" Association="Self.FK_Person_UniversityDepartment">
+      <End Role="UniversityDepartment" EntitySet="UniversityDepartment" />
+      <End Role="Person" EntitySet="Person" />
     </AssociationSet>
     <AssociationSet Name="FK_RoleSideMenu_SideMenu" Association="Self.FK_RoleSideMenu_SideMenu">
       <End Role="SideMenu" EntitySet="SideMenu" />

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="247518cabb32414b8c01865854aecb12" Name="Diagram1">
+      <Diagram DiagramId="247518cabb32414b8c01865854aecb12" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="DentAdaModel.ANNOUNCEMENT" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="DentAdaModel.City" Width="1.5" PointX="3" PointY="24.625" />
         <EntityTypeShape EntityType="DentAdaModel.ConnectionLog" Width="1.5" PointX="7.75" PointY="3" />
@@ -48,6 +48,14 @@
         <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Village" />
         <AssociationConnector Association="DentAdaModel.FK_Village_Town" />
         <EntityTypeShape EntityType="DentAdaModel.AboutUs" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DentAdaModel.Faculties" Width="1.5" PointX="15.625" PointY="13" />
+        <EntityTypeShape EntityType="DentAdaModel.Universities" Width="1.5" PointX="13.375" PointY="13.125" />
+        <EntityTypeShape EntityType="DentAdaModel.UniversityDepartment" Width="1.5" PointX="15.625" PointY="9.125" />
+        <AssociationConnector Association="DentAdaModel.FK_Faculties_Faculties" />
+        <EntityTypeShape EntityType="DentAdaModel.Person" Width="1.5" PointX="17.875" PointY="10" />
+        <AssociationConnector Association="DentAdaModel.FK_Person_Faculties" />
+        <AssociationConnector Association="DentAdaModel.FK_Person_Universities" />
+        <AssociationConnector Association="DentAdaModel.FK_Person_UniversityDepartment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -164,6 +164,12 @@
     <Compile Include="Model\ExceptionFeedBack.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Faculties.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Person.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Role.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
@@ -204,6 +210,12 @@
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Town.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Universities.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UniversityDepartment.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Village.cs">

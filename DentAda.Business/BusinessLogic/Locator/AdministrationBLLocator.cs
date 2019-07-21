@@ -122,7 +122,7 @@ namespace DentAda.Business.BusinessLogic.Locator
         {
             get { return _villageBL == null ? _villageBL = new VillageBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _villageBL; }
         }
-      
+
         private CDCBL _CDCBL;
 
         public CDCBL CDCBL
@@ -138,5 +138,18 @@ namespace DentAda.Business.BusinessLogic.Locator
         }
 
 
+        private UniversitiesBL _UniversitiesBL;
+
+        public UniversitiesBL UniversitiesBL
+        {
+            get { return _UniversitiesBL == null ? _UniversitiesBL = new UniversitiesBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _UniversitiesBL; }
+        }
+
+        private PersonBL _PersonBL;
+
+        public PersonBL PersonBL
+        {
+            get { return _PersonBL == null ? _PersonBL = new PersonBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _PersonBL; }
+        }
     }
 }

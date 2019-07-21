@@ -107,6 +107,26 @@
       <End Role="Village" EntitySet="Village" />
     </AssociationSet>
     <EntitySet Name="AboutUs" EntityType="DentAdaModel.AboutUs" />
+    <EntitySet Name="Faculties" EntityType="DentAdaModel.Faculties" />
+    <EntitySet Name="Universities" EntityType="DentAdaModel.Universities" />
+    <EntitySet Name="UniversityDepartment" EntityType="DentAdaModel.UniversityDepartment" />
+    <AssociationSet Name="FK_Faculties_Faculties" Association="DentAdaModel.FK_Faculties_Faculties">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Faculties" EntitySet="Faculties" />
+    </AssociationSet>
+    <EntitySet Name="Person" EntityType="DentAdaModel.Person" />
+    <AssociationSet Name="FK_Person_Faculties" Association="DentAdaModel.FK_Person_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Universities" Association="DentAdaModel.FK_Person_Universities">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_UniversityDepartment" Association="DentAdaModel.FK_Person_UniversityDepartment">
+      <End Role="UniversityDepartment" EntitySet="UniversityDepartment" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="Role_List_Result">
     <Property Type="Int64" Name="SystemUserId" Nullable="true" />
@@ -780,4 +800,117 @@
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="IdFaculty" />
+    </Key>
+    <Property Name="IdFaculty" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdUniversity" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Universities" Relationship="DentAdaModel.FK_Faculties_Faculties" FromRole="Faculties" ToRole="Universities" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Faculties" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Universities">
+    <Key>
+      <PropertyRef Name="IdUniversity" />
+    </Key>
+    <Property Name="IdUniversity" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Faculties_Faculties" FromRole="Universities" ToRole="Faculties" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_Universities" FromRole="Universities" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="UniversityDepartment">
+    <Key>
+      <PropertyRef Name="IdUniversityDepartment" />
+    </Key>
+    <Property Name="IdUniversityDepartment" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdFaculty" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_UniversityDepartment" FromRole="UniversityDepartment" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Faculties_Faculties">
+    <End Type="DentAdaModel.Universities" Role="Universities" Multiplicity="1" />
+    <End Type="DentAdaModel.Faculties" Role="Faculties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Faculties">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="IdPerson" />
+    </Key>
+    <Property Name="IdPerson" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdUniversity" Type="Int64" />
+    <Property Name="IdFaculty" Type="Int64" />
+    <Property Name="IdUniversityDepartment" Type="Int64" />
+    <Property Name="Department" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Person" ToRole="Faculties" />
+    <NavigationProperty Name="Universities" Relationship="DentAdaModel.FK_Person_Universities" FromRole="Person" ToRole="Universities" />
+    <NavigationProperty Name="UniversityDepartment" Relationship="DentAdaModel.FK_Person_UniversityDepartment" FromRole="Person" ToRole="UniversityDepartment" />
+  </EntityType>
+  <Association Name="FK_Person_Faculties">
+    <End Type="DentAdaModel.Faculties" Role="Faculties" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="IdFaculty" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdFaculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Universities">
+    <End Type="DentAdaModel.Universities" Role="Universities" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_UniversityDepartment">
+    <End Type="DentAdaModel.UniversityDepartment" Role="UniversityDepartment" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UniversityDepartment">
+        <PropertyRef Name="IdUniversityDepartment" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversityDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

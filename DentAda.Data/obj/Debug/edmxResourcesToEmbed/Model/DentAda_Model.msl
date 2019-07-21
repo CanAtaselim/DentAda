@@ -420,5 +420,66 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="DentAdaModel.Faculties">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdUniversity" ColumnName="IdUniversity" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdFaculty" ColumnName="IdFaculty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Universities">
+      <EntityTypeMapping TypeName="DentAdaModel.Universities">
+        <MappingFragment StoreEntitySet="Universities">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdUniversity" ColumnName="IdUniversity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UniversityDepartment">
+      <EntityTypeMapping TypeName="DentAdaModel.UniversityDepartment">
+        <MappingFragment StoreEntitySet="UniversityDepartment">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdFaculty" ColumnName="IdFaculty" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdUniversityDepartment" ColumnName="IdUniversityDepartment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="DentAdaModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="IdUniversityDepartment" ColumnName="IdUniversityDepartment" />
+          <ScalarProperty Name="IdFaculty" ColumnName="IdFaculty" />
+          <ScalarProperty Name="IdUniversity" ColumnName="IdUniversity" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
