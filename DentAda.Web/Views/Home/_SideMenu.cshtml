@@ -44,15 +44,42 @@
     <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
         <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
             <ul class="kt-menu__nav ">
+                @{
+                    string area = this.ViewContext.RouteData.Values["area"].ToString();
+                    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+                    string action = this.ViewContext.RouteData.Values["action"].ToString();
 
+                    string activeItemPerson = "";
+                    string activeItemAboutUs = "";
 
-                <li class="kt-menu__item " aria-haspopup="true"><a href="demo1/index.html" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-home"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
+                    switch (controller)
+                    {
+                        case "AboutUs":
+                            activeItemAboutUs = "kt-menu__item--active";
+                            break;
+                        case "Person":
+                            activeItemPerson = "kt-menu__item--active";
+                            break;
+                    }
+
+                }
+
                 <li class="kt-menu__section ">
-                    <h4 class="kt-menu__section-text">Layout</h4>
+                    <h4 class="kt-menu__section-text">Yönetim</h4>
                     <i class="kt-menu__section-icon flaticon-more-v2"></i>
                 </li>
-                <li class="kt-menu__item " aria-haspopup="true"><a target="_blank" href="https://keenthemes.com/metronic/preview/demo1/builder.html" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-cogwheel-1"></i><span class="kt-menu__link-text">Builder</span></a></li>
-
+                <li class="kt-menu__item @activeItemAboutUs" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "AboutUs", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-info-circle"></i>
+                        <span class="kt-menu__link-text">Hakkımızda</span>
+                    </a>
+                </li>
+                <li class="kt-menu__item @activeItemPerson" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "Person", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-user"></i>
+                        <span class="kt-menu__link-text">Ekibimiz</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

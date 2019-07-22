@@ -150,6 +150,7 @@
     <Property Name="IdUniversity" Type="bigint" />
     <Property Name="IdFaculty" Type="bigint" />
     <Property Name="IdUniversityDepartment" Type="bigint" />
+    <Property Name="EmployeeType" Type="smallint" Nullable="false" />
     <Property Name="Department" Type="smallint" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />

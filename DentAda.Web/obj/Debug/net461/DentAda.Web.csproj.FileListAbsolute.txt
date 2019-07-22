@@ -1068,12 +1068,7 @@ C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\DentAda.Business.dll.config
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\DentAda.Data.pdb
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\DentAda.Data.dll.config
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\DentAda.Common.pdb
-C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.Mvc.xml
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\Z.EntityFramework.Extensions.xml
-C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.xml
-C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Razor.xml
-C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.Razor.xml
-C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Deployment.xml
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.csprojAssemblyReference.cache
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.exe.config
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.csproj.CoreCompileInputs.cache
@@ -1082,3 +1077,8 @@ C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.AssemblyInfo.cs
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.csproj.CopyComplete
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.exe
 C:\Projects\DentAda\DentAda.Web\obj\Debug\net461\DentAda.Web.pdb
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.Mvc.xml
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.xml
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Razor.xml
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.Razor.xml
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Deployment.xml

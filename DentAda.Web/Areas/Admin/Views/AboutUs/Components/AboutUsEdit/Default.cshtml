@@ -3,51 +3,35 @@
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
 @section pageLevelInlineScripts {
-<script>
+    <script>
         jQuery(document).ready(function ()
         {
-            File.prototype.convertToBase64 = function(callback){
-                var reader = new FileReader();
-                reader.onloadend = function (e) {
-                    callback(e.target.result);
-                };
-                reader.readAsDataURL(this);
-            };
-            $("#customFile").on("change", function (event) {
-                var image = document.querySelector("#instrumentImage");
+
+            $("#customFile").on("change", function (event)
+            {
+                var image = document.querySelector("#aboutUsImage");
                 image.src = URL.createObjectURL(event.target.files[0]);
-                //var selectedFile = event.target.files[0];
-                //selectedFile.convertToBase64(function(base64){
-                //    $('#instrumentImage').attr('src',base64);
-                //})
             });
 
-            $(".rbCayyolu").change(function () {
+            $(".rbCayyolu").change(function ()
+            {
                 var that = this;
                 reInvokeComponent(that);
             });
 
-            $(".rbPolatli").change(function () {
+            $(".rbPolatli").change(function ()
+            {
                 var that = this;
                 reInvokeComponent(that);
             });
 
-            function reInvokeComponent(that) {
-                server.ajaxCall(
-                    "@Url.Action("ReInvokeEditComponent", new { area = "Admin", controller = "AboutUs" })", //İstek Adresi
-                    function (result) { // success function callback
-                        $("#editContent").html(result);
-                    },
-                    function (err) { // error function callback
-                        if (err) { swal.fire("Hata", err, "error"); }
-                    },
-                    { Department: $(that).val() }, //data
-                    this, // context erişimi için successcallback içerisinde thatLocal olarak kullanılabilir
-                    'post' // istek yöntemi
-                );
+            function reInvokeComponent(that)
+            {
+                $.post("@Url.Action("ReInvokeEditComponent", new { area = "Admin", controller = "AboutUs" })", { Department: $(that).val() }, function(result){ $("#aboutUsContent").html(result); });
             }
 
-            $(".btnSave").click(function (event) {
+            $(".btnSave").click(function (event)
+            {
                 event.preventDefault();
 
                 var fileUpload = $("#customFile").get(0);
@@ -57,41 +41,45 @@
                     fileData.append(files[0].name, files[0]);
                 } else {
                     fileData.append("Picture", $("#Picture").val());
-                }   
+                }
 
                 var formSerializeArray = $("form#submit_form").serializeArray();
                 formSerializeArray.forEach(function (item)
                 {
                     fileData.append(item.name, item.value);
                 });
-                //fileData.append("IdAboutUs", $("#IdAboutUs").val());
-                //fileData.append("Department",$("input[name='Department']:checked").val());
-                //fileData.append("Description", $("#Description" ).val());
+                $.validator.unobtrusive.parse($("form#submit_form"));
 
-
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Save", new { area = "Admin", controller = "AboutUs" })",
-                    contentType: false,
-                    processData: false,
-                    beforeSend: KTApp.blockPage({
-                        overlayColor: '#333',
-                        type: 'v2',
-                        state: 'success',
-                        message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
-                    }),
-                   data: fileData,
-                   success: function (result) {
-                          KTApp.unblockPage();
-                       if (result.status == "1") {
-                        swal.fire("Başarılı", result.message, "success");
-                       }
-                    },
-                   error: function (err) {
-                        KTApp.unblockPage();
-                        if (err) { swal.fire("Hata", err, "error"); }
-                    }
-                });
+                $("form#submit_form").validate();
+                if ($("form#submit_form").valid())
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Save", new { area = "Admin", controller = "AboutUs" })",
+                        contentType: false,
+                        processData: false,
+                        beforeSend: KTApp.blockPage({
+                            overlayColor: '#333',
+                            type: 'v2',
+                            state: 'success',
+                            message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
+                        }),
+                        data: fileData,
+                        success: function (result)
+                        {
+                            KTApp.unblockPage();
+                            if (result.status == "1")
+                            {
+                                swal.fire("Başarılı", result.message, "success");
+                            }
+                        },
+                        error: function (err)
+                        {
+                            KTApp.unblockPage();
+                            if (err) { swal.fire("Hata", err, "error"); }
+                        }
+                    });
+                  }
             });
 
             $(".btnDel").click(function (event) {
@@ -141,7 +129,7 @@
                 })
             });
         });
-</script>
+    </script>
 }
 @section pageLevelStyles {
 }
@@ -149,68 +137,89 @@
 }
 @section pageLevelPlugins {
 
-<script src="/assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
-<script src="/assets/vendors/custom/js/vendors/bootstrap-markdown.init.js" type="text/javascript"></script>
+    <script src="/assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
+    <script src="/assets/vendors/custom/js/vendors/bootstrap-markdown.init.js" type="text/javascript"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 }
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="fa fa-info-circle"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                Hakkımızda
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                <button type="button" class="btn btn-danger btn-elevate btn-elevate-air btnDel" data-id="@Model.IdAboutUs"><i class="flaticon-delete"></i> Sil </button>
+            </div>
+        </div>
+    </div>
+    <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
+        @Html.HiddenFor(m => m.IdAboutUs)
+        <div class="kt-portlet__body">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Şube:</label>
+                <div class="col-10">
+                    <div class="kt-radio-inline">
+                        <label class="kt-radio">
+                            @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
+                            <span></span>
+                        </label>
+                        <label class="kt-radio">
+                            @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
+                            <span></span>
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Hakkımızda:</label>
+                <div class="col-10">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @data_provide = "markdown", @rows = "10" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Görsel:</label>
+                <div class="col-10">
+                    <div class="custom-file col-4">
+                        <input type="file" name="files" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Resim Seç</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label"></label>
+                <div class="col-10">
+                    @Html.HiddenFor(m => m.Picture)
+                    @if (Model != null && Model.Picture != null)
+                    {
+                        <img alt="" id="aboutUsImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:300px" />
+                    }
+                    else
+                    {
+                        <img alt="" id="aboutUsImage" class="img-thumbnail" style="max-height:300px" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
-<form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
-    @Html.HiddenFor(m => m.IdAboutUs)
-    <div class="kt-portlet__body">
-        <div class="kt-align-right">
-            <button type="button" class="btn btn-danger btn-elevate btn-elevate-air btnDel" data-id="@Model.IdAboutUs"><i class="flaticon-delete"></i> Sil </button>&nbsp;
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Şubeler:</label>
-            <div class="col-10">
-                <div class="kt-radio-inline">
-                    <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
-                        <span></span>
-                    </label>
-                    <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
-                        <span></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Hakkımızda:</label>
-            <div class="col-10">
-                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @data_provide = "markdown", @rows = "10" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Görsel:</label>
-            <div class="col-10">
-                <div class="custom-file col-4">
-                    <input type="file" name="files" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label"></label>
-            <div class="col-10">
-                @Html.HiddenFor(m => m.Picture)
-                @if (Model != null && Model.Picture != null)
-                {
-                <img alt="" id="instrumentImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:300px" />
-                }
-                else
-                {
-                <img alt="" id="instrumentImage" class="img-thumbnail" style="max-height:300px" />
-                }
-            </div>
-        </div>
-    </div>
-    <div class="kt-portlet__foot">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-10">
-                <button type="button" class="btn btn-brand btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
-            </div>
-        </div>
-    </div>
-</form>
+</div>
+

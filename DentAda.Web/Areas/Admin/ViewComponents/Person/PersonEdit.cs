@@ -2,6 +2,8 @@
 using DentAda.Business.ViewModel.Administration;
 using DentAda.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,13 +16,33 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
         {
             _administrationBLLocator = administrationBLLocator;
         }
-
-
-        public Task<IViewComponentResult> InvokeAsync(int department)
+        public static List<SelectListItem> EmployeeTypeList
         {
+            get
+            {
+                return new List<SelectListItem>() {
+                    new SelectListItem()
+                    {
+                        Text = _Enumeration.GetEnumDescription(_Enumeration._EmployeeType.MedicalStaff).ToString(),
+                        Value = ((int)_Enumeration._EmployeeType.MedicalStaff).ToString()
+                    },
+                    new SelectListItem()
+                    {
+                        Text = _Enumeration.GetEnumDescription(_Enumeration._EmployeeType.OurTeam).ToString(),
+                        Value = ((int)_Enumeration._EmployeeType.OurTeam).ToString()
+                    },
+                };
+            }
+        }
+
+        public Task<IViewComponentResult> InvokeAsync(long IdPerson)
+        {
+
+            ViewBag.EmployeeType = EmployeeTypeList;
+
             PersonVM person = new PersonVM();
 
-            person = _administrationBLLocator.PersonBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, orderBy: o => o.OrderBy(x => x.Department)).FirstOrDefault();
+            person = _administrationBLLocator.PersonBL.GetVM(filter: m => m.IdPerson == IdPerson && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, orderBy: o => o.OrderBy(x => x.Department)).FirstOrDefault();
 
             return Task.FromResult<IViewComponentResult>(View(person ?? new PersonVM()));
         }

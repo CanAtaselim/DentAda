@@ -876,6 +876,7 @@
     <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Person" ToRole="Faculties" />
     <NavigationProperty Name="Universities" Relationship="DentAdaModel.FK_Person_Universities" FromRole="Person" ToRole="Universities" />
     <NavigationProperty Name="UniversityDepartment" Relationship="DentAdaModel.FK_Person_UniversityDepartment" FromRole="Person" ToRole="UniversityDepartment" />
+    <Property Name="EmployeeType" Type="Int16" Nullable="false" />
   </EntityType>
   <Association Name="FK_Person_Faculties">
     <End Type="DentAdaModel.Faculties" Role="Faculties" Multiplicity="0..1" />

@@ -1,58 +1,127 @@
 ﻿@model DentAda.Business.ViewModel.Administration.PersonVM
+@using DentAda.Web;
+@using DentAda.Common;
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
 @section pageLevelInlineScripts {
     <script>
         var vanilla;
+
         jQuery(document).ready(function ()
         {
+            File.prototype.convertToBase64 = function (callback)
+            {
+                var reader = new FileReader();
+                reader.onloadend = function (e)
+                {
+                    callback(e.target.result);
+                };
+                reader.readAsDataURL(this);
+            };
+
+            $('[data-toggle="kt-tooltip"]').tooltip();
+
+           function scrollToAnchor(html) {
+                $('html,body').animate({ scrollTop: html.offset().top - 75 }, 'slow');
+            }
+
             $("#customFile").on("change", function (event) {
-                var image = document.querySelector("#instrumentImage");
-                image.src = URL.createObjectURL(event.target.files[0]);
-                //readFile(this);
+                readFile(this);
+                if (!$('#collapseOne5').hasClass("show"))
+                {
+                    $('#collapseOne5').collapse('toggle');
+                }
+                scrollToAnchor($("#customFile"));
+            });
+
+            $(".btnRotateLeft").click(function (event) {
+                vanilla.rotate(-90);
+            });
+             $(".btnRotateRight").click(function (event) {
+                vanilla.rotate(90);
+            });
+            $(".btnCrop").click(function ()
+            {
+
+
+                    vanilla.result({
+                        type: 'blob'
+                    }).then(function (blob)
+                    {
+                         KTApp.blockPage({
+                            overlayColor: '#333',
+                            type: 'v2',
+                            state: 'success',
+                            message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
+                        })
+                        var FR = new FileReader();
+                        FR.addEventListener("load", function (e)
+                        {
+                            var string = e.target.result;
+                            var regex = /^data:.+\/(.+);base64,(.*)$/;
+
+                            var matches = string.match(regex);
+                            var data = matches[2];
+                            $("#Picture").val(data);
+                            scrollToAnchor($("#personImage"));
+                            $('#collapseOne5').collapse('toggle');
+                            document.getElementById("personImage").src = e.target.result;
+
+                        });
+                        FR.readAsDataURL(blob);
+                        KTApp.unblockPage();
+                    });
             });
 
 
             $(".btnSave").click(function (event) {
                 event.preventDefault();
 
-                //var fileUpload = $("#customFile").get(0);
-                //var files = fileUpload.files;
-                //var fileData = new FormData();
-                //if (files.length > 0) {
-                //    fileData.append(files[0].name, files[0]);
-                //} else {
-                //    fileData.append("Picture", $("#Picture").val());
-                //}
-                //fileData.append("IdPerson", $("#IdPerson").val());
-                //fileData.append("Department",$("input[name='Department']:checked").val());
-                //fileData.append("Description", $( "#Description" ).val());
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Save", new { area = "Admin", controller = "Person" })",
-                    contentType: false,
-                    processData: false,
-                    beforeSend: KTApp.blockPage({
-                        overlayColor: '#333',
-                        type: 'v2',
-                        state: 'success',
-                        message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
-                    }),
-                   data: $("$submit_form").serialize(),
-                   success: function (result) {
-                          KTApp.unblockPage();
-                       if (result.status == "1") {
-                        swal.fire("Başarılı", result.message, "success");
-                       }
-                    },
-                   error: function (err) {
-                        KTApp.unblockPage();
-                        if (err) { swal.fire("Hata", err, "error"); }
-                    }
+                var fileData = new FormData();
+                var formSerializeArray = $("form#submit_form").serializeArray();
+                formSerializeArray.forEach(function (item)
+                {
+                    debugger;
+                    fileData.append(item.name, item.value);
                 });
+                $.validator.unobtrusive.parse($("form#submit_form"));
+
+                $("form#submit_form").validate();
+                if ($("form#submit_form").valid())
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Save", new { area = "Admin", controller = "Person" })",
+                        contentType: false,
+                        processData: false,
+                        beforeSend: KTApp.blockPage({
+                            overlayColor: '#333',
+                            type: 'v2',
+                            state: 'success',
+                            message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
+                        }),
+                        data: fileData,
+                        success: function (result)
+                        {
+                            KTApp.unblockPage();
+                            if (result.status == "1")
+                            {
+                                swal.fire("Başarılı", result.message, "success");
+                                $.post("@Url.Action("List", new { area = "Admin", controller = "Person" })", function (result) { $("#personContent").html(result); });
+                            }
+                        },
+                        error: function (err)
+                        {
+                            KTApp.unblockPage();
+                            if (err) { swal.fire("Hata", err, "error"); }
+                        }
+                    });
+                } else
+                {
+                    toastr.warning("Lütfen Zorunlu alanları doldurunuz!");
+
+                }
             });
 
             $(".btnDel").click(function (event) {
@@ -79,7 +148,7 @@
                                         text: result.message,
                                         type: "success"
                                     }).then(function() {
-                                        reInvokeComponent();
+                                        $.post("@Url.Action("List", new { area = "Admin", controller = "Person" })", function (result) { $("#personContent").html(result); });
                                     });
                                 } else
                                 {
@@ -95,6 +164,7 @@
                                 if (err) { swal.fire("Hata", err, "error"); }
                             },
                             { idPerson: $(".btnDel").data("id")}, //data
+                            null,
                             this, // context erişimi için successcallback içerisinde thatLocal olarak kullanılabilir
                             'post' // istek yöntemi
                         );
@@ -102,9 +172,24 @@
                 })
             });
 
+            $(".btnReturnList").click(function () {
+                $.post("@Url.Action("List", new { area = "Admin", controller = "Person" })", function (result) { $("#personContent").html(result); });
+            });
 
-            var items = [];
+            var IdUniversity =  $("#IdUniversity").val();;
+            var universityItems = [];
             var map = {};
+            $('#thUniversity').bind('input', function () {
+                if ($(this).val() == "")
+                {
+                    IdUniversity = 0;
+                    IdFaculty = 0;
+                    $('#thFaculty:input').typeahead('val', '');
+                    IdUniversityDepartment = 0;
+                    $('#thUniversityDepartment:input').typeahead('val', '');
+
+                }
+            });
 
             $('#thUniversity').typeahead({
                 hint: true,
@@ -120,6 +205,7 @@
                             async: false,
                             data: { search: query },
                             success : function (data) {
+                                    universityItems = [];
                                     $.each(JSON.parse(data), function (i, item) {
                                         var id = item.IdUniversity;
                                         var name = item.Name;
@@ -127,51 +213,134 @@
                                             id: id,
                                             name: name
                                         };
-                                        items.push(name);
+                                        universityItems.push(name);
 
                                     });
-                                console.log(items);
-                             return process(items);
+                             return process(universityItems);
                             }
                         });
                 }
-                }).on("typeahead:selected", function (obj, company) {
-                       //console.log(map[company]);
-                       //console.log(JSON.stringify(company));
-                       //console.log(obj);
-             });
+                }).on("typeahead:selected", function (obj, university) {
+                    IdUniversity = map[university].id;
+                    $("#IdUniversity").val(IdUniversity);
+                });
 
+            var IdFaculty = $("#IdFaculty").val();;
+            var facultyItems = [];
+            var map = {};
+            $('#thFaculty').bind('input', function () {
+                if ($(this).val() == "")
+                {
+                    IdFaculty = 0;
+                    IdUniversityDepartment = 0;
+                    $('#thUniversityDepartment:input').typeahead('val', '');
+                }
+            });
 
+            $('#thFaculty').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 2
+            }, {
+                name: 'faculty',
+                source: function (query, process) {
+                        $.ajax({
+                            url: '@Url.Action("GetFaculty", new { area = "Admin", controller = "Person" })',
+                            type: "POST",
+                            cache: false,
+                            async: false,
+                            data: { search: query, idUniversity: IdUniversity },
+                            success : function (data) {
+                                    facultyItems = [];
+                                    $.each(JSON.parse(data), function (i, item) {
+                                        var id = item.IdFaculty;
+                                        var name = item.Name;
+                                        map[name] = {
+                                            id: id,
+                                            name: name
+                                        };
+                                        facultyItems.push(name);
 
-		    function readFile(input) {
- 			    if (input.files && input.files[0]) {
-	                var reader = new FileReader();
-	                reader.onload = function (e) {
-                        vanilla.bind({
-	            		    url: e.target.result,
-                            orientation: 1,
+                                    });
+                             return process(facultyItems);
+                            }
                         });
-	                }
-	                reader.readAsDataURL(input.files[0]);
-	            }
-	            else {
-                        console("error image crop");
-		        }
-		    }
+                }
+                }).on("typeahead:selected", function (obj, faculty) {
+                    IdFaculty = map[faculty].id;
+                    $("#IdFaculty").val(IdFaculty);
+                });
 
-			vanilla = new Croppie(document.getElementById('cropTool'), {
+
+            var IdUniversityDepartment = $("#IdUniversityDepartment").val();
+            var universityDepartmentItems = [];
+            var map = {};
+            $('#thUniversityDepartment').bind('input', function () {
+                if ($(this).val() == "")
+                {
+                    IdUniversityDepartment = 0;
+                }
+            });
+            $('#thUniversityDepartment').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 2
+            }, {
+                name: 'faculty',
+                source: function (query, process) {
+                        $.ajax({
+                            url: '@Url.Action("GetUniversityDepartment", new { area = "Admin", controller = "Person" })',
+                            type: "POST",
+                            cache: false,
+                            async: false,
+                            data: { search: query, idFaculty: IdFaculty },
+                            success : function (data) {
+                                    universityDepartmentItems = [];
+                                    $.each(JSON.parse(data), function (i, item) {
+                                        var id = item.IdUniversityDepartment;
+                                        var name = item.Name;
+                                        map[name] = {
+                                            id: id,
+                                            name: name
+                                        };
+                                        universityDepartmentItems.push(name);
+
+                                    });
+                             return process(universityDepartmentItems);
+                            }
+                        });
+                }
+                }).on("typeahead:selected", function (obj, universityDepartment) {
+                    IdUniversityDepartment = map[universityDepartment].id;
+                    $("#IdUniversityDepartment").val(IdUniversityDepartment);
+                })
+
+            vanilla = new Croppie(document.getElementById('cropTool'), {
                 enableExif: true,
                 enableOrientation: true,
                 viewport: {
-                    width: 300,
-                    height: 300,
+                    width: 380,
+                    height: 380,
                 },
                 boundary: {
-                    width: 350,
-                    height: 350
+                    width: 425,
+                    height: 425
                 }
 		    });
-
+		    function readFile(input) {
+ 			    if (input.files && input.files[0]) {
+                    input.files[0].convertToBase64(function(base64){
+			              vanilla.bind({
+	            		        url: base64,
+                                orientation: 1,
+                            });
+                            $("#imageCropModal").modal();
+			        })
+	            }
+	            else {
+                    console("error image crop");
+		        }
+		    }
         });
     </script>
 }
@@ -179,126 +348,202 @@
     <link href="~/lib/croppie/croppie.css" rel="stylesheet" />
 }
 @section pageLevelInlineStyles {
+    <style>
+    </style>
 }
 @section pageLevelPlugins {
 
     <script src="/assets/vendors/general/typeahead.js/dist/typeahead.bundle.js" type="text/javascript"></script>
     <script src="/lib/croppie/croppie.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 }
 
-<form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="fa fa-user"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                @if (Model.IdPerson > 0)
+                {
+                    <span>@Model.Name @Model.Surname</span>
+                }
+                else
+                {
+                    <span>Yeni Çalışan Ekle</span>
+                }
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                <button type="button" class="btn btn-info  btn-elevate btn-elevate-air btnReturnList"><i class="fa fa-arrow-left"></i> Listeye Dön </button>
+                @if (Model.IdPerson > 0)
+                {
+                    <button type="button" data-toggle="kt-tooltip" data-placement="top" title="" data-original-title="Sil" class="btn btn-danger btn-elevate btn-elevate-air btnDel" data-id="@Model.IdPerson"><i class="flaticon-delete"></i> Sil </button>
+                }
 
-    @Html.HiddenFor(m => m.IdUniversity)
-    <div class="kt-portlet__body">
-        <div class="kt-align-right">
-            <button type="button" class="btn btn-danger btn-elevate btn-elevate-air btnDel" data-id="@Model.IdUniversity"><i class="flaticon-delete"></i> Sil </button>&nbsp;
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Şubeler:</label>
-            <div class="col-6">
-                <div class="kt-radio-inline">
-                    <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
-                        <span></span>
-                    </label>
-                    <label class="kt-radio">
-                        @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
-                        <span></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Fotoğraf</label>
-            <div class="col-10">
-                <div class="custom-file col-4 align-top">
-                    <input type="file" name="files" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-                <div class="kt-margin-t-20">
-                    <img alt="" id="instrumentImage" src="/assets/media/users/100_4.jpg" class="img-thumbnail" style="max-height:300px" />
-                </div>
-            </div>
-        </div>
-        <div id="cropTool"></div>
-
-
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Adı:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Soyadı:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Unvan:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Meslek:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Profession, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Telefon:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">GSM:</label>
-            <div class="col-6">
-                @Html.TextBoxFor(m => m.Gsm, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Hakkında:</label>
-            <div class="col-6">
-                @Html.TextAreaFor(m => m.About, new { @class = "form-control", style = "min-height:100px; max-height:250px" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Üniversite:</label>
-            <div class="col-6">
-                <div class="typeahead">
-                    <input class="form-control" id="thUniversity" type="text" placeholder="Üniversite adı girin.">
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Fakülte:</label>
-            <div class="col-6">
-                <div class="typeahead">
-                    <input class="form-control" id="thFaculty" type="text" placeholder="Fakülte adı girin.">
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Bölüm:</label>
-            <div class="col-6">
-                <div class="typeahead">
-                    <input class="form-control" id="thUniversityDepartment" type="text" placeholder="Bölüm adı girin.">
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="kt-portlet__foot">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-10">
-                <button type="submit" class="btn btn-brand btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
             </div>
         </div>
     </div>
-</form>
+    <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
+        @*@Html.DropDownListFor(m => m.EmployeeTypes, Enum.GetValues(typeof(_Enumeration._EmployeeType)).Cast<_Enumeration._EmployeeType>().Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString() }))*@
+
+
+        @Html.HiddenFor(m => m.IdPerson)
+        <div class="kt-portlet__body">
+            <div class="kt-align-right">
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Şube:</label>
+                <div class="col-6">
+                    <div class="kt-radio-inline">
+                        <label class="kt-radio">
+                            @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
+                            <span></span>
+                        </label>
+                        <label class="kt-radio">
+                            @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
+                            <span></span>
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Fotoğraf</label>
+                <div class="col-10">
+                    <div class="kt-margin-b-20">
+                        @Html.HiddenFor(m => m.Picture)
+                        @if (Model != null && Model.Picture != null)
+                        {
+                            <img alt="" id="personImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:200px" />
+                        }
+                        else
+                        {
+                            <img alt="" id="personImage" src="/assets/media/users/100_4.jpg" class="img-thumbnail" style="max-height:200px" />
+                        }
+
+                    </div>
+                    <div class="custom-file col-4 align-top">
+                        <input type="file" name="files" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+
+                </div>
+            </div>
+            <div id="collapseOne5" class="panel-collapse collapse" aria-labelledby="headingOne5">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Fotoğraf Düzenle</label>
+                    <div class="col-4">
+                        <div id="cropTool"></div>
+                        <div class="kt-margin-t-10">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button type="button" data-toggle="kt-tooltip" data-placement="top" title="" data-original-title="Sola döndür" class="btn btn-secondary btnRotateLeft"><i class="la la-rotate-left"></i></button>
+                                <button type="button" data-toggle="kt-tooltip" data-placement="top" title="" data-original-title="Kırp" class="btn btn-success btnCrop"><i class="la la-crop"></i>Fotoğrafı Kırp</button>
+                                <button type="button" data-toggle="kt-tooltip" data-placement="top" title="" data-original-title="Sağa Döndür" class="btn btn-secondary  btnRotateRight"><i class="la la-rotate-right"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Çalışan Tipi:</label>
+                <div class="col-6">
+                    @Html.DropDownListFor(m => m.EmployeeType, new SelectList(ViewBag.EmployeeType, "Value", "Text"), "Seçiniz", new { @class = "form-control m-select2" })
+                    @Html.ValidationMessageFor(m => m.EmployeeType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Adı:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Soyadı:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Unvan:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Meslek:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Profession, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Telefon:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">GSM:</label>
+                <div class="col-6">
+                    @Html.TextBoxFor(m => m.Gsm, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Hakkında:</label>
+                <div class="col-6">
+                    @Html.TextAreaFor(m => m.About, new { @class = "form-control", style = "min-height:100px; max-height:250px" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Üniversite:</label>
+                <div class="col-6">
+                    <div class="typeahead">
+                        @Html.HiddenFor(m => m.IdUniversity)
+                        @Html.TextBoxFor(m => m.UniversityName, new { @id = "thUniversity", @placeholder = "Üniversite adı girin.", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Fakülte:</label>
+                <div class="col-6">
+                    <div class="typeahead">
+                        @Html.HiddenFor(m => m.IdFaculty)
+                        @Html.TextBoxFor(m => m.FacultyName, new { @id = "thFaculty", @placeholder = "Fakülte adı girin.", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Bölüm:</label>
+                <div class="col-6">
+                    <div class="typeahead">
+                        @Html.HiddenFor(m => m.IdUniversityDepartment)
+                        @Html.TextBoxFor(m => m.UniversityDepartmentName, new { @id = "thUniversityDepartment", @placeholder = "Bölüm adı girin.", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="kt-portlet__foot">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

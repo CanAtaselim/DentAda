@@ -461,6 +461,7 @@
     <EntitySetMapping Name="Person">
       <EntityTypeMapping TypeName="DentAdaModel.Person">
         <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
           <ScalarProperty Name="Picture" ColumnName="Picture" />
           <ScalarProperty Name="About" ColumnName="About" />
           <ScalarProperty Name="Gsm" ColumnName="Gsm" />

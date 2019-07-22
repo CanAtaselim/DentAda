@@ -35,45 +35,57 @@
         [HttpPost]
         public IActionResult Save(AboutUsVM model)
         {
-             AjaxMessage aMsg = new AjaxMessage();
-
-            var files = Request.Form.Files;
-            byte[] imageData = null;
-            if (files.Count > 0)
+            AjaxMessage aMsg = new AjaxMessage();
+            if (model != null)
             {
-                imageData = GetFormImageToByte(files[0]);
-            }
+                if (ModelState.IsValid)
+                {
+
+                    var files = Request.Form.Files;
+                    byte[] imageData = null;
+                    if (files.Count > 0)
+                    {
+                        imageData = GetFormImageToByte(files[0]);
+                    }
 
 
 
 
-            AboutUs aboutUs = new AboutUs();
-            aboutUs.Department = model.Department;
-            aboutUs.Description = model.Description;
-            aboutUs.Picture = imageData != null ? imageData : model.Picture;
-            aboutUs.OperationDate = DateTime.Now;
-            aboutUs.OperationIdUserRef = HttpRequestInfo.UserID;
-            aboutUs.OperationIP = HttpRequestInfo.IpAddress;
-            aboutUs.OperationIsDeleted = 1;
+                    AboutUs aboutUs = new AboutUs();
+                    aboutUs.Department = model.Department;
+                    aboutUs.Description = model.Description;
+                    aboutUs.Picture = imageData != null ? imageData : model.Picture;
+                    aboutUs.OperationDate = DateTime.Now;
+                    aboutUs.OperationIdUserRef = HttpRequestInfo.UserID;
+                    aboutUs.OperationIP = HttpRequestInfo.IpAddress;
+                    aboutUs.OperationIsDeleted = 1;
 
 
 
-            if (model.IdAboutUs == 0)
-            {
-                _administrationBLLocator.AboutUsBL.CRUD.Insert(aboutUs);
-                _administrationBLLocator.AboutUsBL.Save();
-                aMsg.Status = 1;
-                aMsg.Message = "Kayıt Başarıyla Eklendi.";
+                    if (model.IdAboutUs == 0)
+                    {
+                        _administrationBLLocator.AboutUsBL.CRUD.Insert(aboutUs);
+                        _administrationBLLocator.AboutUsBL.Save();
+                        aMsg.Status = 1;
+                        aMsg.Message = "Kayıt Başarıyla Eklendi.";
 
-            }
-            else
-            {
-                aboutUs.IdAboutUs = model.IdAboutUs;
-                _administrationBLLocator.AboutUsBL.CRUD.Update(aboutUs, HttpRequestInfo);
-                _administrationBLLocator.AboutUsBL.Save();
-                aMsg.Status = 1;
-                aMsg.Message = "Güncelleme Başarılı.";
+                    }
+                    else
+                    {
+                        aboutUs.IdAboutUs = model.IdAboutUs;
+                        _administrationBLLocator.AboutUsBL.CRUD.Update(aboutUs, HttpRequestInfo);
+                        _administrationBLLocator.AboutUsBL.Save();
+                        aMsg.Status = 1;
+                        aMsg.Message = "Güncelleme Başarılı.";
 
+                    }
+                }
+                else
+                {
+                    aMsg.Status = 0;
+                    aMsg.Message = "Bir Hata oluştu";
+
+                }
             }
             return Json(aMsg);
         }
@@ -108,7 +120,7 @@
         }
         public IActionResult ReInvokeEditComponent(int Department)
         {
-            return ViewComponent("AboutUsEdit", new { department = Department });
+            return ViewComponent("AboutUsEdit", new { Department });
         }
 
         public static byte[] GetFormImageToByte(IFormFile image)

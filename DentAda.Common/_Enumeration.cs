@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace DentAda.Common
 {
     public class _Enumeration
     {
+
         #region Framework Enumerations
         public enum _TypeException : int
         {
@@ -71,6 +73,15 @@ namespace DentAda.Common
             MaterialDesign = 2,
             Rounded = 3
         }
+        public enum _EmployeeType
+        {
+            [Description("Medikal Kadro")]
+            MedicalStaff = 1,
+            [Description("Takım Arkadaşlarımız")]
+            OurTeam = 2
+
+
+        }
         #endregion
 
         #region Administration Enums
@@ -110,5 +121,23 @@ namespace DentAda.Common
             BANNED = 3
         }
         #endregion
+        public static string GetEnumDescription(Enum value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])fi.GetCustomAttributes(
+                typeof(DescriptionAttribute),
+                false);
+
+            if (attributes != null &&
+                attributes.Length > 0)
+                return attributes[0].Description;
+            else
+                return value.ToString();
+        }
+
     }
+
+
 }

@@ -1,7 +1,23 @@
 ﻿@section pageLevelInlineScripts {
     <script>
-        jQuery(document).ready(function () {
-
+        jQuery(document).ready(function ()
+        {
+             toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": true,
+                  "progressBar": true,
+                  "positionClass": "toast-top-center",
+                  "preventDuplicates": true,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "3000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+            };
         });
     </script>
 }
@@ -15,25 +31,9 @@
 
 
 }
-
-<div class="kt-portlet">
-    <div class="kt-portlet__head">
-        <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon">
-                <i class="flaticon2-calendar-2"></i>
-            </span>
-            <h3 class="kt-portlet__head-title">
-                Çalışanlar
-            </h3>
-        </div>
-        @*<div class="kt-portlet__head-toolbar">
-                <div class="kt-portlet__head-actions">
-                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Yeni Kayıt </button>&nbsp;
-                </div>
-            </div>*@
-    </div>
-    <div id="editContent">
-        @await Component.InvokeAsync("PersonEdit")
-    </div>
+<div id="personContent">
+    @await Component.InvokeAsync("PersonList")
 </div>
+
+
 

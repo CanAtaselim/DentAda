@@ -31,6 +31,7 @@ namespace DentAda.Data.Model
         public string Gsm { get; set; }
         public string About { get; set; }
         public byte[] Picture { get; set; }
+        public short EmployeeType { get; set; }
     
         public virtual Faculties Faculties { get; set; }
         public virtual Universities Universities { get; set; }

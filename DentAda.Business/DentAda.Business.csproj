@@ -95,6 +95,8 @@
     <Compile Include="BusinessLogic\Administration\SystemUserTicketBL.cs" />
     <Compile Include="BusinessLogic\Administration\TopMenuBL.cs" />
     <Compile Include="BusinessLogic\Administration\TownBL.cs" />
+    <Compile Include="BusinessLogic\Administration\FacultyBL.cs" />
+    <Compile Include="BusinessLogic\Administration\UniversityDepartmentBL.cs" />
     <Compile Include="BusinessLogic\Administration\UniversitiesBL.cs" />
     <Compile Include="BusinessLogic\Administration\VillageBL.cs" />
     <Compile Include="BusinessLogic\Auth\LoginBL.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="ViewModel\Administration\ConnectionLogVM.cs" />
     <Compile Include="ViewModel\Administration\CountryVM.cs" />
     <Compile Include="ViewModel\Administration\ExceptionFeedBackVM.cs" />
+    <Compile Include="ViewModel\Administration\FacultyVM.cs" />
     <Compile Include="ViewModel\Administration\PersonVM.cs" />
     <Compile Include="ViewModel\Administration\RoleAuthorizationVM.cs" />
     <Compile Include="ViewModel\Administration\RoleSideMenuVM.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="ViewModel\Administration\TopMenuVM.cs" />
     <Compile Include="ViewModel\Administration\TownVM.cs" />
     <Compile Include="ViewModel\Administration\UniversitiesVM.cs" />
+    <Compile Include="ViewModel\Administration\UniversityDepartmentVM.cs" />
     <Compile Include="ViewModel\Administration\VillageVM.cs" />
     <Compile Include="ViewModel\Auth\LoginVM.cs" />
     <Compile Include="ViewModel\Base\BaseVM.cs" />
