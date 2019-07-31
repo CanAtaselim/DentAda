@@ -5,6 +5,7 @@
             cache: false,
             beforeSend: KTApp.blockPage({
                     overlayColor: '#333',
+                    opacity: 0.6,
                     type: 'v2',
                     state: 'success',
                     message: bSendMsg === null ? "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..." : bSendMsg
@@ -126,6 +127,7 @@
             cache: false,
             beforeSend: KTApp.blockPage({
                 overlayColor: '#333',
+                opacity: 0.6,
                 type: 'v2',
                 state: 'success',
                 message: bSendMsg === null ? "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..." : bSendMsg

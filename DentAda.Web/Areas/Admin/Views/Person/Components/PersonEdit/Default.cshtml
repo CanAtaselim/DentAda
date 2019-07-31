@@ -51,6 +51,7 @@
                     {
                          KTApp.blockPage({
                             overlayColor: '#333',
+                            opacity: 0.6,
                             type: 'v2',
                             state: 'success',
                             message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
@@ -97,6 +98,7 @@
                         processData: false,
                         beforeSend: KTApp.blockPage({
                             overlayColor: '#333',
+                            opacity: 0.6,
                             type: 'v2',
                             state: 'success',
                             message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
@@ -348,8 +350,7 @@
     <link href="~/lib/croppie/croppie.css" rel="stylesheet" />
 }
 @section pageLevelInlineStyles {
-    <style>
-    </style>
+
 }
 @section pageLevelPlugins {
 
@@ -390,9 +391,6 @@
         </div>
     </div>
     <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
-        @*@Html.DropDownListFor(m => m.EmployeeTypes, Enum.GetValues(typeof(_Enumeration._EmployeeType)).Cast<_Enumeration._EmployeeType>().Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString() }))*@
-
-
         @Html.HiddenFor(m => m.IdPerson)
         <div class="kt-portlet__body">
             <div class="kt-align-right">

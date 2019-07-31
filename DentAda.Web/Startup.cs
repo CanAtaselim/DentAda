@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,6 +23,11 @@ namespace DentAda.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -35,6 +41,7 @@ namespace DentAda.Web
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(120);
             });
+   
 
             services.AddTransient<AdministrationBLLocator>();
             services.AddTransient<AuthBLLocator>();

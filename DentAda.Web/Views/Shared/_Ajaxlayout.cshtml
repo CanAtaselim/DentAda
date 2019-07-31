@@ -1,4 +1,14 @@
-﻿@RenderSection("pageLevelStyles", required: false)
+﻿<style>
+    
+        .blockOverlay {
+            z-index: 9998 !important;
+        }
+        .blockMsg{
+            z-index: 9999 !important;
+
+        }
+</style>
+@RenderSection("pageLevelStyles", required: false)
 @RenderSection("pageLevelInlineStyles", required: false)
 @RenderBody()
 @RenderSection("pageLevelPlugins", required: false)

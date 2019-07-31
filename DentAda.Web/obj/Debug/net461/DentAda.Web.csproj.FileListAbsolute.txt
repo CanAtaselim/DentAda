@@ -1082,3 +1082,5 @@ C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.xml
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Razor.xml
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.Razor.xml
 C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\System.Web.WebPages.Deployment.xml
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\Magick.Native-Q16-x86.dll
+C:\Projects\DentAda\DentAda.Web\bin\Debug\net461\Magick.NET-Q16-AnyCPU.dll

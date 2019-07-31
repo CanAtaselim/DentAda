@@ -106,6 +106,10 @@
               "target": "Package",
               "version": "[6.2.0, )"
             },
+            "Magick.NET-Q16-AnyCPU": {
+              "target": "Package",
+              "version": "[7.14.1, )"
+            },
             "Microsoft.AspNetCore": {
               "target": "Package",
               "version": "[2.0.3, )"
