@@ -52,7 +52,7 @@
                     string activeItemPerson = "";
                     string activeItemAboutUs = "";
                     string activeItemGallery = "";
-
+                    string activeItemContactUs = "";
                     switch (controller)
                     {
                         case "AboutUs":
@@ -63,6 +63,9 @@
                             break;
                         case "Gallery":
                             activeItemGallery = "kt-menu__item--active";
+                            break;
+                        case "ContactUs":
+                            activeItemContactUs = "kt-menu__item--active";
                             break;
                     }
 
@@ -88,6 +91,12 @@
                     <a href='@Url.Action("Index", "Gallery", new { Area = "Admin" })' class="kt-menu__link ">
                         <i class="kt-menu__link-icon fa fa-images"></i>
                         <span class="kt-menu__link-text">Galeri</span>
+                    </a>
+                </li>
+                <li class="kt-menu__item @activeItemContactUs" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "ContactUs", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-phone-square"></i>
+                        <span class="kt-menu__link-text">İletişim</span>
                     </a>
                 </li>
             </ul>

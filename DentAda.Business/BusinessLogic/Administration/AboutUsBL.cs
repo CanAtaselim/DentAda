@@ -29,7 +29,8 @@ namespace DentAda.Business.BusinessLogic.Administration
             return CRUD.Query(filter, orderBy, take, skip, includes).Select(x => new AboutUsVM
             {
                 IdAboutUs = x.IdAboutUs,
-                Description = x.Description,
+                Mission = x.Mission,
+                Vision = x.Vision,
                 Department = x.Department,
                 Picture = x.Picture
 
@@ -37,12 +38,13 @@ namespace DentAda.Business.BusinessLogic.Administration
         }
         public List<AboutUsVM> GetVMExtended(Expression<Func<AboutUs, bool>> filter = null, Func<IQueryable<AboutUs>, IOrderedQueryable<AboutUs>> orderBy = null, int? take = default(int?), int? skip = default(int?), string orderByS = null, short? orderByDirection = null, params Expression<Func<AboutUs, object>>[] includes)
         {
-            return CRUD.QueryExtended(filter, orderBy, take, skip, orderByS, orderByDirection, includes).Select(s => new AboutUsVM
+            return CRUD.QueryExtended(filter, orderBy, take, skip, orderByS, orderByDirection, includes).Select(x => new AboutUsVM
             {
-                IdAboutUs = s.IdAboutUs,
-                Description = s.Description,
-                Department = s.Department,
-                Picture = s.Picture
+                IdAboutUs = x.IdAboutUs,
+                Mission = x.Mission,
+                Vision = x.Vision,
+                Department = x.Department,
+                Picture = x.Picture
 
             }).ToList();
         }

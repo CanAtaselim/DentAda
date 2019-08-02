@@ -79,7 +79,13 @@ namespace DentAda.Common
             MedicalStaff = 1,
             [Description("Takım Arkadaşlarımız")]
             OurTeam = 2
-
+        }
+        public enum _Department
+        {
+            [Description("Çayyolu")]
+            Cayyolu = 1,
+            [Description("Polatlı")]
+            Polatli = 2
 
         }
         #endregion

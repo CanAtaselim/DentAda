@@ -9,6 +9,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using DentAda.Data.Model;
 using DentAda.Data.DataCommon;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using DentAda.Common;
 
 namespace DentAda.Web.WebCommon
 {
@@ -47,7 +49,26 @@ namespace DentAda.Web.WebCommon
         {
             return string.Format("{0};{1};{2};{3};{4};{5}", date.Year.ToString(), date.Month.ToString(), date.Day.ToString(), date.Hour.ToString(), date.Minute.ToString(), date.Second.ToString());
         }
+        public static List<SelectListItem> DepartmentList
+        {
+            get
+            {
+                return new List<SelectListItem>() {
+                    new SelectListItem()
+                    {
+                        Text = _Enumeration.GetEnumDescription(_Enumeration._Department.Cayyolu).ToString(),
+                        Value = ((int)_Enumeration._Department.Cayyolu).ToString()
+                    },
+                    new SelectListItem()
+                    {
+                        Text = _Enumeration.GetEnumDescription(_Enumeration._Department.Polatli).ToString(),
+                        Value = ((int)_Enumeration._Department.Polatli).ToString()
+                    },
+                };
+            }
+        }
     }
+
     public class AjaxMessage
     {
         public int Status { get; set; }

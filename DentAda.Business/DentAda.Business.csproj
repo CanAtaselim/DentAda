@@ -115,6 +115,7 @@
     <Compile Include="ViewModel\Administration\CountryVM.cs" />
     <Compile Include="ViewModel\Administration\ExceptionFeedBackVM.cs" />
     <Compile Include="ViewModel\Administration\FacultyVM.cs" />
+    <Compile Include="ViewModel\Administration\GalleryVM.cs" />
     <Compile Include="ViewModel\Administration\PersonVM.cs" />
     <Compile Include="ViewModel\Administration\RoleAuthorizationVM.cs" />
     <Compile Include="ViewModel\Administration\RoleSideMenuVM.cs" />

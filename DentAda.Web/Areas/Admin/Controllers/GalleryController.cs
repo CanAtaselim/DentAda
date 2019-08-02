@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DentAda.Business.BusinessLogic.Locator;
+using DentAda.Business.ViewModel.Administration;
 using DentAda.Web.Attributes;
 using DentAda.Web.WebCommon;
 using ImageMagick;
@@ -32,67 +33,78 @@ namespace DentAda.Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Save()
+        public IActionResult List(int Department = 1)
+        {
+            return ViewComponent("GalleryList", new { Department });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(GalleryVM galleryVM)
         {
             AjaxMessage aMsg = new AjaxMessage();
             var files = Request.Form.Files;
             if (files.Count > 0)
             {
-                var totalFileSize = 20 * 1024 * 1024;
+                var totalFileSize = 25 * 1024 * 1024;
                 if (files.Sum(m => m.Length) > totalFileSize)
                 {
-                    return View();
+                    aMsg.Status = 0;
+                    aMsg.Message = "Seçilen görsellerin boyutu 25 MB'tan fazladır.";
                 }
-
-
-                string originalDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\cayyolu\\original");
-                string thumbnailDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\cayyolu\\thumbnail");
-                if (!Directory.Exists(originalDirectory))
+                else
                 {
-                    Directory.CreateDirectory(originalDirectory);
-                }
-                if (!Directory.Exists(thumbnailDirectory))
-                {
-                    Directory.CreateDirectory(thumbnailDirectory);
-                }
-                foreach (IFormFile image in files)
-                {
-                    int fileSizeLimit = 2 * 1024 * 1024;
-                    if (image.Length < fileSizeLimit)
+                    string departmentName = galleryVM.Department == 1 ? "cayyolu" : "polatli";
+                    string lowresDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\" + departmentName + "\\lowres");
+                    string thumbnailDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\" + departmentName + "\\thumbnail");
+                    if (!Directory.Exists(lowresDirectory))
                     {
-                        string imageName = Guid.NewGuid().ToString();
-                        string imageExtension = Path.GetExtension(image.FileName);
-
-                        try
+                        Directory.CreateDirectory(lowresDirectory);
+                    }
+                    if (!Directory.Exists(thumbnailDirectory))
+                    {
+                        Directory.CreateDirectory(thumbnailDirectory);
+                    }
+                    foreach (IFormFile image in files)
+                    {
+                        int fileSizeLimit = 4 * 1024 * 1024;
+                        if (image.Length < fileSizeLimit)
                         {
-                            using (FileStream fileStream = new FileStream(Path.Combine(originalDirectory, imageName + imageExtension), FileMode.Create))
+                            string imageName = Guid.NewGuid().ToString();
+                            string imageExtension = Path.GetExtension(image.FileName);
+
+                            try
                             {
-                                await image.CopyToAsync(fileStream);
+                                ConvertLowres(lowresDirectory, image, imageName, imageExtension);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+
+                            try
+                            {
+                                ConvertThumbnail(thumbnailDirectory, image, imageName, imageExtension);
+                            }
+                            catch (Exception ex)
+                            {
+
                             }
                         }
-                        catch (Exception ex)
-                        {
-
-                        }
-
-                        try
-                        {
-                            COnvertThumbnail(thumbnailDirectory, image, imageName, imageExtension);
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
                     }
+                    aMsg.Status = 1;
+                    aMsg.Message = "Fotoğraf ekleme işlemi başarılı";
                 }
-                aMsg.Status = 1;
-                aMsg.Message = "Fotoğraf ekleme işlemi başarılı";
+            }
+            else
+            {
+                aMsg.Status = 0;
+                aMsg.Message = "Lütfen fotoğraf seçiniz.";
 
             }
             return Json(aMsg);
         }
 
-        private static void COnvertThumbnail(string thumbnailDirectory, IFormFile image, string imageName, string imageExtension)
+        private static void ConvertThumbnail(string thumbnailDirectory, IFormFile image, string imageName, string imageExtension)
         {
 
             using (MagickImage imageFile = new MagickImage(GetFormImageToByte(image)))
@@ -100,14 +112,34 @@ namespace DentAda.Web.Areas.Admin.Controllers
                 imageFile.Format = MagickFormat.Jpg;
 
                 MagickGeometry reSize = new MagickGeometry(200);
+                //ExifProfile profile = imageFile.GetExifProfile();
+                imageFile.AutoOrient();
                 reSize.IgnoreAspectRatio = false;
                 imageFile.Resize(reSize);
-                imageFile.Quality = 100;
+                //profile.SetValue(ExifTag.Orientation, (UInt16)0);
+                //imageFile.AddProfile(profile);
                 imageFile.Write(Path.Combine(thumbnailDirectory, imageName + imageExtension));
                 imageFile.Dispose();
             }
         }
+        private static void ConvertLowres(string lowresDirectory, IFormFile image, string imageName, string imageExtension)
+        {
 
+            using (MagickImage imageFile = new MagickImage(GetFormImageToByte(image)))
+            {
+                imageFile.Format = MagickFormat.Jpg;
+
+                MagickGeometry reSize = new MagickGeometry(new Percentage(50), new Percentage(50));
+                //ExifProfile profile = imageFile.GetExifProfile();
+                imageFile.AutoOrient();
+                //profile.SetValue(ExifTag.Orientation, (UInt16)0);
+                reSize.IgnoreAspectRatio = false;
+                imageFile.Resize(reSize);
+                //imageFile.AddProfile(profile);
+                imageFile.Write(Path.Combine(lowresDirectory, imageName + imageExtension));
+                imageFile.Dispose();
+            }
+        }
         public static byte[] GetFormImageToByte(IFormFile image)
         {
             byte[] data = null;

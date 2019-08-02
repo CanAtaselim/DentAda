@@ -406,20 +406,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AboutUs">
-      <EntityTypeMapping TypeName="DentAdaModel.AboutUs">
-        <MappingFragment StoreEntitySet="AboutUs">
-          <ScalarProperty Name="Picture" ColumnName="Picture" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
-          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
-          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
-          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
-          <ScalarProperty Name="IdAboutUs" ColumnName="IdAboutUs" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Faculties">
       <EntityTypeMapping TypeName="DentAdaModel.Faculties">
         <MappingFragment StoreEntitySet="Faculties">
@@ -479,6 +465,21 @@
           <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
           <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
           <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AboutUs">
+      <EntityTypeMapping TypeName="DentAdaModel.AboutUs">
+        <MappingFragment StoreEntitySet="AboutUs">
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Vision" ColumnName="Vision" />
+          <ScalarProperty Name="Mission" ColumnName="Mission" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+          <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+          <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+          <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+          <ScalarProperty Name="IdAboutUs" ColumnName="IdAboutUs" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

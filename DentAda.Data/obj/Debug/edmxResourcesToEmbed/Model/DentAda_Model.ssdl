@@ -10,7 +10,8 @@
     <Property Name="OperationDate" Type="datetime" Nullable="false" />
     <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
     <Property Name="Department" Type="smallint" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mission" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vision" Type="nvarchar(max)" />
     <Property Name="Picture" Type="image" />
   </EntityType>
   <EntityType Name="ANNOUNCEMENT">

@@ -13,21 +13,13 @@
                 image.src = URL.createObjectURL(event.target.files[0]);
             });
 
-            $(".rbCayyolu").change(function ()
-            {
-                var that = this;
-                reInvokeComponent(that);
+            $("#cbDepartment").change(function () {
+                reInvokeComponent();
             });
 
-            $(".rbPolatli").change(function ()
+            function reInvokeComponent()
             {
-                var that = this;
-                reInvokeComponent(that);
-            });
-
-            function reInvokeComponent(that)
-            {
-                $.post("@Url.Action("ReInvokeEditComponent", new { area = "Admin", controller = "AboutUs" })", { Department: $(that).val() }, function(result){ $("#aboutUsContent").html(result); });
+                $.post("@Url.Action("ReInvokeEditComponent", new { area = "Admin", controller = "AboutUs" })", { Department:  $("#cbDepartment").val() }, function(result){ $("#aboutUsContent").html(result); });
             }
 
             $(".btnSave").click(function (event)
@@ -138,9 +130,6 @@
 }
 @section pageLevelPlugins {
 
-    <script src="/assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
-    <script src="/assets/vendors/custom/js/vendors/bootstrap-markdown.init.js" type="text/javascript"></script>
-
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
@@ -167,25 +156,23 @@
         <div class="kt-portlet__body">
             <div class="form-group row">
                 <label class="col-2 col-form-label">Şube:</label>
-                <div class="col-10">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio">
-                            @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
-                            <span></span>
-                        </label>
-                        <label class="kt-radio">
-                            @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
-                            <span></span>
-                        </label>
-                    </div>
+                <div class="col-3">
+                    @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
                     @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Hakkımızda:</label>
+                <label class="col-2 col-form-label">Misyon:</label>
                 <div class="col-10">
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @data_provide = "markdown", @rows = "10" })
-                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(m => m.Mission, new { @class = "form-control", @rows = "12" })
+                    @Html.ValidationMessageFor(m => m.Mission, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Vizyon:</label>
+                <div class="col-10">
+                    @Html.TextAreaFor(m => m.Vision, new { @class = "form-control", @rows = "12" })
+                    @Html.ValidationMessageFor(m => m.Vision, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">

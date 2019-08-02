@@ -10,6 +10,7 @@
 
         jQuery(document).ready(function ()
         {
+            $('.kt-selectpicker').selectpicker();
             File.prototype.convertToBase64 = function (callback)
             {
                 var reader = new FileReader();
@@ -25,7 +26,10 @@
            function scrollToAnchor(html) {
                 $('html,body').animate({ scrollTop: html.offset().top - 75 }, 'slow');
             }
-
+            $(".btnReturnList").click(function ()
+            {
+                $.post("@Url.Action("List", new { area = "Admin", controller = "Person" })", function (result) { $("#personContent").html(result); });
+            });
             $("#customFile").on("change", function (event) {
                 readFile(this);
                 if (!$('#collapseOne5').hasClass("show"))
@@ -173,10 +177,10 @@
                   }
                 })
             });
-
-            $(".btnReturnList").click(function () {
-                $.post("@Url.Action("List", new { area = "Admin", controller = "Person" })", function (result) { $("#personContent").html(result); });
+            $("#cbDepartment").change(function () {
+                reInvokeComponent();
             });
+
 
             var IdUniversity =  $("#IdUniversity").val();;
             var universityItems = [];
@@ -393,21 +397,11 @@
     <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
         @Html.HiddenFor(m => m.IdPerson)
         <div class="kt-portlet__body">
-            <div class="kt-align-right">
-            </div>
+
             <div class="form-group row">
                 <label class="col-2 col-form-label">Şube:</label>
-                <div class="col-6">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio">
-                            @Html.RadioButtonFor(m => m.Department, "1", new { @class = "rbCayyolu" }) Çayyolu
-                            <span></span>
-                        </label>
-                        <label class="kt-radio">
-                            @Html.RadioButtonFor(m => m.Department, "2", new { @class = "rbPolatli" }) Polatlı
-                            <span></span>
-                        </label>
-                    </div>
+                <div class="col-3">
+                    @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
                     @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -454,7 +448,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Çalışan Tipi:</label>
                 <div class="col-6">
-                    @Html.DropDownListFor(m => m.EmployeeType, new SelectList(ViewBag.EmployeeType, "Value", "Text"), "Seçiniz", new { @class = "form-control m-select2" })
+                    @Html.DropDownListFor(m => m.EmployeeType, new SelectList(ViewBag.EmployeeType, "Value", "Text"), "Seçiniz", new { @class = "form-control kt-selectpicker" })
                     @Html.ValidationMessageFor(m => m.EmployeeType, "", new { @class = "text-danger" })
                 </div>
             </div>

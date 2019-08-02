@@ -1,0 +1,58 @@
+﻿@model DentAda.Business.ViewModel.Administration.AboutUsVM
+@{
+    Layout = "~/Views/Shared/_AjaxLayout.cshtml";
+}
+@section pageLevelInlineScripts {
+    <script>
+        jQuery(document).ready(function ()
+        {
+
+        
+        });
+    </script>
+}
+@section pageLevelStyles {
+}
+@section pageLevelInlineStyles {
+}
+@section pageLevelPlugins {
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+}
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="fa fa-phone-square"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                İletişim
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                <button type="button" class="btn btn-danger btn-elevate btn-elevate-air btnDel"><i class="flaticon-delete"></i> Sil </button>
+            </div>
+        </div>
+    </div>
+    <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
+        @Html.HiddenFor(m => m.IdAboutUs)
+        <div class="kt-portlet__body">
+            Selamın Aleyküm Dünya
+
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-success btn-elevate btn-elevate-air btnSave"><i class="fa fa-save"></i>Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+

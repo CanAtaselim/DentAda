@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DentAda.Business.ViewModel.Administration.GalleryVM
+@using DentAda.Business.ViewModel.Administration;
+@{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
 @section pageLevelInlineScripts {
@@ -22,9 +24,15 @@
         var map = {};
         jQuery(document).ready(function ()
         {
+            $('.kt-selectpicker').selectpicker();
+            $('#lightgallery').lightGallery({
+                pager: true,
+                autoplay: true,
+                share: false
+            });
 
-            var totalFileSizeLimit = 20 * 1024 * 1024;
-            var fileSizeLimit = 2 * 1024 * 1024;
+            var totalFileSizeLimit = 25 * 1024 * 1024;
+            var fileSizeLimit = 4 * 1024 * 1024;
 
             function addArrayFile(files, callback) {
                 KTApp.blockPage({
@@ -35,14 +43,12 @@
                     message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
                 });
                 setTimeout(function() {
-
                     Array.from(files).forEach(file => {
                         var count = 0;
                         if (file.size < fileSizeLimit) {
                             var hasItem = galleryItems.filter(item => (item.name == file.name));
                             if (hasItem.length == 0)
                             {
-
                                 var item = map[file.name] = {
                                     name: file.name,
                                     file: file,
@@ -72,7 +78,8 @@
                                     'src': URL.createObjectURL(file),
                                     'data-toggle' : 'kt-tooltip',
                                     'data-original-title' : formatBytes(file.size),
-                                    'class': "img-thumbnail",
+                                    'class': "img-thumbnail imgDblClick",
+                                    'data-filename': file.name,
                                     'style': 'max-height:100px; ' + (count == 0 ? 'margin:10px 10px 10px 0' : 'margin:10px')
                                 }).appendTo(avatarDiv);
                             }
@@ -87,12 +94,18 @@
                         $('[data-toggle="kt-tooltip"]').tooltip();
                         $("#txtFileSize").html("");
                         fileSizeText();
+
+                        if (galleryItems.length > 0)
+                        {
+                            $("#emptyDiv").hide();
+                        }
+                        $("#submit_form")[0].reset()
                         KTApp.unblockPage();
                         if (galleryItems.sum("size") > totalFileSizeLimit)
                         {
-                            swal.fire("Dikkat", "Seçtiğiniz resimlerin toplam boyutu 20MB'tan fazla", "error");
+                            swal.fire("Dikkat", "Seçtiğiniz resimlerin toplam boyutu 25 MB'tan fazla", "error");
                         }
-                        $("#submit_form")[0].reset()
+
                 }, 300);
             }
             $("#customFile").change(function (event)
@@ -101,90 +114,106 @@
             });
 
             function fileSizeText() {
+                $("#txtFileSize").show();
+                $("#txtFileSize").html("Toplam Boyut " + formatBytes(galleryItems.sum("size")));
                 if (galleryItems.sum("size") > totalFileSizeLimit)
                 {
-                    $("#txtFileSize").removeClass("kt-badge--success");
-                    $("#txtFileSize").addClass("kt-badge--danger");
+                    $("#txtFileSize").removeClass("kt-badge--success").addClass("kt-badge--danger");
                 } else
                 {
-                    $("#txtFileSize").addClass("kt-badge--success");
-                    $("#txtFileSize").removeClass("kt-badge--danger");
-
+                    $("#txtFileSize").addClass("kt-badge--success").removeClass("kt-badge--danger");
                 }
-                $("#txtFileSize").html("Toplam Boyut " + formatBytes(galleryItems.sum("size")));
             }
-            $(document).on("click", '.btnRemoveImage', function () {
+
+            function removeImg(that) {
                 $("[data-toggle='kt-tooltip']").tooltip('hide');
-                var that = this;
                 $(that).parent("div").remove();
                 galleryItems = galleryItems.filter(function (item)
                 {
                     return item.name != $(that).data("filename");
                 });
+                fileSizeText();
                 if (galleryItems.length == 0)
                 {
                     $("#txtFileSize").hide();
+                    $("#emptyDiv").show();
                 }
-                fileSizeText();
+            }
+            $(document).on("click", '.btnRemoveImage', function () {
+                removeImg(this);
             })
-
+            $(document).on("dblclick", '.imgDblClick', function () {
+                removeImg(this);
+            });
+            $("#cbDepartment").change(function () {
+                $.post("@Url.Action("List", new { area = "Admin", controller = "Gallery" })", { Department: $(this).val() }, function(result){ $("#galleryContent").html(result); });
+            });
             $(".btnSave").click(function (event)
             {
                 event.preventDefault();
-                var fileData = new FormData();
-                galleryItems.forEach(item => {
-
-                        fileData.append(item.name, item.file);
-
-                });
-
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Save", new { area = "Admin", controller = "Gallery" })",
-                    contentType: false,
-                    processData: false,
-                    beforeSend: KTApp.blockPage({
-                        overlayColor: '#333',
-                        opacity: 0.6,
-                        type: 'v2',
-                        state: 'success',
-                        message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
-                    }),
-                    data: fileData,
-                    success: function (result)
+                if (galleryItems.sum("size") > totalFileSizeLimit)
+                {
+                     swal.fire("Dikkat", "Seçtiğiniz resimlerin toplam boyutu 25 MB'tan fazla", "error");
+                }
+                else
+                {
+                    var fileData = new FormData();
+                    galleryItems.forEach(item => {
+                            fileData.append(item.name, item.file);
+                    });
+                    var formSerializeArray = $("form#submit_form").serializeArray();
+                    formSerializeArray.forEach(function (item)
                     {
-                        KTApp.unblockPage();
-                        if (result.status == 1)
+                        fileData.append(item.name, item.value);
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Save", new { area = "Admin", controller = "Gallery" })",
+                        contentType: false,
+                        processData: false,
+                        beforeSend: KTApp.blockPage({
+                            overlayColor: '#333',
+                            opacity: 0.6,
+                            type: 'v2',
+                            state: 'success',
+                            message: "İşleminiz gerçekleştiriliyor lütfen bekleyiniz..."
+                        }),
+                        data: fileData,
+                        success: function (result)
                         {
-                            swal.fire({
-                                title: "Başarılı!",
-                                text: result.message,
-                                type: "success"
-                            }).then(function() {
-                                reInvokeComponent();
-                            });
-                        } else
+                            KTApp.unblockPage();
+                            if (result.status == 1)
+                            {
+                                swal.fire({
+                                    title: "Başarılı!",
+                                    text: result.message,
+                                    type: "success"
+                                }).then(function() {
+                                     $.post("@Url.Action("List", new { area = "Admin", controller = "Gallery" })", { Department: $("#cbDepartment").val() }, function(result){ $("#galleryContent").html(result); });
+                                });
+                            } else
+                            {
+                                swal.fire({
+                                    title: "Hata!",
+                                    text: result.message,
+                                    type: "error"
+                                });
+                            }
+                        },
+                        error: function (err)
                         {
-                            swal.fire({
-                                title: "Hata!",
-                                text: result.message,
-                                type: "error"
-                            });
+                            KTApp.unblockPage();
+                            if (err) { swal.fire("Hata", err, "error"); }
                         }
-                    },
-                    error: function (err)
-                    {
-                        KTApp.unblockPage();
-                        if (err) { swal.fire("Hata", err, "error"); }
-                    }
-                });
-
+                    });
+                }
             });
         });
     </script>
 }
 @section pageLevelStyles {
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css" rel="stylesheet" />
 }
 @section pageLevelInlineStyles {
     <style>
@@ -207,11 +236,144 @@
             height: 0;
             overflow: hidden;
             width: 0;
+            visibility: collapse;
+        }
+
+        .demo-gallery > ul {
+            margin-bottom: 0;
+            padding-left: 0;
+        }
+
+            .demo-gallery > ul > li {
+                margin-bottom: 15px;
+                display: inline-block;
+                margin-right: 15px;
+                list-style: outside none none;
+                vertical-align:middle;
+            }
+
+                .demo-gallery > ul > li a {
+                    border: 3px solid #FFF;
+                    border-radius: 3px;
+                    display: block;
+                    overflow: hidden;
+                    position: relative;
+                    float: left;
+                }
+
+                    .demo-gallery > ul > li a > img {
+                        -webkit-transition: -webkit-transform 0.15s ease 0s;
+                        -moz-transition: -moz-transform 0.15s ease 0s;
+                        -o-transition: -o-transform 0.15s ease 0s;
+                        transition: transform 0.15s ease 0s;
+                        -webkit-transform: scale3d(1, 1, 1);
+                        transform: scale3d(1, 1, 1);
+                        height: 100%;
+                        width: 100%;
+                    }
+
+                    .demo-gallery > ul > li a:hover > img {
+                        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+                        transform: scale3d(1.1, 1.1, 1.1);
+                    }
+
+                    .demo-gallery > ul > li a:hover .demo-gallery-poster > img {
+                        opacity: 1;
+                    }
+
+                    .demo-gallery > ul > li a .demo-gallery-poster {
+                        background-color: rgba(0, 0, 0, 0.1);
+                        bottom: 0;
+                        left: 0;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        -webkit-transition: background-color 0.15s ease 0s;
+                        -o-transition: background-color 0.15s ease 0s;
+                        transition: background-color 0.15s ease 0s;
+                    }
+
+                        .demo-gallery > ul > li a .demo-gallery-poster > img {
+                            left: 50%;
+                            margin-left: -10px;
+                            margin-top: -10px;
+                            opacity: 0;
+                            position: absolute;
+                            top: 50%;
+                            -webkit-transition: opacity 0.3s ease 0s;
+                            -o-transition: opacity 0.3s ease 0s;
+                            transition: opacity 0.3s ease 0s;
+                        }
+
+                    .demo-gallery > ul > li a:hover .demo-gallery-poster {
+                        background-color: rgba(0, 0, 0, 0.5);
+                    }
+
+        .demo-gallery .justified-gallery > a > img {
+            -webkit-transition: -webkit-transform 0.15s ease 0s;
+            -moz-transition: -moz-transform 0.15s ease 0s;
+            -o-transition: -o-transform 0.15s ease 0s;
+            transition: transform 0.15s ease 0s;
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+            height: 100%;
+            width: 100%;
+        }
+
+        .demo-gallery .justified-gallery > a:hover > img {
+            -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+        }
+
+        .demo-gallery .justified-gallery > a:hover .demo-gallery-poster > img {
+            opacity: 1;
+        }
+
+        .demo-gallery .justified-gallery > a .demo-gallery-poster {
+            background-color: rgba(0, 0, 0, 0.1);
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            -webkit-transition: background-color 0.15s ease 0s;
+            -o-transition: background-color 0.15s ease 0s;
+            transition: background-color 0.15s ease 0s;
+        }
+
+            .demo-gallery .justified-gallery > a .demo-gallery-poster > img {
+                left: 50%;
+                margin-left: -10px;
+                margin-top: -10px;
+                opacity: 0;
+                position: absolute;
+                top: 50%;
+                -webkit-transition: opacity 0.3s ease 0s;
+                -o-transition: opacity 0.3s ease 0s;
+                transition: opacity 0.3s ease 0s;
+            }
+
+        .demo-gallery .justified-gallery > a:hover .demo-gallery-poster {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .demo-gallery .video .demo-gallery-poster img {
+            height: 48px;
+            margin-left: -24px;
+            margin-top: -24px;
+            opacity: 0.8;
+            width: 48px;
+        }
+
+        .demo-gallery.dark > ul > li a {
+            border: 3px solid #04070a;
         }
     </style>
 }
 @section pageLevelPlugins {
-
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/js/lightgallery-all.min.js"></script>
 
 }
 <div class="kt-portlet">
@@ -232,20 +394,69 @@
     </div>
     <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
         <div class="kt-portlet__body">
-            <div class="form-group row">
-                <div class="col-12">
-                    <label class="btn btn-brand btn-elevate btn-elevate-air" for="customFile"><i class="fa fa-upload"></i>Resim Seç</label>
-                    <input multiple type="file" name="files" class="custom-file-input" id="customFile" accept="image/png,image/jpg,image/jpeg">
+            <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
+                <div class="kt-portlet__head" style="padding:0 9px 0 10px">
+                    <div class="kt-portlet__head-toolbar">
+                        <div class="kt-portlet__head-actions">
+                            <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
+                            <input multiple type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
+
+                        </div>
+                        @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <div class="kt-portlet__head-actions">
+                            <span id="txtFileSize" class="kt-badge kt-badge--lg kt-badge--inline"></span>
+
+
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-12">
-                    <span id="txtFileSize" class="kt-badge kt-badge--lg kt-badge--inline"></span>
+                <div class="kt-portlet__body">
+                    <div id="emptyDiv" style="margin-bottom:0px;" class="alert alert-success alert-dismissible fade show" role="alert">
+                        Seçtiğiniz fotoğraflar burada listelenecektir.
+                    </div>
+                    <div id="galleryContents"></div>
                 </div>
             </div>
 
-            <div id="galleryContents"></div>
+            @if (Model.GalleryList.Count() > 0)
+            {
+                <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                Yüklenen Fotoğraflar
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <div class="demo-gallery">
+                            <ul id="lightgallery">
+                                @foreach (GalleryItem item in Model.GalleryList)
+                                {
+
+                                    <li class="img-thumbnail" style="padding:0px;" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })">
+                                        <a href="">
+                                            <img class="img-responsive" src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })">
+                                            <div class="demo-gallery-poster">
+                                                <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
         </div>
+
+
         <div class="kt-portlet__foot">
             <div class="row">
                 <div class="col-lg-12">
@@ -254,6 +465,7 @@
             </div>
         </div>
     </form>
+
 </div>
 
 

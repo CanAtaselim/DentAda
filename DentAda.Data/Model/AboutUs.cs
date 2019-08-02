@@ -20,7 +20,8 @@ namespace DentAda.Data.Model
         public System.DateTime OperationDate { get; set; }
         public short OperationIsDeleted { get; set; }
         public short Department { get; set; }
-        public string Description { get; set; }
+        public string Mission { get; set; }
+        public string Vision { get; set; }
         public byte[] Picture { get; set; }
     }
 }

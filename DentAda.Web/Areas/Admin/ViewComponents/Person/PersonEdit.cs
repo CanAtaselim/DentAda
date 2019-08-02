@@ -1,6 +1,7 @@
 ﻿using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
 using DentAda.Common;
+using DentAda.Web.WebCommon;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
         {
 
             ViewBag.EmployeeType = EmployeeTypeList;
+            ViewBag.DepartmentList = HttpInfo.DepartmentList;
 
             PersonVM person = new PersonVM();
 
