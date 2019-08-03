@@ -29,6 +29,7 @@ namespace DentAda.Data.UnitOfWork.DentAda
         IGenericRepository<Universities> UniversitiesRepository { get; }
         IGenericRepository<UniversityDepartment> UniversityDepartmentRepository { get; }
         IGenericRepository<Faculties> FacultiesRepository { get; }
+        IGenericRepository<ContactUs> ContactUsRepository { get; }
 
         #endregion 
 

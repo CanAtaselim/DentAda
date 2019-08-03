@@ -10,18 +10,10 @@
 
         jQuery(document).ready(function ()
         {
-            $('.kt-selectpicker').selectpicker();
-            File.prototype.convertToBase64 = function (callback)
-            {
-                var reader = new FileReader();
-                reader.onloadend = function (e)
-                {
-                    callback(e.target.result);
-                };
-                reader.readAsDataURL(this);
-            };
-
-            $('[data-toggle="kt-tooltip"]').tooltip();
+            $("input[maxlength]").maxlength({
+                alwaysShow: true,
+                placement: 'right'
+            });
 
            function scrollToAnchor(html) {
                 $('html,body').animate({ scrollTop: html.offset().top - 75 }, 'slow');
@@ -42,13 +34,11 @@
             $(".btnRotateLeft").click(function (event) {
                 vanilla.rotate(-90);
             });
-             $(".btnRotateRight").click(function (event) {
+            $(".btnRotateRight").click(function (event) {
                 vanilla.rotate(90);
             });
             $(".btnCrop").click(function ()
             {
-
-
                     vanilla.result({
                         type: 'blob'
                     }).then(function (blob)
@@ -78,8 +68,6 @@
                         KTApp.unblockPage();
                     });
             });
-
-
             $(".btnSave").click(function (event) {
                 event.preventDefault();
 
@@ -129,11 +117,8 @@
 
                 }
             });
-
             $(".btnDel").click(function (event) {
                 event.preventDefault();
-
-
                 swal.fire({
                   title: 'Bu kaydı silmek istediğinizden emin misiniz?',
                   type: 'warning',
@@ -176,9 +161,6 @@
                         );
                   }
                 })
-            });
-            $("#cbDepartment").change(function () {
-                reInvokeComponent();
             });
 
 
@@ -420,10 +402,9 @@
                         }
 
                     </div>
-                    <div class="custom-file col-4 align-top">
-                        <input type="file" name="files" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
+                    <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
+                    <input type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
+
 
                 </div>
             </div>
@@ -456,40 +437,43 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Adı:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxlength = "20" })
                     @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Soyadı:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @maxlength = "20" })
                     @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Unvan:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @maxlength = "40" })
                     @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Meslek:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Profession, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Profession, new { @class = "form-control", @maxlength = "40" })
+                    @Html.ValidationMessageFor(m => m.Profession, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Telefon:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @maxlength = "14" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">GSM:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Gsm, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Gsm, new { @class = "form-control", @maxlength = "14" })
+                    @Html.ValidationMessageFor(m => m.Gsm, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">

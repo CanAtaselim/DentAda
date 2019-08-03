@@ -23,7 +23,7 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Gallery
             _env = env;
         }
 
-        public Task<IViewComponentResult> InvokeAsync(int Department = 1)
+        public Task<IViewComponentResult> InvokeAsync(int Department = (int)_Enumeration._Department.Cayyolu)
         {
             ViewBag.DepartmentList = HttpInfo.DepartmentList;
 

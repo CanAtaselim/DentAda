@@ -136,6 +136,9 @@
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ConnectionString.cs" />
+    <Compile Include="Model\ContactUs.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Country.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>

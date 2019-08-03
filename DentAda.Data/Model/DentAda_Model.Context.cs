@@ -54,6 +54,7 @@ namespace DentAda.Data.Model
         public virtual DbSet<UniversityDepartment> UniversityDepartment { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
+        public virtual DbSet<ContactUs> ContactUs { get; set; }
     
         public virtual ObjectResult<Role_List_Result> Role_List(Nullable<long> systemUserId)
         {

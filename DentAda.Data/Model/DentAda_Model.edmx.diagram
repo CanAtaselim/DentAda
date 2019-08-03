@@ -56,6 +56,7 @@
         <AssociationConnector Association="DentAdaModel.FK_Person_Universities" />
         <AssociationConnector Association="DentAdaModel.FK_Person_UniversityDepartment" />
         <EntityTypeShape EntityType="DentAdaModel.AboutUs" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DentAdaModel.ContactUs" Width="1.5" PointX="8.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

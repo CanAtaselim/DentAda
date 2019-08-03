@@ -127,6 +127,7 @@
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
     <EntitySet Name="AboutUs" EntityType="DentAdaModel.AboutUs" />
+    <EntitySet Name="ContactUs" EntityType="DentAdaModel.ContactUs" />
   </EntityContainer>
   <ComplexType Name="Role_List_Result">
     <Property Type="Int64" Name="SystemUserId" Nullable="true" />
@@ -852,12 +853,12 @@
     <Property Name="IdFaculty" Type="Int64" />
     <Property Name="IdUniversityDepartment" Type="Int64" />
     <Property Name="Department" Type="Int16" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Profession" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Gsm" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
     <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Person" ToRole="Faculties" />
@@ -914,5 +915,27 @@
     <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Vision" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="IdContactUs" />
+    </Key>
+    <Property Name="IdContactUs" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Department" Type="Int16" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="GSM" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Youtube" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Linkedin" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="GooglePlus" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

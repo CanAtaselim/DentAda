@@ -1,11 +1,8 @@
 ﻿using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
 using DentAda.Common;
-using DentAda.Data.DataCommon;
 using DentAda.Web.WebCommon;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +17,7 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.AboutUs
         }
 
 
-        public Task<IViewComponentResult> InvokeAsync(int Department)
+        public Task<IViewComponentResult> InvokeAsync(int Department = (int)_Enumeration._Department.Cayyolu)
         {
             ViewBag.DepartmentList = HttpInfo.DepartmentList;
 

@@ -62,6 +62,28 @@
     <Property Name="LogDate" Type="datetime" Nullable="false" />
     <Property Name="ErrorCode" Type="smallint" Nullable="false" />
   </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="IdContactUs" />
+    </Key>
+    <Property Name="IdContactUs" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="bigint" Nullable="false" />
+    <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OperationDate" Type="datetime" Nullable="false" />
+    <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
+    <Property Name="Department" Type="smallint" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="GSM" Type="nvarchar" MaxLength="14" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="14" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="70" />
+    <Property Name="Twitter" Type="nvarchar" MaxLength="30" />
+    <Property Name="Instagram" Type="nvarchar" MaxLength="30" />
+    <Property Name="Youtube" Type="nvarchar" MaxLength="70" />
+    <Property Name="Linkedin" Type="nvarchar" MaxLength="70" />
+    <Property Name="GooglePlus" Type="nvarchar" MaxLength="70" />
+  </EntityType>
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="IdCountry" />
@@ -153,12 +175,12 @@
     <Property Name="IdUniversityDepartment" Type="bigint" />
     <Property Name="EmployeeType" Type="smallint" Nullable="false" />
     <Property Name="Department" Type="smallint" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Profession" Type="nvarchar" MaxLength="50" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="11" />
-    <Property Name="Gsm" Type="nvarchar" MaxLength="11" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="40" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="14" />
+    <Property Name="Gsm" Type="nvarchar" MaxLength="14" />
     <Property Name="About" Type="nvarchar(max)" />
     <Property Name="Picture" Type="image" />
   </EntityType>
@@ -604,6 +626,7 @@
     <EntitySet Name="ANNOUNCEMENT" EntityType="Self.ANNOUNCEMENT" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="ConnectionLog" EntityType="Self.ConnectionLog" Schema="ADMINISTRATION" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="ADMINISTRATION" store:Type="Tables" />
     <EntitySet Name="Exception" EntityType="Self.Exception" Schema="ADMINISTRATION" store:Type="Tables" />

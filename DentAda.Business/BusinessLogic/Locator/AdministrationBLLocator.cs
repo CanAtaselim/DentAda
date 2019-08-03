@@ -162,5 +162,11 @@ namespace DentAda.Business.BusinessLogic.Locator
         {
             get { return _PersonBL == null ? _PersonBL = new PersonBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _PersonBL; }
         }
+        private ContactUsBL _ContactUsBL;
+
+        public ContactUsBL ContactUsBL
+        {
+            get { return _ContactUsBL == null ? _ContactUsBL = new ContactUsBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _ContactUsBL; }
+        }
     }
 }

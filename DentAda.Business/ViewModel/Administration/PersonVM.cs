@@ -17,13 +17,19 @@ namespace DentAda.Business.ViewModel.Administration
         [Required(ErrorMessage = "Şube zorunlu.")]
         public short Department { get; set; }
         [Required(ErrorMessage = "Ad zorunlu.")]
+        [MaxLength(20)]
         public string Name { get; set; }
         [Required(ErrorMessage = "Soyad zorunlu.")]
+        [MaxLength(20)]
         public string Surname { get; set; }
         [Required(ErrorMessage = "Unvan zorunlu.")]
+        [MaxLength(40)]
         public string Title { get; set; }
+        [MaxLength(40)]
         public string Profession { get; set; }
+        [RegularExpression(@"^\(?([0-9]{4} )\)?[-. ]?([0-9]{3} )[-. ]?([0-9]{2} )[-. ]?([0-9]{2})$", ErrorMessage = "Geçerli bir telefon giriniz. Örnek: 0399 123 45 67")]
         public string Phone { get; set; }
+        [RegularExpression(@"^\(?([0-9]{4} )\)?[-. ]?([0-9]{3} )[-. ]?([0-9]{2} )[-. ]?([0-9]{2})$", ErrorMessage = "Geçerli bir telefon giriniz. Örnek: 0500 123 45 67")]
         public string Gsm { get; set; }
         public string About { get; set; }
         public byte[] Picture { get; set; }

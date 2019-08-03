@@ -5,26 +5,11 @@
 }
 @section pageLevelInlineScripts {
     <script>
-        function formatBytes(bytes,decimals) {
-            if(bytes == 0) return '0 Bytes';
-            var k = 1024,
-                dm = decimals <= 0 ? 0 : decimals || 2,
-                sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-                i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
-        Array.prototype.sum = function (prop) {
-            var total = 0
-            for ( var i = 0, _len = this.length; i < _len; i++ ) {
-                total += this[i][prop]
-            }
-            return total
-        }
+
         var galleryItems = [];
         var map = {};
         jQuery(document).ready(function ()
         {
-            $('.kt-selectpicker').selectpicker();
             $('#lightgallery').lightGallery({
                 pager: true,
                 autoplay: true,
@@ -232,13 +217,6 @@
             background-color: #fd397a;
         }
 
-        [type="file"] {
-            height: 0;
-            overflow: hidden;
-            width: 0;
-            visibility: collapse;
-        }
-
         .demo-gallery > ul {
             margin-bottom: 0;
             padding-left: 0;
@@ -397,12 +375,12 @@
             <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
                 <div class="kt-portlet__head" style="padding:0 9px 0 10px">
                     <div class="kt-portlet__head-toolbar">
+                        @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
                         <div class="kt-portlet__head-actions">
-                            <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
+                            <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; margin-left:10px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
                             <input multiple type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
 
                         </div>
-                        @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
                     </div>
                     <div class="kt-portlet__head-toolbar">
                         <div class="kt-portlet__head-actions">
