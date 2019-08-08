@@ -23,7 +23,8 @@ namespace DentAda.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.Configure<FormOptions>(o => {
+            services.Configure<FormOptions>(o =>
+            {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
@@ -41,8 +42,11 @@ namespace DentAda.Web
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(120);
             });
-   
-
+            services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 50 * 1024 * 1024;
+            });
+            services.AddMemoryCache();
             services.AddTransient<AdministrationBLLocator>();
             services.AddTransient<AuthBLLocator>();
 
@@ -51,7 +55,6 @@ namespace DentAda.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
             app.UseAuthentication();
             app.UseSession();
             app.UseStaticFiles();
@@ -59,7 +62,7 @@ namespace DentAda.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{area=Admin}/{controller=AboutUs}/{action=Index}");
+                    template: "{area=Main}/{controller=Home}/{action=Index}");
             });
         }
     }

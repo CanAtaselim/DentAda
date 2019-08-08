@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DentAdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DentAdaEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="Role_List" ReturnType="Collection(DentAdaModel.Role_List_Result)">
+      <Parameter Name="SystemUserId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <EntitySet Name="ANNOUNCEMENT" EntityType="DentAdaModel.ANNOUNCEMENT" />
+    <EntitySet Name="City" EntityType="DentAdaModel.City" />
+    <EntitySet Name="ConnectionLog" EntityType="DentAdaModel.ConnectionLog" />
+    <EntitySet Name="Country" EntityType="DentAdaModel.Country" />
+    <EntitySet Name="Event" EntityType="DentAdaModel.Event" />
+    <EntitySet Name="Exception" EntityType="DentAdaModel.Exception" />
+    <EntitySet Name="ExceptionFeedBack" EntityType="DentAdaModel.ExceptionFeedBack" />
+    <EntitySet Name="Role" EntityType="DentAdaModel.Role" />
+    <EntitySet Name="RoleAuthorization" EntityType="DentAdaModel.RoleAuthorization" />
+    <EntitySet Name="RoleSideMenu" EntityType="DentAdaModel.RoleSideMenu" />
+    <EntitySet Name="RoleTopMenu" EntityType="DentAdaModel.RoleTopMenu" />
+    <EntitySet Name="Sessions" EntityType="DentAdaModel.Sessions" />
+    <EntitySet Name="SideMenu" EntityType="DentAdaModel.SideMenu" />
+    <EntitySet Name="SystemUser" EntityType="DentAdaModel.SystemUser" />
+    <EntitySet Name="SystemUserRole" EntityType="DentAdaModel.SystemUserRole" />
+    <EntitySet Name="SystemUserRoleLocation" EntityType="DentAdaModel.SystemUserRoleLocation" />
+    <EntitySet Name="SystemUserRoleParameter" EntityType="DentAdaModel.SystemUserRoleParameter" />
+    <EntitySet Name="SystemUserTicket" EntityType="DentAdaModel.SystemUserTicket" />
+    <EntitySet Name="TopMenu" EntityType="DentAdaModel.TopMenu" />
+    <EntitySet Name="Town" EntityType="DentAdaModel.Town" />
+    <EntitySet Name="Village" EntityType="DentAdaModel.Village" />
+    <EntitySet Name="CDC" EntityType="DentAdaModel.CDC" />
+    <AssociationSet Name="FK_ANNOUNCEMENT_SystemUser" Association="DentAdaModel.FK_ANNOUNCEMENT_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="ANNOUNCEMENT" EntitySet="ANNOUNCEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Country" Association="DentAdaModel.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_City" Association="DentAdaModel.FK_SystemUserRoleLocation_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Town_City" Association="DentAdaModel.FK_Town_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Town" EntitySet="Town" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_City" Association="DentAdaModel.FK_Village_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_City1" Association="DentAdaModel.FK_Village_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Country" Association="DentAdaModel.FK_SystemUserRoleLocation_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleAuthorization_Role" Association="DentAdaModel.FK_RoleAuthorization_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleAuthorization" EntitySet="RoleAuthorization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleSideMenu_Role" Association="DentAdaModel.FK_RoleSideMenu_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleTopMenu_Role" Association="DentAdaModel.FK_RoleTopMenu_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRole_Role" Association="DentAdaModel.FK_SystemUserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleSideMenu_SideMenu" Association="DentAdaModel.FK_RoleSideMenu_SideMenu">
+      <End Role="SideMenu" EntitySet="SideMenu" />
+      <End Role="RoleSideMenu" EntitySet="RoleSideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleTopMenu_TopMenu" Association="DentAdaModel.FK_RoleTopMenu_TopMenu">
+      <End Role="TopMenu" EntitySet="TopMenu" />
+      <End Role="RoleTopMenu" EntitySet="RoleTopMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SideMenu_TopMenu" Association="DentAdaModel.FK_SideMenu_TopMenu">
+      <End Role="TopMenu" EntitySet="TopMenu" />
+      <End Role="SideMenu" EntitySet="SideMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRole_SystemUser" Association="DentAdaModel.FK_SystemUserRole_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUser" Association="DentAdaModel.FK_SystemUserRoleLocation_SystemUser">
+      <End Role="SystemUser" EntitySet="SystemUser" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_SystemUserRole" Association="DentAdaModel.FK_SystemUserRoleLocation_SystemUserRole">
+      <End Role="SystemUserRole" EntitySet="SystemUserRole" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Town" Association="DentAdaModel.FK_SystemUserRoleLocation_Town">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemUserRoleLocation_Village" Association="DentAdaModel.FK_SystemUserRoleLocation_Village">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="SystemUserRoleLocation" EntitySet="SystemUserRoleLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Village_Town" Association="DentAdaModel.FK_Village_Town">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+    <EntitySet Name="Faculties" EntityType="DentAdaModel.Faculties" />
+    <EntitySet Name="Universities" EntityType="DentAdaModel.Universities" />
+    <EntitySet Name="UniversityDepartment" EntityType="DentAdaModel.UniversityDepartment" />
+    <AssociationSet Name="FK_Faculties_Faculties" Association="DentAdaModel.FK_Faculties_Faculties">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Faculties" EntitySet="Faculties" />
+    </AssociationSet>
+    <EntitySet Name="Person" EntityType="DentAdaModel.Person" />
+    <AssociationSet Name="FK_Person_Faculties" Association="DentAdaModel.FK_Person_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Universities" Association="DentAdaModel.FK_Person_Universities">
+      <End Role="Universities" EntitySet="Universities" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_UniversityDepartment" Association="DentAdaModel.FK_Person_UniversityDepartment">
+      <End Role="UniversityDepartment" EntitySet="UniversityDepartment" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <EntitySet Name="AboutUs" EntityType="DentAdaModel.AboutUs" />
+    <EntitySet Name="ContactUs" EntityType="DentAdaModel.ContactUs" />
+  </EntityContainer>
+  <ComplexType Name="Role_List_Result">
+    <Property Type="Int64" Name="SystemUserId" Nullable="true" />
+    <Property Type="Int64" Name="IdParentRole" Nullable="true" />
+    <Property Type="String" Name="ParentRoleName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ParentRoleCode" Nullable="true" MaxLength="25" />
+    <Property Type="Int64" Name="IdRole" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="RoleCode" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="DefaultPage" Nullable="true" MaxLength="150" />
+    <Property Type="Int64" Name="IdSystemUserRole" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ANNOUNCEMENT">
+    <Key>
+      <PropertyRef Name="IdAnnouncement" />
+    </Key>
+    <Property Name="IdAnnouncement" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="MessageSubject" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="MessageContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MessageDate" Type="DateTime" Precision="3" />
+    <Property Name="MessageIcon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Priority" Type="Int16" Nullable="false" />
+    <Property Name="Area" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="IsVisibleToMain" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SystemUser" Relationship="DentAdaModel.FK_ANNOUNCEMENT_SystemUser" FromRole="ANNOUNCEMENT" ToRole="SystemUser" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="IdCity" />
+    </Key>
+    <Property Name="IdCity" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdCountryRef" Type="Int64" />
+    <Property Name="CityCode" Type="Int32" />
+    <Property Name="TakbisCityCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TrafficCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="DivisionId" Type="Guid" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="CityGeometry" Type="Geometry" />
+    <Property Name="CentroidGeometry" Type="Geometry" />
+    <Property Name="CentroidCity" Type="Geometry" />
+    <NavigationProperty Name="Country" Relationship="DentAdaModel.FK_City_Country" FromRole="City" ToRole="Country" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_City" FromRole="City" ToRole="SystemUserRoleLocation" />
+    <NavigationProperty Name="Town" Relationship="DentAdaModel.FK_Town_City" FromRole="City" ToRole="Town" />
+    <NavigationProperty Name="Village" Relationship="DentAdaModel.FK_Village_City" FromRole="City" ToRole="Village" />
+    <NavigationProperty Name="Village1" Relationship="DentAdaModel.FK_Village_City1" FromRole="City" ToRole="Village" />
+  </EntityType>
+  <EntityType Name="ConnectionLog">
+    <Key>
+      <PropertyRef Name="IdConnectionLog" />
+    </Key>
+    <Property Name="IdConnectionLog" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="IdSystemUserRef" Type="Int64" />
+    <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ErrorCode" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="IdCountry" />
+    </Key>
+    <Property Name="IdCountry" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryName_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryPhoneCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Guid" />
+    <Property Name="ISOCodeA2" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CountryGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="DentAdaModel.FK_City_Country" FromRole="Country" ToRole="City" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Country" FromRole="Country" ToRole="SystemUserRoleLocation" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="IdEvent" />
+    </Key>
+    <Property Name="IdEvent" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="ControllerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MethodName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FunctionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExecutionTime" Type="Int64" />
+    <Property Name="MachineName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MachineIp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClientBrowser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Exception">
+    <Key>
+      <PropertyRef Name="IdException" />
+    </Key>
+    <Property Name="IdException" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExCode" Type="Guid" />
+    <Property Name="ClientBrowser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ExceptionFeedBack">
+    <Key>
+      <PropertyRef Name="IdExceptionFeedBack" />
+    </Key>
+    <Property Name="IdExceptionFeedBack" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="FeedBack" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExCode" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdParentRoleRef" Type="Int64" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RoleDescription" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="StaticRole" Type="Boolean" Nullable="false" />
+    <Property Name="LocationAdmin" Type="Boolean" />
+    <Property Name="RoleCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="IsRoleDistribution" Type="Boolean" />
+    <Property Name="DefaultPage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RoleAuthorization" Relationship="DentAdaModel.FK_RoleAuthorization_Role" FromRole="Role" ToRole="RoleAuthorization" />
+    <NavigationProperty Name="RoleSideMenu" Relationship="DentAdaModel.FK_RoleSideMenu_Role" FromRole="Role" ToRole="RoleSideMenu" />
+    <NavigationProperty Name="RoleTopMenu" Relationship="DentAdaModel.FK_RoleTopMenu_Role" FromRole="Role" ToRole="RoleTopMenu" />
+    <NavigationProperty Name="SystemUserRole" Relationship="DentAdaModel.FK_SystemUserRole_Role" FromRole="Role" ToRole="SystemUserRole" />
+  </EntityType>
+  <EntityType Name="RoleAuthorization">
+    <Key>
+      <PropertyRef Name="IdRoleAuthorization" />
+    </Key>
+    <Property Name="IdRoleAuthorization" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRoleRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="Area" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="IsForbidden" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="DentAdaModel.FK_RoleAuthorization_Role" FromRole="RoleAuthorization" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="RoleSideMenu">
+    <Key>
+      <PropertyRef Name="IdRoleSideMenu" />
+    </Key>
+    <Property Name="IdRoleSideMenu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdRoleRef" Type="Int64" />
+    <Property Name="IdSideMenuRef" Type="Int64" />
+    <NavigationProperty Name="Role" Relationship="DentAdaModel.FK_RoleSideMenu_Role" FromRole="RoleSideMenu" ToRole="Role" />
+    <NavigationProperty Name="SideMenu" Relationship="DentAdaModel.FK_RoleSideMenu_SideMenu" FromRole="RoleSideMenu" ToRole="SideMenu" />
+  </EntityType>
+  <EntityType Name="RoleTopMenu">
+    <Key>
+      <PropertyRef Name="IdRoleTopMenu" />
+    </Key>
+    <Property Name="IdRoleTopMenu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdRoleRef" Type="Int64" Nullable="false" />
+    <Property Name="IdTopMenuRef" Type="Int64" />
+    <NavigationProperty Name="Role" Relationship="DentAdaModel.FK_RoleTopMenu_Role" FromRole="RoleTopMenu" ToRole="Role" />
+    <NavigationProperty Name="TopMenu" Relationship="DentAdaModel.FK_RoleTopMenu_TopMenu" FromRole="RoleTopMenu" ToRole="TopMenu" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="900" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ExpiresAtTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+    <Property Name="SlidingExpirationInSeconds" Type="Int64" />
+    <Property Name="AbsoluteExpiration" Type="DateTimeOffset" Precision="7" />
+  </EntityType>
+  <EntityType Name="SideMenu">
+    <Key>
+      <PropertyRef Name="IdSideMenu" />
+    </Key>
+    <Property Name="IdSideMenu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdParentSideMenu" Type="Int64" />
+    <Property Name="IdTopMenuRef" Type="Int64" />
+    <Property Name="Area" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SideMenuName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SideMenuDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="SideMenuStatus" Type="Int16" />
+    <Property Name="SideMenuOrder" Type="Int32" />
+    <Property Name="IconUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ItemBackgroundColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTextColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIconColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RoleSideMenu" Relationship="DentAdaModel.FK_RoleSideMenu_SideMenu" FromRole="SideMenu" ToRole="RoleSideMenu" />
+    <NavigationProperty Name="TopMenu" Relationship="DentAdaModel.FK_SideMenu_TopMenu" FromRole="SideMenu" ToRole="TopMenu" />
+  </EntityType>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordQuestion" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LastPasswordChangeDate" Type="DateTime" Precision="3" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="LastPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="Int16" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmation" Type="Int16" Nullable="false" />
+    <Property Name="Status" Type="Int16" Nullable="false" />
+    <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="TbsUserId" Type="Guid" />
+    <Property Name="ProfilePictureURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ANNOUNCEMENT" Relationship="DentAdaModel.FK_ANNOUNCEMENT_SystemUser" FromRole="SystemUser" ToRole="ANNOUNCEMENT" />
+    <NavigationProperty Name="SystemUserRole" Relationship="DentAdaModel.FK_SystemUserRole_SystemUser" FromRole="SystemUser" ToRole="SystemUserRole" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_SystemUser" FromRole="SystemUser" ToRole="SystemUserRoleLocation" />
+  </EntityType>
+  <EntityType Name="SystemUserRole">
+    <Key>
+      <PropertyRef Name="IdSystemUserRole" />
+    </Key>
+    <Property Name="IdSystemUserRole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="Int64" Nullable="false" />
+    <Property Name="IdRoleRef" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="DentAdaModel.FK_SystemUserRole_Role" FromRole="SystemUserRole" ToRole="Role" />
+    <NavigationProperty Name="SystemUser" Relationship="DentAdaModel.FK_SystemUserRole_SystemUser" FromRole="SystemUserRole" ToRole="SystemUser" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_SystemUserRole" FromRole="SystemUserRole" ToRole="SystemUserRoleLocation" />
+  </EntityType>
+  <EntityType Name="SystemUserRoleLocation">
+    <Key>
+      <PropertyRef Name="IdSystemUserRoleLocation" />
+    </Key>
+    <Property Name="IdSystemUserRoleLocation" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="Int64" Nullable="false" />
+    <Property Name="IdSystemUserRoleRef" Type="Int64" Nullable="false" />
+    <Property Name="IdCountryRef" Type="Int64" />
+    <Property Name="IdCityRef" Type="Int64" />
+    <Property Name="IdTownRef" Type="Int64" />
+    <Property Name="IdVillageRef" Type="Int64" />
+    <NavigationProperty Name="City" Relationship="DentAdaModel.FK_SystemUserRoleLocation_City" FromRole="SystemUserRoleLocation" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Country" FromRole="SystemUserRoleLocation" ToRole="Country" />
+    <NavigationProperty Name="SystemUser" Relationship="DentAdaModel.FK_SystemUserRoleLocation_SystemUser" FromRole="SystemUserRoleLocation" ToRole="SystemUser" />
+    <NavigationProperty Name="SystemUserRole" Relationship="DentAdaModel.FK_SystemUserRoleLocation_SystemUserRole" FromRole="SystemUserRoleLocation" ToRole="SystemUserRole" />
+    <NavigationProperty Name="Town" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Town" FromRole="SystemUserRoleLocation" ToRole="Town" />
+    <NavigationProperty Name="Village" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Village" FromRole="SystemUserRoleLocation" ToRole="Village" />
+  </EntityType>
+  <EntityType Name="SystemUserRoleParameter">
+    <Key>
+      <PropertyRef Name="IdSystemUserRoleParameter" />
+    </Key>
+    <Property Name="IdSystemUserRoleParameter" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdSystemUserRef" Type="Int64" />
+    <Property Name="IdSystemUserRoleRef" Type="Int64" />
+    <Property Name="IdRoleRef" Type="Int64" />
+    <Property Name="ParameterAdmin" Type="Boolean" />
+    <Property Name="SchemaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TableName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdParameterRef" Type="Int64" />
+    <Property Name="Alias" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NameColumnRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValueColumnRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SystemUserTicket">
+    <Key>
+      <PropertyRef Name="IdTicket" />
+    </Key>
+    <Property Name="IdTicket" Type="Guid" Nullable="false" />
+    <Property Name="IdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TopMenu">
+    <Key>
+      <PropertyRef Name="IdTopMenu" />
+    </Key>
+    <Property Name="IdTopMenu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Area" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TopMenuName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TopMenuDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="TopMenuStatus" Type="Int16" />
+    <Property Name="TopMenuOrder" Type="Int32" />
+    <Property Name="IconUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ItemBackgroundColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ItemTextColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="ItemIconColor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RoleTopMenu" Relationship="DentAdaModel.FK_RoleTopMenu_TopMenu" FromRole="TopMenu" ToRole="RoleTopMenu" />
+    <NavigationProperty Name="SideMenu" Relationship="DentAdaModel.FK_SideMenu_TopMenu" FromRole="TopMenu" ToRole="SideMenu" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="IdTown" />
+    </Key>
+    <Property Name="IdTown" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdCityRef" Type="Int64" />
+    <Property Name="TownCode" Type="Int32" />
+    <Property Name="TakbisTownCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TownName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="TownId" Type="Guid" />
+    <Property Name="TownGeometry" Type="Geometry" />
+    <Property Name="CentroidGeometry" Type="Geometry" />
+    <Property Name="CentroidTown" Type="Geometry" />
+    <NavigationProperty Name="City" Relationship="DentAdaModel.FK_Town_City" FromRole="Town" ToRole="City" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Town" FromRole="Town" ToRole="SystemUserRoleLocation" />
+    <NavigationProperty Name="Village" Relationship="DentAdaModel.FK_Village_Town" FromRole="Town" ToRole="Village" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="IdVillage" />
+    </Key>
+    <Property Name="IdVillage" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdTownRef" Type="Int64" />
+    <Property Name="IdCityRef" Type="Int64" />
+    <Property Name="VillageCode" Type="Int32" />
+    <Property Name="TakbisVillageCode" Type="Int32" />
+    <Property Name="VillageType" Type="Int16" />
+    <Property Name="VillageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="TownId" Type="Guid" />
+    <Property Name="VillageId" Type="Guid" />
+    <Property Name="Centroid_Weighted" Type="Geometry" />
+    <Property Name="BBox_MinPoint" Type="Geometry" />
+    <Property Name="BBox_MaxPoint" Type="Geometry" />
+    <NavigationProperty Name="City" Relationship="DentAdaModel.FK_Village_City" FromRole="Village" ToRole="City" />
+    <NavigationProperty Name="City1" Relationship="DentAdaModel.FK_Village_City1" FromRole="Village" ToRole="City" />
+    <NavigationProperty Name="SystemUserRoleLocation" Relationship="DentAdaModel.FK_SystemUserRoleLocation_Village" FromRole="Village" ToRole="SystemUserRoleLocation" />
+    <NavigationProperty Name="Town" Relationship="DentAdaModel.FK_Village_Town" FromRole="Village" ToRole="Town" />
+  </EntityType>
+  <EntityType Name="CDC">
+    <Key>
+      <PropertyRef Name="IdCDC" />
+    </Key>
+    <Property Name="IdCDC" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="OperationType" Type="Int16" />
+    <Property Name="TableName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TablePrimaryKeyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TableId" Type="Int64" />
+    <Property Name="TableIdGuid" Type="Guid" />
+    <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ANNOUNCEMENT_SystemUser">
+    <End Type="DentAdaModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+    <End Type="DentAdaModel.ANNOUNCEMENT" Role="ANNOUNCEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="ANNOUNCEMENT">
+        <PropertyRef Name="OperationIdUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Country">
+    <End Type="DentAdaModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="DentAdaModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="IdCountry" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="IdCountryRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_City">
+    <End Type="DentAdaModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Town_City">
+    <End Type="DentAdaModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Town" Role="Town" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Town">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_City">
+    <End Type="DentAdaModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Village" Role="Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_City1">
+    <End Type="DentAdaModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Village" Role="Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdCityRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Country">
+    <End Type="DentAdaModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="IdCountry" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdCountryRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleAuthorization_Role">
+    <End Type="DentAdaModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="DentAdaModel.RoleAuthorization" Role="RoleAuthorization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleAuthorization">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleSideMenu_Role">
+    <End Type="DentAdaModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="DentAdaModel.RoleSideMenu" Role="RoleSideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleSideMenu">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleTopMenu_Role">
+    <End Type="DentAdaModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="DentAdaModel.RoleTopMenu" Role="RoleTopMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="RoleTopMenu">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRole_Role">
+    <End Type="DentAdaModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="DentAdaModel.SystemUserRole" Role="SystemUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="SystemUserRole">
+        <PropertyRef Name="IdRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleSideMenu_SideMenu">
+    <End Type="DentAdaModel.SideMenu" Role="SideMenu" Multiplicity="0..1" />
+    <End Type="DentAdaModel.RoleSideMenu" Role="RoleSideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SideMenu">
+        <PropertyRef Name="IdSideMenu" />
+      </Principal>
+      <Dependent Role="RoleSideMenu">
+        <PropertyRef Name="IdSideMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleTopMenu_TopMenu">
+    <End Type="DentAdaModel.TopMenu" Role="TopMenu" Multiplicity="0..1" />
+    <End Type="DentAdaModel.RoleTopMenu" Role="RoleTopMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopMenu">
+        <PropertyRef Name="IdTopMenu" />
+      </Principal>
+      <Dependent Role="RoleTopMenu">
+        <PropertyRef Name="IdTopMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SideMenu_TopMenu">
+    <End Type="DentAdaModel.TopMenu" Role="TopMenu" Multiplicity="0..1" />
+    <End Type="DentAdaModel.SideMenu" Role="SideMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopMenu">
+        <PropertyRef Name="IdTopMenu" />
+      </Principal>
+      <Dependent Role="SideMenu">
+        <PropertyRef Name="IdTopMenuRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRole_SystemUser">
+    <End Type="DentAdaModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+    <End Type="DentAdaModel.SystemUserRole" Role="SystemUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="SystemUserRole">
+        <PropertyRef Name="IdSystemUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_SystemUser">
+    <End Type="DentAdaModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUser">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdSystemUserRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_SystemUserRole">
+    <End Type="DentAdaModel.SystemUserRole" Role="SystemUserRole" Multiplicity="1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemUserRole">
+        <PropertyRef Name="IdSystemUserRole" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdSystemUserRoleRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Town">
+    <End Type="DentAdaModel.Town" Role="Town" Multiplicity="0..1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="IdTown" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdTownRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemUserRoleLocation_Village">
+    <End Type="DentAdaModel.Village" Role="Village" Multiplicity="0..1" />
+    <End Type="DentAdaModel.SystemUserRoleLocation" Role="SystemUserRoleLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="IdVillage" />
+      </Principal>
+      <Dependent Role="SystemUserRoleLocation">
+        <PropertyRef Name="IdVillageRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Village_Town">
+    <End Type="DentAdaModel.Town" Role="Town" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Village" Role="Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="IdTown" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="IdTownRef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="IdFaculty" />
+    </Key>
+    <Property Name="IdFaculty" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdUniversity" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Universities" Relationship="DentAdaModel.FK_Faculties_Faculties" FromRole="Faculties" ToRole="Universities" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Faculties" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Universities">
+    <Key>
+      <PropertyRef Name="IdUniversity" />
+    </Key>
+    <Property Name="IdUniversity" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Faculties_Faculties" FromRole="Universities" ToRole="Faculties" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_Universities" FromRole="Universities" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="UniversityDepartment">
+    <Key>
+      <PropertyRef Name="IdUniversityDepartment" />
+    </Key>
+    <Property Name="IdUniversityDepartment" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdFaculty" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="DentAdaModel.FK_Person_UniversityDepartment" FromRole="UniversityDepartment" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Faculties_Faculties">
+    <End Type="DentAdaModel.Universities" Role="Universities" Multiplicity="1" />
+    <End Type="DentAdaModel.Faculties" Role="Faculties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Faculties">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="IdPerson" />
+    </Key>
+    <Property Name="IdPerson" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="IdUniversity" Type="Int64" />
+    <Property Name="IdFaculty" Type="Int64" />
+    <Property Name="IdUniversityDepartment" Type="Int64" />
+    <Property Name="Department" Type="Int16" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Profession" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Gsm" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Faculties" Relationship="DentAdaModel.FK_Person_Faculties" FromRole="Person" ToRole="Faculties" />
+    <NavigationProperty Name="Universities" Relationship="DentAdaModel.FK_Person_Universities" FromRole="Person" ToRole="Universities" />
+    <NavigationProperty Name="UniversityDepartment" Relationship="DentAdaModel.FK_Person_UniversityDepartment" FromRole="Person" ToRole="UniversityDepartment" />
+    <Property Name="EmployeeType" Type="Int16" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Person_Faculties">
+    <End Type="DentAdaModel.Faculties" Role="Faculties" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="IdFaculty" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdFaculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Universities">
+    <End Type="DentAdaModel.Universities" Role="Universities" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Universities">
+        <PropertyRef Name="IdUniversity" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_UniversityDepartment">
+    <End Type="DentAdaModel.UniversityDepartment" Role="UniversityDepartment" Multiplicity="0..1" />
+    <End Type="DentAdaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UniversityDepartment">
+        <PropertyRef Name="IdUniversityDepartment" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IdUniversityDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AboutUs">
+    <Key>
+      <PropertyRef Name="IdAboutUs" />
+    </Key>
+    <Property Name="IdAboutUs" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Department" Type="Int16" Nullable="false" />
+    <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vision" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="IdContactUs" />
+    </Key>
+    <Property Name="IdContactUs" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+    <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+    <Property Name="Department" Type="Int16" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="GSM" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Youtube" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Linkedin" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="GooglePlus" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

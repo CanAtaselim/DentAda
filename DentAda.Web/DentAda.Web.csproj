@@ -5,6 +5,7 @@
     <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
 
+
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.1" />
@@ -31,7 +32,10 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Auth\Data\" />
     <Folder Include="Areas\Auth\Models\" />
+    <Folder Include="Areas\Main\Data\" />
+    <Folder Include="Areas\Main\Models\" />
     <Folder Include="Models\" />
+    <Folder Include="wwwroot\frontend\src\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\lib\croppie\" />
   </ItemGroup>
@@ -42,11 +46,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Messaging" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="Areas\Admin\Views\ContactUs\Components\ContactUsEdit\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Main\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Main\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

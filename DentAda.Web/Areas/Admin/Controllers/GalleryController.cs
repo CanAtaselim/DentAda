@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace DentAda.Web.Areas.Admin.Controllers
                 if (files.Sum(m => m.Length) > totalFileSize)
                 {
                     aMsg.Status = 0;
-                    aMsg.Message = "Seçilen görsellerin boyutu 25 MB'tan fazladır.";
+                    aMsg.Message = "25 MB limitiniz aştınız.";
                 }
                 else
                 {
@@ -112,14 +113,10 @@ namespace DentAda.Web.Areas.Admin.Controllers
                 imageFile.Format = MagickFormat.Jpg;
 
                 MagickGeometry reSize = new MagickGeometry(200);
-                //ExifProfile profile = imageFile.GetExifProfile();
                 imageFile.AutoOrient();
-                reSize.IgnoreAspectRatio = false;
+                //reSize.IgnoreAspectRatio = false;
                 imageFile.Resize(reSize);
-                //profile.SetValue(ExifTag.Orientation, (UInt16)0);
-                //imageFile.AddProfile(profile);
                 imageFile.Write(Path.Combine(thumbnailDirectory, imageName + imageExtension));
-                imageFile.Dispose();
             }
         }
         private static void ConvertLowres(string lowresDirectory, IFormFile image, string imageName, string imageExtension)
@@ -129,15 +126,11 @@ namespace DentAda.Web.Areas.Admin.Controllers
             {
                 imageFile.Format = MagickFormat.Jpg;
 
-                MagickGeometry reSize = new MagickGeometry(new Percentage(50), new Percentage(50));
-                //ExifProfile profile = imageFile.GetExifProfile();
+                MagickGeometry reSize = new MagickGeometry(new Percentage(90), new Percentage(90));
                 imageFile.AutoOrient();
-                //profile.SetValue(ExifTag.Orientation, (UInt16)0);
-                reSize.IgnoreAspectRatio = false;
+                //reSize.IgnoreAspectRatio = false;
                 imageFile.Resize(reSize);
-                //imageFile.AddProfile(profile);
                 imageFile.Write(Path.Combine(lowresDirectory, imageName + imageExtension));
-                imageFile.Dispose();
             }
         }
         public static byte[] GetFormImageToByte(IFormFile image)

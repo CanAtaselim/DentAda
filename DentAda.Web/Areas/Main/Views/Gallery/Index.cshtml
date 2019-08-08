@@ -1,0 +1,127 @@
+﻿@model GalleryVM
+@section pageLevelInlineScripts {
+    <script>
+        jQuery(document).ready(function ()
+        {
+            $('#js-grid-mosaic').cubeportfolio({
+                filters: '#js-filters-mosaic',
+                loadMore: '#js-loadMore-mosaic',
+                loadMoreAction: 'click',
+                layoutMode: 'mosaic',
+                mediaQueries: [{
+                    width: 1000,
+                    cols: 6
+                }, {
+                    width: 900,
+                    cols: 5
+                }, {
+                    width: 800,
+                    cols: 5
+                }, {
+                    width: 480,
+                    cols: 4
+                }, {
+                    width: 320,
+                    cols: 2
+                }],
+                defaultFilter: '.cayyolu',
+                animationType: 'fadeOutTop',
+                gapHorizontal: 10,
+                gapVertical: 10,
+                gridAdjustment: 'responsive',
+                caption: 'zoom',
+                displayType: 'fadeIn',
+                displayTypeSpeed: 100,
+
+                // lightbox
+                lightboxDelegate: '.cbp-lightbox',
+                lightboxGallery: true,
+                lightboxTitleSrc: 'data-title',
+                lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} / {{total}}</div>',
+
+                // singlePageInline
+                singlePageInlineDelegate: '.cbp-singlePageInline',
+                singlePageInlinePosition: 'below'
+            });
+
+        });
+    </script>
+}
+@section pageLevelStyles {
+    <link href="~/lib/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" />
+    <link href="~/lib/cubeportfolio/css/portfolio.css" rel="stylesheet" />
+}
+@section pageLevelInlineStyles {
+    <style>
+        .thumbnailImage {
+            position: relative!important;
+            float: left!important;
+            width: 100%!important;
+            height: 200px!important;
+            background-position: 50% 50%!important;
+            background-repeat: no-repeat!important;
+            background-size: cover!important;
+        }
+    </style>
+}
+@section pageLevelPlugins {
+
+    <script src="~/lib/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+}
+<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(/frontend/img/bg-img/12.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <h2 class="title">GALERİ</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ***** Breadcrumb Area End ***** -->
+<!-- ****** About Us Area Start ******* -->
+@foreach (var item in Model.GalleryList)
+{
+    <div></div>
+}
+<section class="dento-about-us-area mt-50">
+    <div class="container">
+        <div class="portfolio-content portfolio-2">
+            <div id="js-filters-mosaic" class="cbp-l-filters-button">
+                @foreach (var item in Model.GalleryList.GroupBy(m => m.DepartmentName))
+                {
+                    <div data-filter=".@(item.Key)" class="cbp-filter-item btn green btn-outline uppercase">
+                        @if (item.Key == "cayyolu")
+                        {
+                            <span>Çayyolu</span>
+                        }
+                        else if (item.Key == "polatli")
+                        {
+                            <span>Polatlı</span>
+                        }
+                    </div>
+                }
+
+            </div>
+            <div id="js-grid-mosaic" class="cbp cbp-l-grid-mosaic">
+
+                @foreach (var item in Model.GalleryList)
+                {
+                    <div class="cbp-item web-design @(item.DepartmentName)">
+                        <a href="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })" class="cbp-caption cbp-lightbox">
+                            <div class="cbp-caption-defaultWrap">
+                                <img class="thumbnailImage" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })');" alt="">
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />

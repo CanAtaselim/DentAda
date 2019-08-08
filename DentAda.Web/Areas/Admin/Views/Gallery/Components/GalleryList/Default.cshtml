@@ -1,5 +1,4 @@
-﻿@model DentAda.Business.ViewModel.Administration.GalleryVM
-@using DentAda.Business.ViewModel.Administration;
+﻿@model GalleryVM
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
@@ -18,7 +17,6 @@
 
             var totalFileSizeLimit = 25 * 1024 * 1024;
             var fileSizeLimit = 4 * 1024 * 1024;
-
             function addArrayFile(files, callback) {
                 KTApp.blockPage({
                     overlayColor: '#333',
@@ -31,6 +29,11 @@
                     Array.from(files).forEach(file => {
                         var count = 0;
                         if (file.size < fileSizeLimit) {
+                            if (galleryItems.sum("size") > totalFileSizeLimit)
+                            {
+                                swal.fire("Dikkat", "25 MB limitiniz aştınız", "error");
+                                return;
+                            }
                             var hasItem = galleryItems.filter(item => (item.name == file.name));
                             if (hasItem.length == 0)
                             {
@@ -88,9 +91,8 @@
                         KTApp.unblockPage();
                         if (galleryItems.sum("size") > totalFileSizeLimit)
                         {
-                            swal.fire("Dikkat", "Seçtiğiniz resimlerin toplam boyutu 25 MB'tan fazla", "error");
+                            swal.fire("Dikkat", "25 MB limitiniz aştınız", "error");
                         }
-
                 }, 300);
             }
             $("#customFile").change(function (event)
@@ -138,7 +140,7 @@
                 event.preventDefault();
                 if (galleryItems.sum("size") > totalFileSizeLimit)
                 {
-                     swal.fire("Dikkat", "Seçtiğiniz resimlerin toplam boyutu 25 MB'tan fazla", "error");
+                     swal.fire("Dikkat", "25 MB limitiniz aştınız", "error");
                 }
                 else
                 {
@@ -227,7 +229,7 @@
                 display: inline-block;
                 margin-right: 15px;
                 list-style: outside none none;
-                vertical-align:middle;
+                vertical-align: middle;
             }
 
                 .demo-gallery > ul > li a {
@@ -375,7 +377,7 @@
             <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
                 <div class="kt-portlet__head" style="padding:0 9px 0 10px">
                     <div class="kt-portlet__head-toolbar">
-                        @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
+                        <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"></select>
                         <div class="kt-portlet__head-actions">
                             <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; margin-left:10px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
                             <input multiple type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
@@ -401,34 +403,34 @@
 
             @if (Model.GalleryList.Count() > 0)
             {
-                <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                Yüklenen Fotoğraflar
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="kt-portlet__body">
-                        <div class="demo-gallery">
-                            <ul id="lightgallery">
-                                @foreach (GalleryItem item in Model.GalleryList)
-                                {
-
-                                    <li class="img-thumbnail" style="padding:0px;" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })">
-                                        <a href="">
-                                            <img class="img-responsive" src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })">
-                                            <div class="demo-gallery-poster">
-                                                <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
-                                            </div>
-                                        </a>
-                                    </li>
-                                }
-
-                            </ul>
-                        </div>
+            <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Yüklenen Fotoğraflar
+                        </h3>
                     </div>
                 </div>
+                <div class="kt-portlet__body">
+                    <div class="demo-gallery">
+                        <ul id="lightgallery">
+                            @foreach (GalleryItem item in Model.GalleryList)
+                                {
+
+                            <li class="img-thumbnail" style="padding:0px;" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })">
+                                <a href="">
+                                    <img class="img-responsive" src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })">
+                                    <div class="demo-gallery-poster">
+                                        <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                    </div>
+                                </a>
+                            </li>
+                                }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
             }
 
 

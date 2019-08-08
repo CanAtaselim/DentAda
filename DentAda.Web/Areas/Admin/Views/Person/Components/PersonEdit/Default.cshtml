@@ -1,6 +1,4 @@
-﻿@model DentAda.Business.ViewModel.Administration.PersonVM
-@using DentAda.Web;
-@using DentAda.Common;
+﻿@model PersonVM
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
@@ -377,21 +375,21 @@
         </div>
     </div>
     <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
-        @Html.HiddenFor(m => m.IdPerson)
+        <input type="hidden" asp-for="IdPerson" />
         <div class="kt-portlet__body">
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Şube:</label>
                 <div class="col-3">
-                    @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
-                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                    <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"><option value="">Seçiniz</option></select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Fotoğraf</label>
                 <div class="col-10">
                     <div class="kt-margin-b-20">
-                        @Html.HiddenFor(m => m.Picture)
+                        <input type="hidden" asp-for="Picture" />
                         @if (Model != null && Model.Picture != null)
                         {
                             <img alt="" id="personImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:200px" />
@@ -429,57 +427,57 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Çalışan Tipi:</label>
                 <div class="col-6">
-                    @Html.DropDownListFor(m => m.EmployeeType, new SelectList(ViewBag.EmployeeType, "Value", "Text"), "Seçiniz", new { @class = "form-control kt-selectpicker" })
-                    @Html.ValidationMessageFor(m => m.EmployeeType, "", new { @class = "text-danger" })
+                    <select class="form-control kt-selectpicker" asp-for="EmployeeType" asp-items="ViewBag.EmployeeType"><option value="">Seçiniz</option></select>
+                    <span asp-validation-for="EmployeeType" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Adı:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxlength = "20" })
-                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                    <input asp-for="Name" maxlength="20" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Soyadı:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @maxlength = "20" })
-                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                    <input asp-for="Surname" maxlength="20" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Unvan:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @maxlength = "40" })
-                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                    <input asp-for="Title" maxlength="40" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Meslek:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Profession, new { @class = "form-control", @maxlength = "40" })
-                    @Html.ValidationMessageFor(m => m.Profession, "", new { @class = "text-danger" })
+                    <input asp-for="Profession" maxlength="40" class="form-control" />
+                    <span asp-validation-for="Profession" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Telefon:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @maxlength = "14" })
-                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    <input asp-for="Phone" maxlength="14" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">GSM:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Gsm, new { @class = "form-control", @maxlength = "14" })
-                    @Html.ValidationMessageFor(m => m.Gsm, "", new { @class = "text-danger" })
+                    <input asp-for="Gsm" maxlength="14" class="form-control" />
+                    <span asp-validation-for="Gsm" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Hakkında:</label>
                 <div class="col-6">
-                    @Html.TextAreaFor(m => m.About, new { @class = "form-control", style = "min-height:100px; max-height:250px" })
+                    <textarea class="form-control" asp-for="About" style="min-height:100px; max-height:250px"></textarea>
                 </div>
             </div>
 
@@ -487,8 +485,8 @@
                 <label class="col-2 col-form-label">Üniversite:</label>
                 <div class="col-6">
                     <div class="typeahead">
-                        @Html.HiddenFor(m => m.IdUniversity)
-                        @Html.TextBoxFor(m => m.UniversityName, new { @id = "thUniversity", @placeholder = "Üniversite adı girin.", @class = "form-control" })
+                        <input type="hidden" asp-for="IdUniversity" />
+                        <input asp-for="UniversityName" class="form-control" id="thUniversity" placeholder="Üniversite adı girin." />
                     </div>
                 </div>
             </div>
@@ -496,8 +494,8 @@
                 <label class="col-2 col-form-label">Fakülte:</label>
                 <div class="col-6">
                     <div class="typeahead">
-                        @Html.HiddenFor(m => m.IdFaculty)
-                        @Html.TextBoxFor(m => m.FacultyName, new { @id = "thFaculty", @placeholder = "Fakülte adı girin.", @class = "form-control" })
+                        <input type="hidden" asp-for="IdFaculty" />
+                        <input asp-for="FacultyName" class="form-control" id="thFaculty" placeholder="Fakülte adı girin." />
                     </div>
                 </div>
             </div>
@@ -505,9 +503,15 @@
                 <label class="col-2 col-form-label">Bölüm:</label>
                 <div class="col-6">
                     <div class="typeahead">
-                        @Html.HiddenFor(m => m.IdUniversityDepartment)
-                        @Html.TextBoxFor(m => m.UniversityDepartmentName, new { @id = "thUniversityDepartment", @placeholder = "Bölüm adı girin.", @class = "form-control" })
+                        <input type="hidden" asp-for="IdUniversityDepartment" />
+                        <input asp-for="UniversityDepartmentName" class="form-control" id="thUniversityDepartment" placeholder="Bölüm adı girin." />
                     </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label"></label>
+                <div class="col-6">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                 </div>
             </div>
 

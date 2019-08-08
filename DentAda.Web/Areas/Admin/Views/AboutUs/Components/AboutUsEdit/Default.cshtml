@@ -1,4 +1,4 @@
-﻿@model DentAda.Business.ViewModel.Administration.AboutUsVM
+﻿@model AboutUsVM
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
@@ -154,27 +154,27 @@
         </div>
     </div>
     <form novalidate id="submit_form" class="horizontal-form" enctype="multipart/form-data">
-        @Html.HiddenFor(m => m.IdAboutUs)
+        <input type="hidden" asp-for="IdAboutUs"/>
         <div class="kt-portlet__body">
             <div class="form-group row">
                 <label class="col-2 col-form-label">Şube:</label>
                 <div class="col-3">
-                    @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
-                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                    <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"></select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Misyon:</label>
                 <div class="col-10">
-                    @Html.TextAreaFor(m => m.Mission, new { @class = "form-control", @rows = "12" })
-                    @Html.ValidationMessageFor(m => m.Mission, "", new { @class = "text-danger" })
+                    <textarea asp-for="Mission" class="form-control" rows="12"></textarea>
+                    <span asp-validation-for="Mission" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Vizyon:</label>
                 <div class="col-10">
-                    @Html.TextAreaFor(m => m.Vision, new { @class = "form-control", @rows = "12" })
-                    @Html.ValidationMessageFor(m => m.Vision, "", new { @class = "text-danger" })
+                    <textarea asp-for="Vision" class="form-control" rows="12"></textarea>
+                    <span asp-validation-for="Vision" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
@@ -187,7 +187,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label"></label>
                 <div class="col-10">
-                    @Html.HiddenFor(m => m.Picture)
+                    <input type="hidden" asp-for="Picture" />
                     @if (Model != null && Model.Picture != null)
                     {
                         <img alt="" id="aboutUsImage" class="img-thumbnail" src="data:image;base64,@System.Convert.ToBase64String(Model.Picture)" style="max-height:300px" />

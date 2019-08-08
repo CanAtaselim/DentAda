@@ -1,4 +1,4 @@
-﻿@model DentAda.Business.ViewModel.Administration.ContactUsVM
+﻿@model ContactUsVM
 @{
     Layout = "~/Views/Shared/_AjaxLayout.cshtml";
 }
@@ -156,8 +156,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Şube:</label>
                 <div class="col-3">
-                    @Html.DropDownListFor(m => m.Department, new SelectList(ViewBag.DepartmentList, "Value", "Text"), new { @class = "form-control kt-selectpicker", @id = "cbDepartment" })
-                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                    <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"></select>
                 </div>
             </div>
 
@@ -165,79 +164,79 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Adres:</label>
                 <div class="col-6">
-                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control", style = "min-height:100px; max-height:250px", @maxlength = "500"  })
-                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                    <textarea class="form-control" asp-for="Address" style="min-height:100px; max-height:250px" maxlength="500"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">E-Posta:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @maxlength = "40" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <input asp-for="Email" maxlength="40" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Telefon:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @maxlength = "14"  })
-                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    <input asp-for="Phone" maxlength="14" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">GSM:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.GSM, new { @class = "form-control", @maxlength = "14"  })
-                    @Html.ValidationMessageFor(m => m.GSM, "", new { @class = "text-danger" })
+                    <input asp-for="GSM" maxlength="14" class="form-control" />
+                    <span asp-validation-for="GSM" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Fax:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Fax, new { @class = "form-control", @maxlength = "14"  })
-                    @Html.ValidationMessageFor(m => m.Fax, "", new { @class = "text-danger" })
+                    <input asp-for="Fax" maxlength="14" class="form-control" />
+                    <span asp-validation-for="Fax" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Facebook:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Facebook, new { @class = "form-control", @maxlength = "70"  })
-                    @Html.ValidationMessageFor(m => m.Facebook, "", new { @class = "text-danger" })
+                    <input asp-for="Facebook" maxlength="100" class="form-control" />
+                    <span asp-validation-for="Facebook" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Twitter:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Twitter, new { @class = "form-control", @maxlength = "30"  })
-                    @Html.ValidationMessageFor(m => m.Twitter, "", new { @class = "text-danger" })
+                    <input asp-for="Twitter" maxlength="100" class="form-control" />
+                    <span asp-validation-for="Twitter" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Instagram:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Instagram, new { @class = "form-control", @maxlength = "30" })
-                    @Html.ValidationMessageFor(m => m.Instagram, "", new { @class = "text-danger" })
+                    <input asp-for="Instagram" maxlength="100" class="form-control" />
+                    <span asp-validation-for="Instagram" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Youtube:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Youtube, new { @class = "form-control", @maxlength = "70"  })
-                    @Html.ValidationMessageFor(m => m.Youtube, "", new { @class = "text-danger" })
+                    <input asp-for="Youtube" maxlength="100" class="form-control" />
+                    <span asp-validation-for="Youtube" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Linkedin:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.Linkedin, new { @class = "form-control", @maxlength = "70"  })
-                    @Html.ValidationMessageFor(m => m.Linkedin, "", new { @class = "text-danger" })
+                    <input asp-for="Linkedin" maxlength="100" class="form-control" />
+                    <span asp-validation-for="Linkedin" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Google+:</label>
                 <div class="col-6">
-                    @Html.TextBoxFor(m => m.GooglePlus, new { @class = "form-control", @maxlength = "70"  })
-                    @Html.ValidationMessageFor(m => m.GooglePlus, "", new { @class = "text-danger" })
+                    <input asp-for="GooglePlus" maxlength="100" class="form-control" />
+                    <span asp-validation-for="GooglePlus" class="text-danger"></span>
                 </div>
             </div>
         </div>

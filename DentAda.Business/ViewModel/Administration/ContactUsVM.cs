@@ -34,22 +34,22 @@ namespace DentAda.Business.ViewModel.Administration
         [RegularExpression(@"^\(?([0-9]{4} )\)?[-. ]?([0-9]{3} )[-. ]?([0-9]{2} )[-. ]?([0-9]{2})$", ErrorMessage = "Geçerli bir telefon giriniz. Örnek: 0399 123 45 67")]
         public string Fax { get; set; }
 
-        [MaxLength(70, ErrorMessage = "Facebook 70 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Facebook 100 karakterden fazla olamaz")]
         public string Facebook { get; set; }
 
-        [MaxLength(30, ErrorMessage = "Twitter 30 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Twitter 100 karakterden fazla olamaz")]
         public string Twitter { get; set; }
 
-        [MaxLength(30, ErrorMessage = "Instagram 30 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Instagram 100 karakterden fazla olamaz")]
         public string Instagram { get; set; }
 
-        [MaxLength(70, ErrorMessage = "Youtube 70 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Youtube 100 karakterden fazla olamaz")]
         public string Youtube { get; set; }
 
-        [MaxLength(70, ErrorMessage = "Linkedin 70 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Linkedin 100 karakterden fazla olamaz")]
         public string Linkedin { get; set; }
 
-        [MaxLength(70, ErrorMessage = "Google+ 70 karakterden fazla olamaz")]
+        [MaxLength(100, ErrorMessage = "Google+ 100 karakterden fazla olamaz")]
         public string GooglePlus { get; set; }
 
     }
