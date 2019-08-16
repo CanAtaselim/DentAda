@@ -1,6 +1,0 @@
-C:\Projects\DentAda\DentAda.Common\bin\Release\DentAda.Common.dll
-C:\Projects\DentAda\DentAda.Common\bin\Release\DentAda.Common.pdb
-C:\Projects\DentAda\DentAda.Common\obj\Release\DentAda.Common.csprojAssemblyReference.cache
-C:\Projects\DentAda\DentAda.Common\obj\Release\DentAda.Common.csproj.CoreCompileInputs.cache
-C:\Projects\DentAda\DentAda.Common\obj\Release\DentAda.Common.dll
-C:\Projects\DentAda\DentAda.Common\obj\Release\DentAda.Common.pdb

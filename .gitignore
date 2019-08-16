@@ -1,0 +1,10 @@
+.vs/DentAda
+.vs/DentAda/DesignTimeBuild
+DentAda.Business/bin
+DentAda.Business/obj
+DentAda.Common/bin
+DentAda.Common/obj
+DentAda.Data/bin
+DentAda.Data/obj
+DentAda.Web/bin
+DentAda.Web/obj
