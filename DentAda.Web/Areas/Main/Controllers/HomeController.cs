@@ -1,21 +1,28 @@
 ﻿using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
+using DentAda.Common;
 using DentAda.Web.Attributes;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace DentAda.Web.Areas.Main.Controllers
 {
     [Area("Main")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IMemoryCache _memoryCache;
         private AdministrationBLLocator _adminlocator;
-        public HomeController(AdministrationBLLocator adminLocator, IMemoryCache memoryCache)
+        private IHostingEnvironment _env;
+        public HomeController(AdministrationBLLocator adminLocator, IMemoryCache memoryCache, IHostingEnvironment env) : base(env)
         {
+            _env = env;
             _memoryCache = memoryCache;
             _adminlocator = adminLocator;
         }
@@ -24,8 +31,34 @@ namespace DentAda.Web.Areas.Main.Controllers
         public IActionResult Index()
         {
 
-            ViewBag.ContactUs = JsonConvert.DeserializeObject<ContactUsVM>(HttpContext.Session.GetString("ContactUsData"));
+            ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
+            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.Department == 1 && m.OperationIsDeleted == (short)_Enumeration._Department.Cayyolu);
             return View();
         }
+        public FileContentResult GetImageFilePath(long idPerson)
+        {
+            try
+            {
+                if (idPerson == 0)
+                {
+                    var uploads = Path.Combine(_env.WebRootPath, "frontend/images");
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(Path.Combine(uploads, "noPersonImage.png"));
+                    return new FileContentResult(fileBytes, "image/jpeg");
+                }
+                else
+                {
+                    var person = _adminlocator.PersonBL.CRUD.GetById(idPerson);
+                    return new FileContentResult(person.Picture, "image/jpeg");
+                }
+            }
+            catch (Exception)
+            {
+                var uploads = Path.Combine(_env.WebRootPath, "frontend/images");
+                byte[] fileBytes = System.IO.File.ReadAllBytes(Path.Combine(uploads, "noPersonImage.png"));
+                return new FileContentResult(fileBytes, "image/jpeg");
+            }
+
+        }
+
     }
 }

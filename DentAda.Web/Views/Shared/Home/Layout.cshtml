@@ -1,31 +1,30 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Dent Ada Ağız ve Diş Sağlığı Polikiliniği">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dent Ada Ağız ve Diş Sağlığı Polikiliniği</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Title -->
-    <title>Dent Ada Ağız ve Diş Sağlığı Polikiliniği</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/frontend/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/frontend/css/animate.css">
+    <link rel="stylesheet" href="/frontend/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/frontend/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/frontend/css/magnific-popup.css">
+    <link rel="stylesheet" href="/frontend/css/aos.css">
+    <link rel="stylesheet" href="/frontend/css/ionicons.min.css">
+    <link rel="stylesheet" href="/frontend/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/frontend/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/frontend/css/flaticon.css">
+    <link rel="stylesheet" href="/frontend/css/icomoon.css">
+    <link rel="stylesheet" href="/frontend/css/style.css">
     @RenderSection("pageLevelStyles", required: false)
     @RenderSection("pageLevelInlineStyles", required: false)
 
-    <!-- Favicon -->
-    <link rel="icon" href="./img/core-img/favicon.ico">
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="/frontend/style.css">
-
 </head>
-
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="preload-content">
-            <div id="dento-load"></div>
-        </div>
-    </div>
+
 
     <!-- ***** Header Area Start ***** -->
     @Html.Partial("~/Views/Shared/Home/_Header.cshtml")
@@ -37,11 +36,22 @@
     <!-- ***** Footer Area End ***** -->
     <!-- ******* All JS ******* -->
     <!-- jQuery js -->
+
     <script src="/frontend/js/jquery.min.js"></script>
+    <script src="/frontend/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/frontend/js/popper.min.js"></script>
     <script src="/frontend/js/bootstrap.min.js"></script>
-    <script src="/frontend/js/dento.bundle.js"></script>
-    <script src="/frontend/js/default-assets/active.js"></script>
+    <script src="/frontend/js/jquery.easing.1.3.js"></script>
+    <script src="/frontend/js/jquery.waypoints.min.js"></script>
+    <script src="/frontend/js/jquery.stellar.min.js"></script>
+    <script src="/frontend/js/owl.carousel.min.js"></script>
+    <script src="/frontend/js/jquery.magnific-popup.min.js"></script>
+    <script src="/frontend/js/aos.js"></script>
+    <script src="/frontend/js/jquery.animateNumber.min.js"></script>
+    <script src="/frontend/js/bootstrap-datepicker.js"></script>
+    <script src="/frontend/js/jquery.timepicker.min.js"></script>
+    <script src="/frontend/js/scrollax.min.js"></script>
+    <script src="/frontend/js/main.js"></script>
     <script>
         jQuery(document).ready(function ()
         {
@@ -60,5 +70,4 @@
     @RenderSection("pageLevelInlineScripts", required: false)
 
 </body>
-
 </html>

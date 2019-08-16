@@ -27,7 +27,7 @@ namespace DentAda.Web.Attributes
                 AdministrationBLLocator _locator = new AdministrationBLLocator();
                 if (filterContext.HttpContext.Session.GetString("ContactUsData") == null)
                 {
-                    ContactUsVM contactUs = _locator.ContactUsBL.GetVM(filter: m => m.Department == (short)_Enumeration._Department.Cayyolu && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).FirstOrDefault();
+                    List<ContactUsVM> contactUs = _locator.ContactUsBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
                     filterContext.HttpContext.Session.SetString("ContactUsData", JsonConvert.SerializeObject(contactUs));
                 }
 

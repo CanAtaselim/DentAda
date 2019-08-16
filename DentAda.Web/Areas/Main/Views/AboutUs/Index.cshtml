@@ -1,58 +1,190 @@
 ﻿@{
     AboutUsVM aboutUs = ViewBag.AboutUs;
 }
-<!-- ***** Breadcrumb Area Start ***** -->
-<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(/frontend/img/bg-img/12.jpg);">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <h2 class="title">HAKKIMIZDA</h2>
-            </div>
-        </div>
-    </div>
-</div>
+<style>
+    .oval {
+        text-align: center;
+        float: left;
+        margin-right: 15px;
+    }
+</style>
 
-<!-- ***** Breadcrumb Area End ***** -->
-<!-- ****** About Us Area Start ******* -->
-<section class="dento-about-us-area mt-70">
+
+
+<section class="ftco-section" style="padding-top:50px">
     <div class="container">
-        <div class="row align-items-center">
-            <!-- About Us Thumbnail -->
-            <div class="col-12 col-md-5">
-                <div class="about-us-thumbnail mb-50">
-                    <img width="400" src="/frontend/img/bg-img/15.jpg" alt="">
-                </div>
+        <div class="row d-md-flex">
+            <div class="col-md-5 ftco-animate img about-image order-md-last" style="background-image:url('/frontend/images/about.jpg');">
             </div>
-            <!-- About Content -->
-            <div class="col-12 col-md-7">
-                <div class="about-us-content mb-50">
-                    <!-- Section Heading -->
-                    <div class="section-heading">
-                        <h2>Vizyonumuz</h2>
-                        <div class="line"></div>
+            <div class="col-md-7 ftco-animate pr-md-5 order-md-first">
+                <div class="row">
+                    <div class="col-md-12 nav-link-wrap mb-5">
+                        <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill" href="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">Vizyonumuz</a>
+                            <a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">Misyonumuz</a>
+                        </div>
                     </div>
-                    <p>
-                        @aboutUs.Vision
-                    </p>
-                </div>
-            </div>
+                    <div class="col-md-12 d-flex align-items-center">
 
-        </div>
-        <div class="row align-items-center">
-            <!-- About Content -->
-            <div class="col-12">
-                <div class="about-us-content mb-50">
-                    <!-- Section Heading -->
-                    <div class="section-heading">
-                        <h2>Misyonumuz</h2>
-                        <div class="line"></div>
+                        <div class="tab-content ftco-animate" id="v-pills-tabContent">
+
+                            <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
+                                <div>
+                                    <div class="oval">
+                                        <div class="services">
+                                            <div class="icon d-flex justify-content-center align-items-center">
+                                                <span class="flaticon-tooth-1"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>@aboutUs.Vision</p>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
+                                <div>
+                                    <div class="oval">
+                                        <div class="services">
+                                            <div class="icon d-flex justify-content-center align-items-center">
+                                                <span class="flaticon-dental-care"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>@aboutUs.Mission</p>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
-                    <p>
-                        @aboutUs.Mission
-                    </p>
                 </div>
             </div>
-          
         </div>
     </div>
 </section>
+
+<section class="ftco-section-2">
+    <div class="container-wrap">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 img" style="background-image:url('/frontend/images/about-2.jpg');">
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="about-wrap">
+
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
+                        </div>
+                        <div class="text">
+                            <h3>Deneyimli diş hekimleri</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        </div>
+                    </div>
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
+                        </div>
+                        <div class="text">
+                            <h3>High Technology Facilities</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        </div>
+                    </div>
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
+                        </div>
+                        <div class="text">
+                            <h3>Comfortable Clinics</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section testimony-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    <div class="item">
+                        <div class="testimony-wrap">
+                            <div class="text text-center">
+                                <p class="">
+                                    Dr.Gizem Karagöz’e teşekkür ederim. Çok ilgili,dikkatli ve titiz. Elide oldukça hafif. Sayenizde kanal tedavimi rahatlıkla yaptırabildim. Başarılarınızın devamını dilerim.
+                                </p>
+                                <p class="name">Erkan Demir</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap">
+                            <div class="text text-center">
+                                <p class="">
+                                    Ben hastanız Hande Odabaşı. Dişçi korkusunun benim gibi çoğu kişide de olduğunu düşünüyorum. Korku içinde polikliniğinize geldim. Güleryüzlü personelleriniz ve ilgili doktor kadronuz sayesinde, yapılan tedaviden çok memnun kaldım. Dentada Ağız ve Diş Sağlığı Polikliniğine çok teşekkür ederim.
+                                </p>
+                                <p class="name">Hande Odabaşı</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image:url('/frontend/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-3 aside-stretch py-5">
+                <div class=" heading-section heading-section-white ftco-animate pr-md-4">
+                    <h2 class="mb-3">Başarılar</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="col-md-9 py-5 pl-md-5">
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="14">0</strong>
+                                <span>
+                                    Yıllık Tecrübe
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="4500">0</strong>
+                                <span>Nitelikli Diş Hekimi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="4200">0</strong>
+                                <span>Mutlu Gülen Müşteri</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="320">0</strong>
+                                <span>Yılda Kaç Hasta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

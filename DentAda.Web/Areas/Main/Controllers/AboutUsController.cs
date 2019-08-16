@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DentAda.Web.Areas.Main.Controllers
@@ -26,7 +27,7 @@ namespace DentAda.Web.Areas.Main.Controllers
         [ContactUsAttribute]
         public IActionResult Index()
         {
-            ViewBag.ContactUs = JsonConvert.DeserializeObject<ContactUsVM>(HttpContext.Session.GetString("ContactUsData"));
+            ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
             ViewBag.AboutUs = _adminlocator.AboutUsBL.GetVM(filter: m => m.Department == (short)_Enumeration._Department.Cayyolu && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).FirstOrDefault();
             return View();
         }

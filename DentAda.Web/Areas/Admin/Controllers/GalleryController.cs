@@ -36,7 +36,7 @@ namespace DentAda.Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult List(int Department = 1)
         {
-            return ViewComponent("GalleryList", new { Department });
+            return ViewComponent("GalleryEdit", new { Department });
         }
 
         [HttpPost]
@@ -110,7 +110,6 @@ namespace DentAda.Web.Areas.Admin.Controllers
 
             using (MagickImage imageFile = new MagickImage(GetFormImageToByte(image)))
             {
-                imageFile.Format = MagickFormat.Jpg;
 
                 MagickGeometry reSize = new MagickGeometry(200);
                 imageFile.AutoOrient();
@@ -124,7 +123,6 @@ namespace DentAda.Web.Areas.Admin.Controllers
 
             using (MagickImage imageFile = new MagickImage(GetFormImageToByte(image)))
             {
-                imageFile.Format = MagickFormat.Jpg;
 
                 MagickGeometry reSize = new MagickGeometry(new Percentage(90), new Percentage(90));
                 imageFile.AutoOrient();

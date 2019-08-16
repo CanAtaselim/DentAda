@@ -38,7 +38,6 @@ namespace DentAda.Web.Areas.Admin.Controllers
             }
             return fileName;
         }
-
         public FileResult GetImageFilePath(string fileName, string filePath)
         {
             try

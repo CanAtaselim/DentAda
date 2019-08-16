@@ -1,468 +1,186 @@
-﻿    <!-- ***** Welcome Area Start ***** -->
-<section class="welcome-area">
-    <!-- Welcome Slides -->
-    <div class="welcome-slides owl-carousel">
-        <!-- Single Welcome Slide -->
-        <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url(/frontend/img/bg-img/1.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <!-- Welcome Text -->
-                        <div class="welcome-text text-center">
-                            <h2 data-animation="fadeInUp" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                            <p data-animation="fadeInUp" data-delay="300ms">
-                                As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                                offer you.
-                            </p>
-                            <div class="welcome-btn-group">
-                                <a href="#" class="btn dento-btn mx-2" data-animation="fadeInUp" data-delay="500ms">Get Started</a>
-                                <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInUp" data-delay="700ms">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
+﻿@{
+    List<ContactUsVM> contactUs = ViewBag.ContactUs;
+    List<PersonVM> person = ViewBag.Persons;
+    var contactUsCayyolu = contactUs.Where(m => m.Department == 1).FirstOrDefault();
+    var contactUsPolatli = contactUs.Where(m => m.Department == 2).FirstOrDefault();
+}
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('/frontend/images/bg_1.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                        İstediğiniz Mükemmel Gülümsemenizi Elde Edin
+                    </h1>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Single Welcome Slide -->
-        <div class="welcome-welcome-slide bg-img bg-gradient-overlay jarallax" style="background-image: url(/frontend/img/bg-img/2.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <!-- Welcome Text -->
-                        <div class="welcome-text text-center">
-                            <h2 data-animation="fadeInDown" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Dental Care</h2>
-                            <p data-animation="fadeInDown" data-delay="300ms">
-                                As a leading industry innovator, Dento is opening up exciting new opportunities for dental professionals, investors, employees & suppliers. Contact us to find out what we have to
-                                offer you.
-                            </p>
-                            <div class="welcome-btn-group">
-                                <a href="#" class="btn dento-btn mx-2" data-animation="fadeInDown" data-delay="500ms">Get Started</a>
-                                <a href="#" class="btn dento-btn mx-2 active" data-animation="fadeInDown" data-delay="700ms">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
+    <div class="slider-item" style="background-image: url('/frontend/images/bg_2.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                        Sakin ve Rahat Bir Ortamda Modern Diş Hekimliği
+
+                    </h1>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- ***** Welcome Area End ***** -->
-<!-- ****** About Us Area Start ******* -->
-<section class="dento-about-us-area section-padding-100-0">
+
+<section class="ftco-intro">
     <div class="container">
-        <div class="row align-items-center">
-            <!-- About Us Thumbnail -->
-            <div class="col-12 col-md-6">
-                <div class="about-us-thumbnail mb-50">
-                    <img src="/frontend/img/bg-img/15.jpg" alt="">
-                </div>
-            </div>
-            <!-- About Content -->
-            <div class="col-12 col-md-6">
-                <div class="about-us-content mb-50">
-                    <!-- Section Heading -->
-                    <div class="section-heading">
-                        <h2>About Us</h2>
-                        <div class="line"></div>
-                    </div>
-                    <p>
-                        Vestibulum condimentum, risus sedones honcus rutrum, salah lacus mollis zurna, nec finibusmi velit advertisis. Proin vitae odin quis magna aliquet laciniae. Etiam auctor, nisi vel. Pellentesque ultrices nisl quam iaculis, nec pulvinar
-                        augue.
-                    </p>
-
-                    <!-- Single Skills Area -->
-                    <div class="single-skills-area mt-30">
-                        <h6>Experience Dentist</h6>
-                        <div id="bar1" class="barfiller">
-                            <span class="tip"></span>
-                            <span class="fill" data-percentage="80"></span>
-                        </div>
-                    </div>
-
-                    <!-- Single Skills Area -->
-                    <div class="single-skills-area mt-30">
-                        <h6>Modern Equipment</h6>
-                        <div id="bar2" class="barfiller">
-                            <span class="tip"></span>
-                            <span class="fill" data-percentage="65"></span>
-                        </div>
-                    </div>
-
-                    <!-- Single Skills Area -->
-                    <div class="single-skills-area mt-30">
-                        <h6>Friendly Staff</h6>
-                        <div id="bar3" class="barfiller">
-                            <span class="tip"></span>
-                            <span class="fill" data-percentage="85"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ****** About Us Area End ****** -->
-
-<div class="container">
-    <div class="dento-border clearfix"></div>
-</div>
-
-<!-- Cool Facts Area Start -->
-<section class="dento-cta-area">
-    <div class="container">
-        <div class="row">
-            <!-- Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cta text-center mt-50 mb-100">
-                    <i class="icon_genius"></i>
-                    <h2><span class="counter">20</span></h2>
-                    <h5>Years Of Experience</h5>
-                </div>
-            </div>
-
-            <!-- Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cta text-center mt-50 mb-100">
-                    <i class="icon_heart_alt"></i>
-                    <h2><span class="counter">700</span>+</h2>
-                    <h5>Happy Patients</h5>
-                </div>
-            </div>
-
-            <!-- Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cta text-center mt-50 mb-100">
-                    <i class="icon_book_alt"></i>
-                    <h2><span class="counter">120</span></h2>
-                    <h5>Certificate</h5>
-                </div>
-            </div>
-
-            <!-- Cool Facts Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-cta text-center mt-50 mb-100">
-                    <i class="icon_id"></i>
-                    <h2><span class="counter">40</span>+</h2>
-                    <h5>Dentist</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Cool Facts Area End -->
-<!-- Dento Service Area Start -->
-<section class="dento-service-area section-padding-100-0 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url('/frontend/img/bg-img/13.jpg');">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Service Content -->
-            <div class="col-12 col-lg-6">
-                <div class="service-content mb-30">
-                    <!-- Section Heading -->
-                    <div class="section-heading white">
-                        <h2>Our Services</h2>
-                        <div class="line"></div>
-                    </div>
-
+        <div class="row no-gutters">
+            <div class="col-md-12 color-3 p-4">
+                <h3 class="mb-2">Randevu Al</h3>
+                <form action="#" class="appointment-form">
                     <div class="row">
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s1.png" alt="">
-                                <h6>
-                                    İmplant Tedavisi
-                                </h6>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="appointment_name" placeholder="Ad">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="appointment_surname" placeholder="Soyad">
                             </div>
                         </div>
 
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s2.png" alt="">
-                                <h6>Ortodonti Tel Tedavisi</h6>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="appointment_email" placeholder="E-Posta">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="phone" placeholder="Telefon">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control appointment_date" placeholder="Tarih">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control appointment_time" placeholder="Saat">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea name="your-message" class="form-control" placeholder="Mesajınız"></textarea>
                             </div>
                         </div>
 
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s3.png" alt="">
-                                <h6>Diş Beyazlatma</h6>
-                            </div>
-                        </div>
-
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s4.png" alt="">
-                                <h6>Diş Protezleri</h6>
-                            </div>
-                        </div>
-
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s5.png" alt="">
-                                <h6>Koruyucu ve Önleyici Diş Hekimliği</h6>
-                            </div>
-                        </div>
-
-                        <!-- Single Service -->
-                        <div class="col-6 col-md-4">
-                            <div class="single-service mb-70">
-                                <img src="/frontend/img/core-img/s1.png" alt="">
-                                <h6>Çocuk Diş Hekimliği</h6>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Video Area -->
-            <div class="col-12 col-lg-6">
-                <div class="dento-video-area mb-100">
-                    <img src="/frontend/img/bg-img/14.jpg" alt="">
-                    <!-- Play Button -->
-                    <a href="#" class="video-play-button"><i class="fa fa-play" aria-hidden="true"></i></a>
-                </div>
+                    <input style="border-radius:2px!important; font-size:14px" type="submit" value="Gönder" class="btn btn-light py-2 px-4">
+                </form>
             </div>
         </div>
     </div>
 </section>
-<!-- Dento Service Area End -->
-<!-- Dento Pricing Table Area Start -->
-<section class="dento-pricing-table-area section-padding-100">
+
+<section class="ftco-section ftco-services">
     <div class="container">
-        <div class="row">
-            <!-- Section Heading -->
-            <div class="col-12">
-                <div class="section-heading text-center">
-                    <h2>Pricing</h2>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-12">
-                <div class="dento-price-table table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">Service Names</th>
-                                <th scope="col">Stage</th>
-                                <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Teeth Whitening Service at home</th>
-                                <td>1 times</td>
-                                <td>$115.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Teeth Whitening Service at Dental Clinic</th>
-                                <td>1 times</td>
-                                <td>$100.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ceramic crowns and fillings Dental porcelain</th>
-                                <td>1 times</td>
-                                <td>$99.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Remove crowns, bridges Service</th>
-                                <td>1 tooth</td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Covering the recession of the gums</th>
-                                <td>1 times</td>
-                                <td>$400.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Consultation, impressions and preparation of models</th>
-                                <td>1 times</td>
-                                <td>$35.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Removal of an old inlay, old crown</th>
-                                <td>1 times</td>
-                                <td>$99.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Overlay teeth whitening ( 2 arches)</th>
-                                <td>1 times</td>
-                                <td>$170.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Standard porcelain and zirconium crown on implant</th>
-                                <td>1 tooth</td>
-                                <td>$499.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Implantation of an implant (price depends on system used)</th>
-                                <td>1 tooth</td>
-                                <td>$600.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block text-center">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-dentist"></span>
+                    </div>
+                    <div class="media-body p-2 mt-3">
+                        <h3 class="heading">
+                            İmplant Tedavisi
+                        </h3>
+                        <p>Dental implantlar; diş eksikliklerinde hastayı dişsizlikten kurtarmak amacıyla çene kemiğine yerleştirilen titanyum alaşımlı yapay diş kökleridir. </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-12">
-                <div class="more-btn text-center mt-50">
-                    <a href="#" class="btn dento-btn">Read More <i class="fa fa-angle-double-right"></i></a>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block text-center">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-tooth-with-braces"></span>
+                    </div>
+                    <div class="media-body p-2 mt-3">
+                        <h3 class="heading">
+                            Ortodonti Tel Tedavisi
+                        </h3>
+                        <p>Çapraşık dişler nedeniyle oluşan estetik kusurların tedavisi ve etkilerinin en iyi şekilde yeniden yerine getirilmesi amacıyla tedaviler uygulanır. “Ortodontik tedaviler” halk arasında “Tel tedavisi”olarak bilinir.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- Dento Pricing Table Area End -->
-<!-- Book An Oppointment Area Start -->
-<section class="book-an-oppointment-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix bookingContent" style="background-image: url('/frontend/img/bg-img/12.jpg');">
-    <div class="container">
-        <div class="row">
-            <!-- Section Heading -->
-            <div class="col-12">
-                <div class="section-heading text-center white">
-                    <h2>Randevu al</h2>
-                    <div class="line"></div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block text-center">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-tooth-1"></span>
+                    </div>
+                    <div class="media-body p-2 mt-3">
+                        <h3 class="heading">
+                            Diş Beyazlatma
+                        </h3>
+                        <p>Diş beyazlatma tedavisi; yıllar içerisinde dişler üzerinde sigara tüketimi, yiyecek – içeceklerin (çay, kahve, şarap vb.) tüketimi sonrasında oluşturduğu renk değişikliklerini gidermek veya mevcut diş rengini açmak amacıyla yapılan işlemdir. Diş beyazlatmak için çeşitli yöntemler kullanılmaktadır. </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <!-- Appointment Form -->
-                <div class="appointment-form">
-                    <form action="#" method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <input type="text" name="your-name" class="form-control" placeholder="Adınız" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <input type="text" name="your-phone" class="form-control" placeholder="Telefon Numaranız" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <input type="email" name="your-email" class="form-control" placeholder="E-Posta Adresiniz" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <input type="text" name="your-address" class="form-control" placeholder="Your Address">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <select name="your-scheldule" class="form-control">
-                                        <option value="2">Öğleden Önce (09:00 - 12:00)</option>
-                                        <option value="3">Öğlen Tatili (12:00 - 13:30)</option>
-                                        <option value="4">Öğleden Sonra (13:30 - 19:00)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-30">
-                                    <select name="your-time" class="form-control">
-                                        <option value="1">Çayyolu</option>
-                                        <option value="2">Polatli</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mb-30">
-                                    <textarea name="your-message" class="form-control" placeholder="Mesajınız"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button type="submit" class="btn dento-btn">Randevu Al</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Book An Oppointment Area End -->
-<!-- ***** Dento Dentist Area Start ***** -->
-<section class="dentist-area section-padding-100-0">
-    <div class="container">
-        <div class="row">
-            <!-- Section Heading -->
-            <div class="col-12">
-                <div class="section-heading text-center">
-                    <h2>Our Dentist</h2>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Single Dentist Area -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="single-dentist-area mb-100">
-                    <img src="/frontend/img/bg-img/9.png" alt="">
-                    <!-- Dentist Content -->
-                    <div class="dentist-content">
-                        <!-- Social Info -->
-                        <div class="dentist-social-info">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <!-- Dentist Info -->
-                        <div class="dentist-info bg-gradient-overlay">
-                            <h5>Michael Barley</h5>
-                            <p>Implant Expert</p>
-                        </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services d-block text-center">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="flaticon-dental-care"></span>
+                    </div>
+                    <div class="media-body p-2 mt-3">
+                        <h3 class="heading">
+                            Diş Protezleri
+                        </h3>
+                        <p>Protez, çeşitli nedenlerle kaybedilen dişlerin yerine konabilen, ağızda estetik bozuklukların giderilmesini sağlayan, fonksiyonel olarak ihtiyaçlara göre çeşitlilik gösteren yapay materyallerdir.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Single Dentist Area -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="single-dentist-area mb-100">
-                    <img src="/frontend/img/bg-img/10.png" alt="">
-                    <!-- Dentist Content -->
-                    <div class="dentist-content">
-                        <!-- Social Info -->
-                        <div class="dentist-social-info">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
+
+        </div>
+    </div>
+    <div class="container-wrap mt-5">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 img" style="background-image: url('/frontend/images/about-2.jpg');">
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="about-wrap">
+                    <div class="heading-section heading-section-white mb-5 ftco-animate">
+                        <h2 class="mb-2">Dentacare with a personal touch</h2>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    </div>
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
                         </div>
-                        <!-- Dentist Info -->
-                        <div class="dentist-info bg-gradient-overlay">
-                            <h5>Michael Barley</h5>
-                            <p>Implant Expert</p>
+                        <div class="text">
+                            <h3>Well Experience Dentist</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Single Dentist Area -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="single-dentist-area mb-100">
-                    <img src="/frontend/img/bg-img/11.png" alt="">
-                    <!-- Dentist Content -->
-                    <div class="dentist-content">
-                        <!-- Social Info -->
-                        <div class="dentist-social-info">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
                         </div>
-                        <!-- Dentist Info -->
-                        <div class="dentist-info bg-gradient-overlay">
-                            <h5>Michael Barley</h5>
-                            <p>Implant Expert</p>
+                        <div class="text">
+                            <h3>High Technology Facilities</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        </div>
+                    </div>
+                    <div class="list-services d-flex ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-check2"></span>
+                        </div>
+                        <div class="text">
+                            <h3>Comfortable Clinics</h3>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         </div>
                     </div>
                 </div>
@@ -470,62 +188,106 @@
         </div>
     </div>
 </section>
-<!-- ***** Dento Dentist Area End ***** -->
-<!-- ***** Testimonials Area Start ***** -->
-<section class="testimonials-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url('/frontend/img/bg-img/7.jpg');">
+
+
+<section class="ftco-section">
     <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <h2 class="mb-3">Ekibimiz</h2>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-12">
-                <!-- Testimonials Slides -->
-                <div class="testimonials-slides owl-carousel">
-                    <!-- Single Testimonials Slide -->
-                    <div class="single-testimonial-slide d-flex align-items-center">
-                        <!-- Thumbnail -->
-                        <div class="testimonial-thumb">
-                            <img src="/frontend/img/bg-img/8.jpg" alt="">
-                        </div>
-                        <!-- Content -->
-                        <div class="testimonial-content">
-                            <h5>
-                                “I'd been avoiding the dentist for years due to bad experiences. A reminder SMS is sent the working day beforehand. I also had a call confirming appointment. I have been a patient ever since. My dentist is very reassuring and
-                                very helpful. Excellent treatment and advice.”
-                            </h5>
-                            <h6>Arron Ramsey</h6>
-                            <p>Dental Patient</p>
+            @foreach (PersonVM item in person)
+            {
+                <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                    <div class="staff">
+
+                        <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                        <div class="info text-center">
+                            <h3><a href="teacher-single.html">@item.Name @item.Surname</a></h3>
+                            <span class="position">@item.Profession</span>
+                            <div class="text">
+                                <p>@item.About</p>
+                                <ul class="ftco-social">
+                                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Single Testimonials Slide -->
-                    <div class="single-testimonial-slide d-flex align-items-center">
-                        <!-- Thumbnail -->
-                        <div class="testimonial-thumb">
-                            <img src="/frontend/img/bg-img/8.jpg" alt="">
-                        </div>
-                        <!-- Content -->
-                        <div class="testimonial-content">
-                            <h5>
-                                “I'd been avoiding the dentist for years due to bad experiences. A reminder SMS is sent the working day beforehand. I also had a call confirming appointment. I have been a patient ever since. My dentist is very reassuring and
-                                very helpful. Excellent treatment and advice.”
-                            </h5>
-                            <h6>Arron Ramsey</h6>
-                            <p>Dental Patient</p>
+                </div>
+            }
+            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                <div class="staff">
+                    <div class="img mb-4" style="background-image: url('/frontend/images/person_5.jpg');"></div>
+                    <div class="info text-center">
+                        <h3><a href="teacher-single.html">Tom Smith</a></h3>
+                        <span class="position">Dentist</span>
+                        <div class="text">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                            <ul class="ftco-social">
+                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                            </ul>
                         </div>
                     </div>
-
-                    <!-- Single Testimonials Slide -->
-                    <div class="single-testimonial-slide d-flex align-items-center">
-                        <!-- Thumbnail -->
-                        <div class="testimonial-thumb">
-                            <img src="/frontend/img/bg-img/8.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                <div class="staff">
+                    <div class="img mb-4" style="background-image: url('/frontend/images/person_6.jpg');"></div>
+                    <div class="info text-center">
+                        <h3><a href="teacher-single.html">Mark Wilson</a></h3>
+                        <span class="position">Dentist</span>
+                        <div class="text">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                            <ul class="ftco-social">
+                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                            </ul>
                         </div>
-                        <!-- Content -->
-                        <div class="testimonial-content">
-                            <h5>
-                                “I'd been avoiding the dentist for years due to bad experiences. A reminder SMS is sent the working day beforehand. I also had a call confirming appointment. I have been a patient ever since. My dentist is very reassuring and
-                                very helpful. Excellent treatment and advice.”
-                            </h5>
-                            <h6>Arron Ramsey</h6>
-                            <p>Dental Patient</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                <div class="staff">
+                    <div class="img mb-4" style="background-image: url('/frontend/images/person_7.jpg');"></div>
+                    <div class="info text-center">
+                        <h3><a href="teacher-single.html">Patrick Jacobson</a></h3>
+                        <span class="position">Dentist</span>
+                        <div class="text">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                            <ul class="ftco-social">
+                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
+                <div class="staff">
+                    <div class="img mb-4" style="background-image: url('/frontend/images/person_8.jpg');"></div>
+                    <div class="info text-center">
+                        <h3><a href="teacher-single.html">Ivan Dorchsner</a></h3>
+                        <span class="position">System Analyst</span>
+                        <div class="text">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                            <ul class="ftco-social">
+                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -533,70 +295,176 @@
         </div>
     </div>
 </section>
-<!-- ***** Testimonials Area End ***** -->
-<!-- ***** Blog Area Start ***** -->
-<section class="dento-blog-area section-padding-100-0 clearfix">
+
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image:url('/frontend/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
-        <div class="row">
-            <!-- Section Heading -->
-            <div class="col-12">
-                <div class="section-heading text-center">
-                    <h2>The Latest News</h2>
-                    <div class="line"></div>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-3 aside-stretch py-5">
+                <div class=" heading-section heading-section-white ftco-animate pr-md-4">
+                    <h2 class="mb-3">Başarılar</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="col-md-9 py-5 pl-md-5">
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="14">0</strong>
+                                <span>
+                                    Yıllık Tecrübe
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="4500">0</strong>
+                                <span>Nitelikli Diş Hekimi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="4200">0</strong>
+                                <span>Mutlu Gülen Müşteri</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="block-18">
+                            <div class="text">
+                                <strong class="number" data-number="320">0</strong>
+                                <span>Yılda Kaç Hasta</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+<section class="ftco-section testimony-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    <div class="item">
+                        <div class="testimony-wrap">
+                            <div class="text text-center">
+                                <p class="">
+                                    Dr.Gizem Karagöz’e teşekkür ederim. Çok ilgili,dikkatli ve titiz. Elide oldukça hafif. Sayenizde kanal tedavimi rahatlıkla yaptırabildim. Başarılarınızın devamını dilerim.
+                                </p>
+                                <p class="name">Erkan Demir</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap">
+                            <div class="text text-center">
+                                <p class="">
+                                    Ben hastanız Hande Odabaşı. Dişçi korkusunun benim gibi çoğu kişide de olduğunu düşünüyorum. Korku içinde polikliniğinize geldim. Güleryüzlü personelleriniz ve ilgili doktor kadronuz sayesinde, yapılan tedaviden çok memnun kaldım. Dentada Ağız ve Diş Sağlığı Polikliniğine çok teşekkür ederim.
+                                </p>
+                                <p class="name">Hande Odabaşı</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="ftco-gallery">
+    <div class="container-wrap">
+        <div class="row no-gutters">
+            <div class="col-md-3 ftco-animate">
+                <a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url('/frontend/images/gallery-1.jpg');">
+                    <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 ftco-animate">
+                <a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url('/frontend/images/gallery-2.jpg');">
+                    <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 ftco-animate">
+                <a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url('/frontend/images/gallery-3.jpg');">
+                    <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 ftco-animate">
+                <a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url('/frontend/images/gallery-4.jpg');">
+                    <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                        <span class="icon-search"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <h2 class="mb-2">Latest Blog</h2>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            </div>
+        </div>
         <div class="row">
-            <!-- Single Blog Item -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-blog-item mb-100">
-                    <a href="/frontend/blog-details.html">
-                        <img src="/frontend/img/bg-img/4.jpg" alt="">
+            <div class="col-md-4 ftco-animate">
+                <div class="blog-entry">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('/frontend/images/image_1.jpg');">
                     </a>
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="/frontend/blog-details.html" class="post-title">How your mouth bacteria can harm your lungs</a>
-                        <p>Donec tempor, lorem et euismod eleifend, est lectus laoreet ante, sed accusan justo diam ...</p>
-                        <div class="post-meta">
-                            <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2018</a>
-                            <a href="#"><i class="icon_chat_alt"></i> 3 Comments</a>
+                    <div class="text d-flex py-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Sep. 20, 2018</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <div class="desc pl-3">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Single Blog Item -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-blog-item mb-100">
-                    <a href="/frontend/blog-details.html">
-                        <img src="/frontend/img/bg-img/5.jpg" alt="">
+            <div class="col-md-4 ftco-animate">
+                <div class="blog-entry" data-aos-delay="100">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('/frontend/images/image_2.jpg');">
                     </a>
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="/frontend/blog-details.html" class="post-title">What is the best kind of toothpaste to use?</a>
-                        <p>Donec tempor, lorem et euismod eleifend, est lectus laoreet ante, sed accusan justo diam ...</p>
-                        <div class="post-meta">
-                            <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2018</a>
-                            <a href="#"><i class="icon_chat_alt"></i> 3 Comments</a>
+                    <div class="text d-flex py-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Sep. 20, 2018</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <div class="desc pl-3">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Single Blog Item -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-blog-item mb-100">
-                    <a href="/frontend/blog-details.html">
-                        <img src="/frontend/img/bg-img/6.jpg" alt="">
+            <div class="col-md-4 ftco-animate">
+                <div class="blog-entry" data-aos-delay="200">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('/frontend/images/image_3.jpg');">
                     </a>
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="/frontend/blog-details.html" class="post-title">Why you should avoid sipping your drinks</a>
-                        <p>Donec tempor, lorem et euismod eleifend, est lectus laoreet ante, sed accusan justo diam ...</p>
-                        <div class="post-meta">
-                            <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2018</a>
-                            <a href="#"><i class="icon_chat_alt"></i> 3 Comments</a>
+                    <div class="text d-flex py-4">
+                        <div class="meta mb-3">
+                            <div><a href="#">Sep. 20, 2018</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <div class="desc pl-3">
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                         </div>
                     </div>
                 </div>
@@ -604,4 +472,119 @@
         </div>
     </div>
 </section>
-<!-- ***** Blog Area End ***** -->
+
+<section class="ftco-quote">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 pr-md-5 aside-stretch py-5 choose">
+                <div class="heading-section heading-section-white mb-5 ftco-animate">
+                    <h2 class="mb-2">DentaCare Procedure &amp; High Quality Services</h2>
+                </div>
+                <div class="ftco-animate">
+                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. Because there were thousands of bad Commas, wild Question Marks and devious Semikoli</p>
+                    <ul class="un-styled my-5">
+                        <li><span class="icon-check"></span>Consectetur adipisicing elit</li>
+                        <li><span class="icon-check"></span>Adipisci repellat accusamus</li>
+                        <li><span class="icon-check"></span>Tempore reprehenderit vitae</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 py-5 pl-md-5">
+                <div class="heading-section mb-5 ftco-animate">
+                    <h2 class="mb-2">Get a Free Quote</h2>
+                </div>
+                <form action="#" class="ftco-animate">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Full Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Website">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" value="Get a Quote" class="btn btn-primary py-3 px-5">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalRequestLabel">Make an Appointment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <div class="form-group">
+                        <!-- <label for="appointment_name" class="text-black">Full Name</label> -->
+                        <input type="text" class="form-control" id="appointment_name" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="appointment_email" class="text-black">Email</label> -->
+                        <input type="text" class="form-control" id="appointment_email" placeholder="Email">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- <label for="appointment_date" class="text-black">Date</label> -->
+                                <input type="text" class="form-control appointment_date" placeholder="Date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- <label for="appointment_time" class="text-black">Time</label> -->
+                                <input type="text" class="form-control appointment_time" placeholder="Time">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <!-- <label for="appointment_message" class="text-black">Message</label> -->
+                        <textarea name="" id="appointment_message" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Make an Appointment" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -29,7 +29,7 @@ namespace DentAda.Web.Areas.Main.Controllers
         [ContactUsAttribute]
         public IActionResult Index()
         {
-            ViewBag.ContactUs = JsonConvert.DeserializeObject<ContactUsVM>(HttpContext.Session.GetString("ContactUsData"));
+            ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
 
             GalleryVM galleryVM = new GalleryVM();
             galleryVM.GalleryList = new List<GalleryItem>();
@@ -46,7 +46,11 @@ namespace DentAda.Web.Areas.Main.Controllers
             List<GalleryItem> galleryList = new List<GalleryItem>();
             if (di.Exists)
             {
-                FileInfo[] rgFiles = di.GetFiles("*.jpg");
+                List<string> ext = new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".tif" };
+
+                FileInfo[] rgFiles = di.EnumerateFiles(".", SearchOption.AllDirectories)
+                            .Where(path => ext.Contains(Path.GetExtension(path.Name)))
+                            .Select(x => new FileInfo(x.FullName)).ToArray();
                 GalleryItem gallery = null;
                 foreach (FileInfo item in rgFiles.OrderByDescending(x => x.LastWriteTime))
                 {

@@ -1,84 +1,98 @@
 ﻿@{
-    ContactUsVM contactUs = ViewBag.ContactUs;
+    List<ContactUsVM> contactUs = ViewBag.ContactUs;
+    var contactUsCayyolu = contactUs.Where(m => m.Department == 1).FirstOrDefault();
+    var contactUsPolatli = contactUs.Where(m => m.Department == 2).FirstOrDefault();
+
 }
+<style>
+    .contact-information {
+        position: relative;
+        z-index: 1;
+        padding: 30px 50px;
+        background-color: #00aeef;
+        border-radius: 3px;
+    }
 
+        .contact-information h5 {
+            color: white;
+        }
 
-<!-- ***** Breadcrumb Area Start ***** -->
-<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(/frontend/img/bg-img/12.jpg);">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <h2 class="title">İLETİŞİM</h2>
-            </div>
-        </div>
-    </div>
-</div>
+        .contact-information p {
+            color: white;
+        }
+</style>
 
-<!-- ***** Breadcrumb Area End ***** -->
-<!-- ***** Contact Area Start ***** -->
-<section class="dento-contact-area mt-50 mb-100">
+<section class="ftco-section" style="padding-top:50px">
     <div class="container">
 
-        <div class="row  mb-30">
-            <!-- Contact Information -->
+        <div class="row mb-4">
             <div class="col-12 col-md-4">
                 <div class="contact-information">
                     <h5>Adres</h5>
-                    <p>@contactUs.Address</p>
+                    <p>@contactUsCayyolu.Address</p>
 
                     <h5>Telefon</h5>
-                    <p>@contactUs.Phone</p>
+                    <p>@contactUsCayyolu.Phone</p>
 
-                    @if (contactUs.Fax != null)
+                    @if (contactUsCayyolu.Fax != null)
                     {
                         <h5>Faks</h5>
-                        <p>@contactUs.Fax</p>
+                        <p>@contactUsCayyolu.Fax</p>
                     }
-                    @if (contactUs.GSM != null)
+                    @if (contactUsCayyolu.GSM != null)
                     {
                         <h5>GSM</h5>
-                        <p>@contactUs.GSM</p>
+                        <p>@contactUsCayyolu.GSM</p>
                     }
 
                     <h5>E-Posta</h5>
-                    <p class="mb-0">@contactUs.Email</p>
+                    <p class="mb-0">@contactUsCayyolu.Email</p>
                 </div>
             </div>
-
-            <!-- Contact Form -->
             <div class="col-12 col-md-8">
-                <div class="contact-form">
-                    <!-- Section Heading -->
-                    <div class="section-heading">
-                        <h2>Bize Ulaşın</h2>
-                        <div class="line"></div>
-                    </div>
-                    <!-- Form -->
-                    <form action="#" method="post">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="text" name="message-name" class="form-control mb-30" placeholder="Ad">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="email" name="message-surname" class="form-control mb-30" placeholder="Soyad">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" name="message-email" class="form-control mb-30" placeholder="E-Posta">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="email" name="message-phone" class="form-control mb-30" placeholder="Telefon">
-                            </div>
-                            <div class="col-12">
-                                <textarea name="message" class="form-control mb-30" placeholder="Mesajınız"></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn dento-btn">Mesaj Gönder</button>
+                <div class="text-left heading-section ftco-animate fadeInUp ftco-animated">
+                    <h2 class="mb-3">Bize Ulaşın</h2>
+                </div>
+                <div class="divider">
+                    <span></span>
+                </div>
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="message-name" class="form-control" placeholder="Ad">
                             </div>
                         </div>
-                    </form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" name="message-surname" class="form-control" placeholder="Soyad">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="message-email" class="form-control" placeholder="E-Posta">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" name="message-phone" class="form-control" placeholder="Telefon">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Mesajınız"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="submit" value="Gönder" class="btn btn-primary py-3 px-5">
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
-                </div>
             </div>
+
         </div>
         <div class="row">
             <div class="col-12">
@@ -87,7 +101,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
+
 <!-- ***** Contact Area End ***** -->

@@ -54,13 +54,13 @@
 @section pageLevelInlineStyles {
     <style>
         .thumbnailImage {
-            position: relative!important;
-            float: left!important;
-            width: 100%!important;
-            height: 200px!important;
-            background-position: 50% 50%!important;
-            background-repeat: no-repeat!important;
-            background-size: cover!important;
+            position: relative !important;
+            float: left !important;
+            width: 100% !important;
+            height: 176px !important;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
         }
     </style>
 }
@@ -68,56 +68,40 @@
 
     <script src="~/lib/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
 }
-<div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(/frontend/img/bg-img/12.jpg);">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <h2 class="title">GALERİ</h2>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- ***** Breadcrumb Area End ***** -->
-<!-- ****** About Us Area Start ******* -->
-@foreach (var item in Model.GalleryList)
-{
-    <div></div>
-}
-<section class="dento-about-us-area mt-50">
+
+<section class="ftco-section" style="padding-top:50px">
     <div class="container">
+
         <div class="portfolio-content portfolio-2">
             <div id="js-filters-mosaic" class="cbp-l-filters-button">
-                @foreach (var item in Model.GalleryList.GroupBy(m => m.DepartmentName))
-                {
-                    <div data-filter=".@(item.Key)" class="cbp-filter-item btn green btn-outline uppercase">
-                        @if (item.Key == "cayyolu")
+                <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    @foreach (var item in Model.GalleryList.GroupBy(m => m.DepartmentName))
+                    {
+                        if (item.Key == "cayyolu")
                         {
-                            <span>Çayyolu</span>
+
+                            <a class="nav-link cbp-filter-item" style="margin-left:0px;" data-filter=".@(item.Key)" aria-selected="true">Çayyolu</a>
                         }
                         else if (item.Key == "polatli")
                         {
-                            <span>Polatlı</span>
-                        }
-                    </div>
-                }
+                            <a class="nav-link cbp-filter-item" data-filter=".@(item.Key)" aria-selected="true">Polatlı</a>
 
+                        }
+                    }
+                </div>
             </div>
             <div id="js-grid-mosaic" class="cbp cbp-l-grid-mosaic">
-
                 @foreach (var item in Model.GalleryList)
                 {
                     <div class="cbp-item web-design @(item.DepartmentName)">
                         <a href="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })" class="cbp-caption cbp-lightbox">
                             <div class="cbp-caption-defaultWrap">
-                                <img class="thumbnailImage" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })');" alt="">
+                                <img class="thumbnailImage" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })');" alt="">
                             </div>
                         </a>
                     </div>
-
                 }
-
-
             </div>
         </div>
     </div>
@@ -125,3 +109,4 @@
 <br />
 <br />
 <br />
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

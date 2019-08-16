@@ -38,7 +38,8 @@ namespace DentAda.Business.BusinessLogic.Administration
                 Instagram = x.Instagram,
                 Youtube = x.Youtube,
                 Linkedin = x.Linkedin,
-                GooglePlus = x.GooglePlus
+                GooglePlus = x.GooglePlus,
+                Department = x.Department
 
             }).ToList();
         }
@@ -57,8 +58,8 @@ namespace DentAda.Business.BusinessLogic.Administration
                 Instagram = x.Instagram,
                 Youtube = x.Youtube,
                 Linkedin = x.Linkedin,
-                GooglePlus = x.GooglePlus
-
+                GooglePlus = x.GooglePlus,
+                Department = x.Department
             }).ToList();
         }
         public override void Save()
