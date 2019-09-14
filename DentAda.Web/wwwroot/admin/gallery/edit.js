@@ -141,6 +141,56 @@ jQuery(document).ready(function ()
     {
         $.post("/Admin/Gallery/List", { Department: $(this).val() }, function (result) { $("#galleryContent").html(result); });
     });
+    $(".delete-image").click(function ()
+    {
+        event.preventDefault();
+        var that = this;
+        swal.fire({
+            title: 'Bu fotoğrafı silmek istediğinizden emin misiniz?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet'
+        }).then((result) =>
+        {
+            if (result.value)
+            {
+                server.ajaxCall(
+                    "/Admin/Gallery/Delete", //İstek Adresi
+                    function (result)
+                    { // success function callback
+
+                        if (result.status === 1)
+                        {
+                            debugger;
+                            $(that).closest("li").remove();
+
+                        } else
+                        {
+                            swal.fire({
+                                title: "Hata!",
+                                text: result.message,
+                                type: "error"
+                            });
+                        }
+
+                    },
+                    function (err)
+                    { // error function callback
+                        if (err) { swal.fire("Hata", err, "error"); }
+                    },
+                    { imageName: $(that).data("name"), department: $("#cbDepartment").val() }, //data
+                    null,
+                    this, // context erişimi için successcallback içerisinde thatLocal olarak kullanılabilir
+                    'post' // istek yöntemi
+                );
+            }
+        });
+
+
+    });
+
     $(".btnSave").click(function (event)
     {
         event.preventDefault();

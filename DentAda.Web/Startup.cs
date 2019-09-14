@@ -1,4 +1,5 @@
-﻿using DentAda.Business.BusinessLogic.Locator;
+﻿using AutoMapper;
+using DentAda.Business.BusinessLogic.Locator;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace DentAda.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAutoMapper();
             services.Configure<FormOptions>(o =>
             {
                 o.ValueLengthLimit = int.MaxValue;

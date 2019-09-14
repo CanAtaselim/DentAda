@@ -32,7 +32,8 @@ namespace DentAda.Web.Areas.Main.Controllers
         {
 
             ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
-            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.Department == 1 && m.OperationIsDeleted == (short)_Enumeration._Department.Cayyolu);
+            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.Department == (short)_Enumeration._Department.Cayyolu && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
+            ViewBag.Services = _adminlocator.ServicesBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).Take(4).ToList();
             return View();
         }
         public FileContentResult GetImageFilePath(long idPerson)

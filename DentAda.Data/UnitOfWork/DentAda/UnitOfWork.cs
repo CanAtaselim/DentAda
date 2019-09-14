@@ -122,6 +122,9 @@ namespace DentAda.Data.UnitOfWork.DentAda
         private IGenericRepository<ContactUs> _contactUsRepository;
         public IGenericRepository<ContactUs> ContactUsRepository => _contactUsRepository ?? (_contactUsRepository = new GenericRepository<ContactUs>(_context));
 
+        private IGenericRepository<Services> _servicesRepository;
+        public IGenericRepository<Services> ServicesRepository => _servicesRepository ?? (_servicesRepository = new GenericRepository<Services>(_context));
+
 
         #endregion
 

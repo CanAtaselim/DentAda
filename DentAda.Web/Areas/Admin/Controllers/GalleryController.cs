@@ -104,7 +104,36 @@ namespace DentAda.Web.Areas.Admin.Controllers
             }
             return Json(aMsg);
         }
+        [HttpPost]
+        public IActionResult Delete(string imageName, short department)
+        {
+            AjaxMessage aMsg = new AjaxMessage();
+            try
+            {
+                string departmentName = department == 1 ? "cayyolu" : "polatli";
+                string lowresDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\" + departmentName + "\\lowres\\" + imageName);
+                string thumbnailDirectory = Path.Combine(_env.WebRootPath, "images\\gallery\\" + departmentName + "\\thumbnail\\" + imageName);
 
+                if (System.IO.File.Exists(thumbnailDirectory) && System.IO.File.Exists(lowresDirectory))
+                {
+                    System.IO.File.Delete(thumbnailDirectory);
+                    System.IO.File.Delete(lowresDirectory);
+                    aMsg.Status = 1;
+                }
+                else
+                {
+                    aMsg.Status = 0;
+                    aMsg.Message = "Fotoğraf Bulunamadı.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                aMsg.Status = 0;
+                aMsg.Message = "Fotoğraf silme işlemi sırasında bir hata oluştu.";
+            }
+            return Json(aMsg);
+        }
         private static void ConvertThumbnail(string thumbnailDirectory, IFormFile image, string imageName, string imageExtension)
         {
 

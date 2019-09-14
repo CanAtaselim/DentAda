@@ -69,6 +69,12 @@
                         <span class="kt-menu__link-text">Ekibimiz</span>
                     </a>
                 </li>
+                <li class="kt-menu__item @(controller == "Services" ? activeItem : "")" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "Services", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-tools"></i>
+                        <span class="kt-menu__link-text">Hizmetlerimiz</span>
+                    </a>
+                </li>
                 <li class="kt-menu__item @(controller == "Gallery" ? activeItem : "")" aria-haspopup="true">
                     <a href='@Url.Action("Index", "Gallery", new { Area = "Admin" })' class="kt-menu__link ">
                         <i class="kt-menu__link-icon fa fa-images"></i>

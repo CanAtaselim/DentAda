@@ -78,14 +78,16 @@
                             <ul id="lightgallery">
                                 @foreach (GalleryItem item in Model.GalleryList)
                                 {
-
                                     <li class="img-thumbnail" style="padding:0px;" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })">
-                                        <a href="">
-                                            <img class="img-responsive" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })');">
-                                            <div class="demo-gallery-poster">
-                                                <img src="~/lib/lightgallery/zoom.png" />
-                                            </div>
-                                        </a>
+                                        <div class="image-area">
+                                            <a href="">
+                                                <img class="img-responsive" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })');">
+                                                <div class="demo-gallery-poster">
+                                                    <img src="~/lib/lightgallery/zoom.png" />
+                                                </div>
+                                            </a>
+                                            <button class="delete-image" href="#" data-name="@item.FileName" style="display: inline;">&#215;</button>
+                                        </div>
                                     </li>
                                 }
 

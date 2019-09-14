@@ -53,7 +53,7 @@ namespace DentAda.Web.Areas.Admin.Controllers
                 byte[] fileBytes = System.IO.File.ReadAllBytes(Path.Combine(uploads, fileName));
                 return File(fileBytes, "image/jpeg");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var uploads = Path.Combine(_env.WebRootPath, "images");
 

@@ -3,6 +3,8 @@
     List<PersonVM> person = ViewBag.Persons;
     var contactUsCayyolu = contactUs.Where(m => m.Department == 1).FirstOrDefault();
     var contactUsPolatli = contactUs.Where(m => m.Department == 2).FirstOrDefault();
+
+    List<ServicesVM> services = ViewBag.Services;
 }
 
 <section class="home-slider owl-carousel">
@@ -90,60 +92,23 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block text-center">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-dentist"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">
-                            İmplant Tedavisi
-                        </h3>
-                        <p>Dental implantlar; diş eksikliklerinde hastayı dişsizlikten kurtarmak amacıyla çene kemiğine yerleştirilen titanyum alaşımlı yapay diş kökleridir. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block text-center">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-tooth-with-braces"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">
-                            Ortodonti Tel Tedavisi
-                        </h3>
-                        <p>Çapraşık dişler nedeniyle oluşan estetik kusurların tedavisi ve etkilerinin en iyi şekilde yeniden yerine getirilmesi amacıyla tedaviler uygulanır. “Ortodontik tedaviler” halk arasında “Tel tedavisi”olarak bilinir.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block text-center">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-tooth-1"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">
-                            Diş Beyazlatma
-                        </h3>
-                        <p>Diş beyazlatma tedavisi; yıllar içerisinde dişler üzerinde sigara tüketimi, yiyecek – içeceklerin (çay, kahve, şarap vb.) tüketimi sonrasında oluşturduğu renk değişikliklerini gidermek veya mevcut diş rengini açmak amacıyla yapılan işlemdir. Diş beyazlatmak için çeşitli yöntemler kullanılmaktadır. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block text-center">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-dental-care"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">
-                            Diş Protezleri
-                        </h3>
-                        <p>Protez, çeşitli nedenlerle kaybedilen dişlerin yerine konabilen, ağızda estetik bozuklukların giderilmesini sağlayan, fonksiyonel olarak ihtiyaçlara göre çeşitlilik gösteren yapay materyallerdir.</p>
-                    </div>
-                </div>
-            </div>
 
-
+            @foreach (ServicesVM item in services)
+            {
+                <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                    <div class="media block-6 services d-block text-center">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="@item.Icon"></span>
+                        </div>
+                        <div class="media-body p-2 mt-3">
+                            <h3 class="heading">
+                                @item.Title
+                            </h3>
+                            <p>@item.FullText </p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
     <div class="container-wrap mt-5">

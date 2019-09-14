@@ -1,4 +1,5 @@
-﻿using DentAda.Business.BusinessLogic.Locator;
+﻿using AutoMapper;
+using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
 using DentAda.Common;
 using DentAda.Web.WebCommon;
@@ -16,10 +17,12 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
     {
         private AdministrationBLLocator _administrationBLLocator;
         private IMemoryCache _memoryCache;
-        public PersonEdit(AdministrationBLLocator administrationBLLocator, IMemoryCache memoryCache)
+        private IMapper _mapper;
+        public PersonEdit(AdministrationBLLocator administrationBLLocator, IMemoryCache memoryCache, IMapper mapper)
         {
             _administrationBLLocator = administrationBLLocator;
             _memoryCache = memoryCache;
+            _mapper = mapper;
         }
         public static List<SelectListItem> EmployeeTypeList
         {
@@ -42,31 +45,13 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
 
         public Task<IViewComponentResult> InvokeAsync(long IdPerson)
         {
-            PersonVM person = new PersonVM();
 
 
             ViewBag.EmployeeType = EmployeeTypeList;
             ViewBag.DepartmentList = HttpInfo.DepartmentList;
 
-            //string key = "person" + IdPerson;
-            //if (IdPerson > 0)
-            //{
-            //    if (_memoryCache.TryGetValue(key, out person))
-            //    {
-            //        return Task.FromResult<IViewComponentResult>(View(person ?? new PersonVM()));
-            //    }
-            //}
+            PersonVM person = _mapper.Map<PersonVM>(_administrationBLLocator.PersonBL.CRUD.GetById(IdPerson));
 
-            person = _administrationBLLocator.PersonBL.GetVM(filter: m => m.IdPerson == IdPerson && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, orderBy: o => o.OrderBy(x => x.Department)).FirstOrDefault();
-            
-            //if (IdPerson > 0)
-            //{
-            //    _memoryCache.Set(key, person, new MemoryCacheEntryOptions
-            //    {
-            //        AbsoluteExpiration = DateTime.Now.AddMinutes(5),
-            //        Priority = CacheItemPriority.Normal
-            //    });
-            //}
 
             return Task.FromResult<IViewComponentResult>(View(person ?? new PersonVM()));
         }
