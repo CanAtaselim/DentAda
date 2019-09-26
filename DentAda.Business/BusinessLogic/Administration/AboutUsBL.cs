@@ -28,7 +28,6 @@ namespace DentAda.Business.BusinessLogic.Administration
                 IdAboutUs = x.IdAboutUs,
                 Mission = x.Mission,
                 Vision = x.Vision,
-                Department = x.Department,
                 Picture = x.Picture
 
             }).ToList();
@@ -40,7 +39,6 @@ namespace DentAda.Business.BusinessLogic.Administration
                 IdAboutUs = x.IdAboutUs,
                 Mission = x.Mission,
                 Vision = x.Vision,
-                Department = x.Department,
                 Picture = x.Picture
 
             }).ToList();

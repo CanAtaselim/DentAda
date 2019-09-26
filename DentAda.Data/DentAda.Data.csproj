@@ -244,9 +244,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DentAda_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.Config" />
     <None Include="Model\DentAda_Model.edmx.diagram">
       <DependentUpon>DentAda_Model.edmx</DependentUpon>
     </None>

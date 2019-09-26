@@ -75,10 +75,13 @@ namespace DentAda.Common
         }
         public enum _EmployeeType
         {
+            [Description("Yöneticilerimiz")]
+            Managers = 1,
             [Description("Medikal Kadro")]
-            MedicalStaff = 1,
+            MedicalStaff = 2,
             [Description("Takım Arkadaşlarımız")]
-            OurTeam = 2
+            OurTeam = 3
+
         }
         public enum _Department
         {

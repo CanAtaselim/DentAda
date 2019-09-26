@@ -22,10 +22,14 @@
     @*<link href="~/frontend/fonts/flaticon/font/flaticon.css" rel="stylesheet" />*@
     @*<link rel="stylesheet" href="/frontend/fonts/denticonpack/1/font/flaticon.css" />*@
     <link href="~/lib/dentalicons/style.css" rel="stylesheet" />
+    <link href="~/css/whatsapp.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/assets/media/logos/favicon.png" />
     @*<link rel="stylesheet" href="/frontend/fonts/denticonpack/2/font/flaticon.css" />
         <link rel="stylesheet" href="/frontend/fonts/denticonpack/3/font/flaticon.css" />*@
     @RenderSection("pageLevelStyles", required: false)
     @RenderSection("pageLevelInlineStyles", required: false)
+    <style>
+    </style>
 
 </head>
 <body>
@@ -35,6 +39,12 @@
     @Html.Partial("~/Views/Shared/Home/_Header.cshtml")
     <!-- ***** Header Area End ***** -->
     @RenderBody()
+    <div class="text-center text-large">
+        <a href="https://api.whatsapp.com/send?phone=905425412999" class="social-button" target="_blank">
+            <i style="vertical-align: -12%!important; color:#fff!important" class="fa fa-lg fa-whatsapp"></i>
+        </a>
+    </div>
+
     <!-- ***** Blog Area End ***** -->
     <!-- ***** Footer Area Start ***** -->
     @Html.Partial("~/Views/Shared/Home/_Footer.cshtml")
@@ -58,14 +68,11 @@
     <script src="/frontend/js/scrollax.min.js"></script>
     <script src="/frontend/js/main.js"></script>
     <script>
-        jQuery(document).ready(function ()
-        {
-            $(".booking-btn").click(function ()
-            {
+        jQuery(document).ready(function () {
+            $(".booking-btn").click(function () {
                 scrollToAnchor($(".bookingContent"))
             })
-            function scrollToAnchor(html)
-            {
+            function scrollToAnchor(html) {
                 $('html,body').animate({ scrollTop: html.offset().top - 150 }, 'slow');
             }
         });

@@ -14,7 +14,6 @@
           <Property Name="OperationIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OperationDate" Type="datetime" Nullable="false" />
           <Property Name="OperationIsDeleted" Type="smallint" Nullable="false" />
-          <Property Name="Department" Type="smallint" Nullable="false" />
           <Property Name="Mission" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Vision" Type="nvarchar(max)" />
           <Property Name="Picture" Type="image" />
@@ -853,9 +852,9 @@
             <End Role="UniversityDepartment" EntitySet="UniversityDepartment" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <EntitySet Name="AboutUs" EntityType="DentAdaModel.AboutUs" />
           <EntitySet Name="ContactUs" EntityType="DentAdaModel.ContactUs" />
           <EntitySet Name="Services" EntityType="DentAdaModel.Services" />
+          <EntitySet Name="AboutUs" EntityType="DentAdaModel.AboutUs" />
           </EntityContainer>
         <ComplexType Name="Role_List_Result">
           <Property Type="Int64" Name="SystemUserId" Nullable="true" />
@@ -1630,20 +1629,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AboutUs">
-          <Key>
-            <PropertyRef Name="IdAboutUs" />
-          </Key>
-          <Property Name="IdAboutUs" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
-          <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
-          <Property Name="Department" Type="Int16" Nullable="false" />
-          <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Vision" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="ContactUs">
           <Key>
             <PropertyRef Name="IdContactUs" />
@@ -1679,6 +1664,19 @@
           <Property Name="FullText" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="Summary" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Icon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AboutUs">
+          <Key>
+            <PropertyRef Name="IdAboutUs" />
+          </Key>
+          <Property Name="IdAboutUs" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperationIdUserRef" Type="Int64" Nullable="false" />
+          <Property Name="OperationIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OperationIsDeleted" Type="Int16" Nullable="false" />
+          <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vision" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2153,21 +2151,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AboutUs">
-            <EntityTypeMapping TypeName="DentAdaModel.AboutUs">
-              <MappingFragment StoreEntitySet="AboutUs">
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="Vision" ColumnName="Vision" />
-                <ScalarProperty Name="Mission" ColumnName="Mission" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
-                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
-                <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
-                <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
-                <ScalarProperty Name="IdAboutUs" ColumnName="IdAboutUs" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ContactUs">
             <EntityTypeMapping TypeName="DentAdaModel.ContactUs">
               <MappingFragment StoreEntitySet="ContactUs">
@@ -2203,6 +2186,20 @@
                 <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
                 <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
                 <ScalarProperty Name="IdServices" ColumnName="IdServices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AboutUs">
+            <EntityTypeMapping TypeName="DentAdaModel.AboutUs">
+              <MappingFragment StoreEntitySet="AboutUs">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="Mission" ColumnName="Mission" />
+                <ScalarProperty Name="OperationIsDeleted" ColumnName="OperationIsDeleted" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+                <ScalarProperty Name="OperationIP" ColumnName="OperationIP" />
+                <ScalarProperty Name="OperationIdUserRef" ColumnName="OperationIdUserRef" />
+                <ScalarProperty Name="IdAboutUs" ColumnName="IdAboutUs" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -64,7 +64,7 @@ namespace DentAda.Web.Areas.Auth.Controllers
                     SystemUser systemUser = null;
                     string password = "";
 
-                    systemUser = _adminlocator.SystemUserBL.CRUD.Get(x => x.IdNo == loginVM.UserName).FirstOrDefault();
+                    systemUser = _adminlocator.SystemUserBL.CRUD.Get(x => x.Username == loginVM.UserName).FirstOrDefault();
                     password = loginVM.Password;
 
                     if (systemUser != null)

@@ -49,7 +49,6 @@
 
 
                     AboutUs aboutUs = new AboutUs();
-                    aboutUs.Department = model.Department;
                     aboutUs.Mission = model.Mission;
                     aboutUs.Vision = model.Vision;
                     aboutUs.Picture = imageData != null ? imageData : model.Picture;

@@ -10,14 +10,10 @@ jQuery(document).ready(function ()
         image.src = URL.createObjectURL(event.target.files[0]);
     });
 
-    $("#cbDepartment").change(function ()
-    {
-        reInvokeComponent();
-    });
 
     function reInvokeComponent()
     {
-        $.post("/Admin/AboutUs/ReInvokeEditComponent", { Department: $("#cbDepartment").val() }, function (result) { $("#aboutUsContent").html(result); });
+        $.post("/Admin/AboutUs/ReInvokeEditComponent", function (result) { $("#aboutUsContent").html(result); });
     }
 
     $(".btnSave").click(function (event)

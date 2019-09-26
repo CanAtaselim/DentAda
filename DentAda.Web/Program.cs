@@ -19,7 +19,12 @@ namespace DentAda.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls(new string[] { "http://www.dentadals.com" })
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
+
     }
 }

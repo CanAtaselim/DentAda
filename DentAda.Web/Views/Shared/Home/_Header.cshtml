@@ -98,7 +98,7 @@
                 <li class="nav-item @(controller == "Team" ? "active" : "")"><a href='@Url.Action("Index", "Team", new { Area = "Main" })' class="nav-link">Ekibimiz</a></li>
                 <li class="nav-item @(controller == "Gallery" ? "active" : "")"><a href='@Url.Action("Index", "Gallery", new { Area = "Main" })' class="nav-link">Galeri</a></li>
                 <li class="nav-item @(controller == "ContactUs" ? "active" : "")"><a href='@Url.Action("Index", "ContactUs", new { Area = "Main" })' class="nav-link">İletişim</a></li>
-                <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><span>Randevu Al</span></a></li>
+                @*<li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalRequest"><i class="fa fa-whatsapp"></i></a></li>*@
             </ul>
         </div>
     </div>

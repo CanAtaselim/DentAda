@@ -31,6 +31,11 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
                 return new List<SelectListItem>() {
                     new SelectListItem()
                     {
+                        Text = _Enumeration.GetEnumDescription(_Enumeration._EmployeeType.Managers).ToString(),
+                        Value = ((int)_Enumeration._EmployeeType.Managers).ToString()
+                    },
+                    new SelectListItem()
+                    {
                         Text = _Enumeration.GetEnumDescription(_Enumeration._EmployeeType.MedicalStaff).ToString(),
                         Value = ((int)_Enumeration._EmployeeType.MedicalStaff).ToString()
                     },

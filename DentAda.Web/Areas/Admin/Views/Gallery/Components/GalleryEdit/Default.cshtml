@@ -38,19 +38,22 @@
         <div class="kt-portlet__body">
             <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder">
                 <div class="kt-portlet__head" style="padding:0 9px 0 10px">
-                    <div class="kt-portlet__head-toolbar">
-                        <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"></select>
-                        <div class="kt-portlet__head-actions">
-                            <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; margin-left:10px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
-                            <input multiple type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
+                    <div class="kt-portlet__head-toolbar" style="width:100%">
+                        <div class="row" style="width:100%">
+                            <div class="col-md-2">
+                                <select class="form-control kt-selectpicker" id="cbDepartment" asp-for="Department" asp-items="ViewBag.DepartmentList"></select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="btn btn-twitter btn-elevate" style="margin-bottom:0px; margin-left:10px; cursor:pointer" for="customFile"><i class="fa fa-upload"></i>Fotoğraf yüklemek için tıklayınız.</label>
+                                <input multiple type="file" name="files" id="customFile" accept="image/png,image/jpg,image/jpeg">
 
+                            </div>
                         </div>
+
                     </div>
                     <div class="kt-portlet__head-toolbar">
                         <div class="kt-portlet__head-actions">
                             <span id="txtFileSize" class="kt-badge kt-badge--lg kt-badge--inline"></span>
-
-
                         </div>
                     </div>
 
@@ -80,7 +83,7 @@
                                 {
                                     <li class="img-thumbnail" style="padding:0px;" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\lowres", area = "Administration" })">
                                         <div class="image-area">
-                                            <a href="">
+                                            <a href="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumnbail", area = "Administration" })">
                                                 <img class="img-responsive" data-src="@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })" style="background-image:url('@Url.Action("GetImageFilePath", "File", new { fileName = item.FileName, filePath = item.FilePath + "\\thumbnail", area = "Administration" })');">
                                                 <div class="demo-gallery-poster">
                                                     <img src="~/lib/lightgallery/zoom.png" />

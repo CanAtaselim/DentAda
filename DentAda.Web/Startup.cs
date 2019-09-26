@@ -65,6 +65,11 @@ namespace DentAda.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{area=Main}/{controller=Home}/{action=Index}");
+
+                routes.MapRoute(
+                    name: "Admin",
+                    template: "{area=admin}/{controller=AboutUs}/{action=Index}");
+
             });
         }
     }

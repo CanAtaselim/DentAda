@@ -12,8 +12,6 @@ namespace DentAda.Business.ViewModel.Administration
     {
         public long IdAboutUs { get; set; }
 
-        [Required(ErrorMessage = "Lütfen Şube Seçiniz.")]
-        public short Department { get; set; }
         [Required(ErrorMessage = "Lütfen hakkımızda bölümünü doldurunuz.")]
         public string Mission { get; set; }
         public string Vision { get; set; }
