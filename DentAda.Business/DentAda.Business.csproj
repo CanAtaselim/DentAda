@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\Administration\BannerBL.cs" />
     <Compile Include="BusinessLogic\Administration\ContactUs.cs" />
     <Compile Include="BusinessLogic\Administration\AboutUsBL.cs" />
     <Compile Include="BusinessLogic\Administration\AnnouncementBL.cs" />
@@ -115,9 +116,6 @@
     <Compile Include="BusinessLogic\Administration\SystemUserTicketBL.cs" />
     <Compile Include="BusinessLogic\Administration\TopMenuBL.cs" />
     <Compile Include="BusinessLogic\Administration\TownBL.cs" />
-    <Compile Include="BusinessLogic\Administration\FacultyBL.cs" />
-    <Compile Include="BusinessLogic\Administration\UniversityDepartmentBL.cs" />
-    <Compile Include="BusinessLogic\Administration\UniversitiesBL.cs" />
     <Compile Include="BusinessLogic\Administration\VillageBL.cs" />
     <Compile Include="BusinessLogic\Auth\LoginBL.cs" />
     <Compile Include="BusinessLogic\Base\BaseBL.cs" />
@@ -130,6 +128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Administration\AboutUsVM.cs" />
     <Compile Include="ViewModel\Administration\AnnouncementVM.cs" />
+    <Compile Include="ViewModel\Administration\BannerVM.cs" />
     <Compile Include="ViewModel\Administration\CDCVM.cs" />
     <Compile Include="ViewModel\Administration\CityVM.cs" />
     <Compile Include="ViewModel\Administration\ConnectionLogVM.cs" />

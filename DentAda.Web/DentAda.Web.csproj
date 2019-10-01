@@ -6,6 +6,7 @@
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <MvcBuildViews>true</MvcBuildViews>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

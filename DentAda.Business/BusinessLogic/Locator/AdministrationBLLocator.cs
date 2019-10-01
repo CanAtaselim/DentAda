@@ -139,24 +139,7 @@ namespace DentAda.Business.BusinessLogic.Locator
         }
 
 
-        private UniversitiesBL _UniversitiesBL;
-
-        public UniversitiesBL UniversitiesBL
-        {
-            get { return _UniversitiesBL == null ? _UniversitiesBL = new UniversitiesBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _UniversitiesBL; }
-        }
-        private FacultyBL _FacultyBL;
-
-        public FacultyBL FacultyBL
-        {
-            get { return _FacultyBL == null ? _FacultyBL = new FacultyBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _FacultyBL; }
-        }
-        private UniversityDepartmentBL _UniversityDepartmentBL;
-
-        public UniversityDepartmentBL UniversityDepartmentBL
-        {
-            get { return _UniversityDepartmentBL == null ? _UniversityDepartmentBL = new UniversityDepartmentBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _UniversityDepartmentBL; }
-        }
+  
         private PersonBL _PersonBL;
 
         public PersonBL PersonBL
@@ -174,6 +157,13 @@ namespace DentAda.Business.BusinessLogic.Locator
         public ServicesBL ServicesBL
         {
             get { return _ServicesBL == null ? _ServicesBL = new ServicesBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _ServicesBL; }
+        }
+
+        private BannerBL _BannerBL;
+
+        public BannerBL BannerBL
+        {
+            get { return _BannerBL == null ? _BannerBL = new BannerBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _BannerBL; }
         }
     }
 }

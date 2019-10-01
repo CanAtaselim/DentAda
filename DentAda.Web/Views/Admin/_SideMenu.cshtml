@@ -81,12 +81,19 @@
                         <span class="kt-menu__link-text">Galeri</span>
                     </a>
                 </li>
+                <li class="kt-menu__item @(controller == "Banner" ? activeItem : "")" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "Banner", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-sliders-h"></i>
+                        <span class="kt-menu__link-text">Banner</span>
+                    </a>
+                </li>
                 <li class="kt-menu__item @(controller == "ContactUs" ? activeItem : "")" aria-haspopup="true">
                     <a href='@Url.Action("Index", "ContactUs", new { Area = "Admin" })' class="kt-menu__link ">
                         <i class="kt-menu__link-icon fa fa-phone-square"></i>
                         <span class="kt-menu__link-text">İletişim</span>
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>

@@ -26,11 +26,9 @@ namespace DentAda.Data.UnitOfWork.DentAda
         IGenericRepository<ExceptionFeedBack> ExceptionFeedBackRepository { get; }
         IGenericRepository<AboutUs> AboutUsRepository { get; }
         IGenericRepository<Person> PersonRepository { get; }
-        IGenericRepository<Universities> UniversitiesRepository { get; }
-        IGenericRepository<UniversityDepartment> UniversityDepartmentRepository { get; }
-        IGenericRepository<Faculties> FacultiesRepository { get; }
         IGenericRepository<ContactUs> ContactUsRepository { get; }
         IGenericRepository<Services> ServicesRepository { get; }
+        IGenericRepository<Banner> BannerRepository { get; }
 
         #endregion 
 

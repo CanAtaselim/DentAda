@@ -45,30 +45,8 @@ namespace DentAda.Web.Areas.Admin.Controllers
         {
             return ViewComponent("PersonList");
         }
-        [HttpPost]
-        public JsonResult GetUniversity(string search)
-        {
-            List<UniversitiesVM> universities = _administrationBLLocator.UniversitiesBL.GetVM(filter: m => m.Name.Contains(search) && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, take: 10);
 
-            var newJson = JsonConvert.SerializeObject(universities);
-            return Json(newJson);
-        }
-        [HttpPost]
-        public JsonResult GetFaculty(string search, long idUniversity)
-        {
-            List<FacultyVM> faculties = _administrationBLLocator.FacultyBL.GetVM(filter: m => m.Name.Contains(search) && m.IdUniversity == idUniversity && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, take: 10);
-            var newJson = JsonConvert.SerializeObject(faculties);
-            return Json(newJson);
-        }
-
-        [HttpPost]
-        public JsonResult GetUniversityDepartment(string search, long idFaculty)
-        {
-            List<UniversityDepartmentVM> universityDepartment = _administrationBLLocator.UniversityDepartmentBL.GetVM(filter: m => m.Name.Contains(search) && m.IdFaculty == idFaculty && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active, take: 10);
-            var newJson = JsonConvert.SerializeObject(universityDepartment);
-            return Json(newJson);
-        }
-
+     
         [HttpPost]
         public IActionResult Save(PersonVM model)
         {
@@ -89,9 +67,6 @@ namespace DentAda.Web.Areas.Admin.Controllers
 
 
                     Person person = new Person();
-                    person.IdUniversity = model.IdUniversity;
-                    person.IdFaculty = model.IdFaculty;
-                    person.IdUniversityDepartment = model.IdUniversityDepartment;
                     person.EmployeeType = model.EmployeeType;
                     person.Department = model.Department;
                     person.Name = model.Name;

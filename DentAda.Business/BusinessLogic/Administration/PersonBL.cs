@@ -28,9 +28,6 @@ namespace DentAda.Business.BusinessLogic.Administration
             return CRUD.Query(filter, orderBy, take, skip, includes).Select(x => new PersonVM
             {
                 IdPerson = x.IdPerson,
-                IdUniversity = x.IdUniversity,
-                IdFaculty = x.IdFaculty,
-                IdUniversityDepartment = x.IdUniversityDepartment,
                 Department = x.Department,
                 Name = x.Name,
                 Surname = x.Surname,
@@ -40,9 +37,6 @@ namespace DentAda.Business.BusinessLogic.Administration
                 Gsm = x.Gsm,
                 About = x.About,
                 Picture = x.Picture,
-                UniversityName = x.Universities.Name,
-                FacultyName = x.Faculties.Name,
-                UniversityDepartmentName = x.UniversityDepartment.Name,
                 EmployeeType = x.EmployeeType
 
             }).ToList();

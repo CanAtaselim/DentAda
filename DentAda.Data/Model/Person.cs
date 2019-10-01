@@ -19,9 +19,7 @@ namespace DentAda.Data.Model
         public string OperationIP { get; set; }
         public System.DateTime OperationDate { get; set; }
         public short OperationIsDeleted { get; set; }
-        public Nullable<long> IdUniversity { get; set; }
-        public Nullable<long> IdFaculty { get; set; }
-        public Nullable<long> IdUniversityDepartment { get; set; }
+        public short EmployeeType { get; set; }
         public short Department { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -31,10 +29,5 @@ namespace DentAda.Data.Model
         public string Gsm { get; set; }
         public string About { get; set; }
         public byte[] Picture { get; set; }
-        public short EmployeeType { get; set; }
-    
-        public virtual Faculties Faculties { get; set; }
-        public virtual Universities Universities { get; set; }
-        public virtual UniversityDepartment UniversityDepartment { get; set; }
     }
 }

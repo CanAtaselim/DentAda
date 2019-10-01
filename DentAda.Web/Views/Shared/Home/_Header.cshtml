@@ -17,7 +17,7 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <!-- Top Content -->
-                    <div class="col-6 col-md-10 col-lg-9">
+                    <div class="col-6 col-md-10 col-lg-10">
                         <div class="text text-center">
                             <div class="top-header-content">
                                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="@contactUsCayyolu.Address"><i class="fa fa-map-marker"></i><span>@contactUsCayyolu.Address</span></a>
@@ -25,21 +25,21 @@
                                 <a href="#" style="margin-left:30px" data-toggle="tooltip" data-placement="bottom" title="@contactUsCayyolu.Phone"><i class="fa fa-phone"></i><span>@contactUsCayyolu.Phone</span></a>
                                 <a href="#" style="margin-left:30px" data-toggle="tooltip" data-placement="bottom" title="@contactUsCayyolu.Phone">
                                     <i class="fa fa-door-open"></i><span>
-                                        Açılış: Pzt-Cts: 09:00 – 22:00
+                                        Açılış: Pzt-Cts: 09:00 – 19:00
                                     </span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- Top Header Social Info -->
-                    <div class="col-6 col-md-2 col-lg-3">
-                        <div class="top-header-social-info text-right">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                    <div class="col-6 col-md-2 col-lg-2">
+                        @*<div class="top-header-social-info text-right">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                            </div>*@
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
 
                 <div class="row h-100 align-items-center">
                     <!-- Top Content -->
-                    <div class="col-6 col-md-10 col-lg-9">
+                    <div class="col-6 col-md-10 col-lg-10">
                         <div class="text text-center">
                             <div class="top-header-content">
                                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="@contactUsPolatli.Address"><i class="fa fa-map-marker"></i><span>@contactUsPolatli.Address</span></a>
@@ -67,14 +67,14 @@
                         </div>
                     </div>
                     <!-- Top Header Social Info -->
-                    <div class="col-6 col-md-2 col-lg-3">
-                        <div class="top-header-social-info text-right">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                    <div class="col-6 col-md-2 col-lg-2">
+                        @*<div class="top-header-social-info text-right">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Google Plus"><i class="fa fa-google-plus"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                            </div>*@
                     </div>
 
                 </div>
@@ -95,6 +95,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item @(controller == "Home" ? "active" : "")"><a href='@Url.Action("Index", "Home", new { Area = "Main" })' class="nav-link">Anasayfa</a></li>
                 <li class="nav-item @(controller == "AboutUs" ? "active" : "")"><a href='@Url.Action("Index", "AboutUs", new { Area = "Main" })' class="nav-link">Hakkımızda</a></li>
+                <li class="nav-item @(controller == "Services" ? "active" : "")"><a href='@Url.Action("Index", "Services", new { Area = "Main" })' class="nav-link">Hizmetlerimiz</a></li>
                 <li class="nav-item @(controller == "Team" ? "active" : "")"><a href='@Url.Action("Index", "Team", new { Area = "Main" })' class="nav-link">Ekibimiz</a></li>
                 <li class="nav-item @(controller == "Gallery" ? "active" : "")"><a href='@Url.Action("Index", "Gallery", new { Area = "Main" })' class="nav-link">Galeri</a></li>
                 <li class="nav-item @(controller == "ContactUs" ? "active" : "")"><a href='@Url.Action("Index", "ContactUs", new { Area = "Main" })' class="nav-link">İletişim</a></li>
@@ -115,6 +116,9 @@
                         break;
                     case "AboutUs":
                         <h2>Hakkımızda</h2>
+                        break;
+                    case "Services":
+                        <h2>Hizmetlerimiz</h2>
                         break;
                     case "Team":
                         <h2>Ekibimiz</h2>

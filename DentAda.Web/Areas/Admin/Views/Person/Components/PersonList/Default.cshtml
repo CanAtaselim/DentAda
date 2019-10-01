@@ -46,14 +46,12 @@
                             <tr>
                                 <th></th>
                                 <th>Çalışan Tipi</th>
+                                <th>Şube</th>
                                 <th>Ad Soyad</th>
                                 <th>Unvan</th>
                                 <th>Meslek</th>
                                 <th>Telefon</th>
                                 <th>GSM</th>
-                                <th>Üniversite</th>
-                                <th>Fakülte</th>
-                                <th>Bölüm</th>
 
                             </tr>
                         </thead>
@@ -71,17 +69,29 @@
                                     <td>
                                         @{
                                             string myClass = "";
-                                            if (item.EmployeeType == 1)
+
+                                            switch (item.EmployeeType)
                                             {
-                                                myClass = "kt-badge--success";
-                                            }
-                                            else
-                                            {
-                                                myClass = "kt-badge--warning";
+                                                case 1:
+                                                    myClass = "kt-badge--brand";
+                                                    break;
+                                                case 2:
+                                                    myClass = "kt-badge--warning";
+                                                    break;
+                                                case 3:
+                                                    myClass = "kt-badge--success";
+                                                    break;
+                                                default:
+                                                    break;
                                             }
                                         }
                                         <span class="kt-badge kt-badge--inline @myClass">
                                             @_Enumeration.GetEnumDescription((_Enumeration._EmployeeType)Enum.ToObject(typeof(_Enumeration._EmployeeType), item.EmployeeType))
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            @_Enumeration.GetEnumDescription((_Enumeration._Department)Enum.ToObject(typeof(_Enumeration._Department), item.Department))
                                         </span>
                                     </td>
                                     <td>@item.Name @item.Surname</td>
@@ -89,9 +99,6 @@
                                     <td>@item.Profession</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Gsm</td>
-                                    <td>@item.UniversityName</td>
-                                    <td>@item.FacultyName</td>
-                                    <td>@item.UniversityDepartmentName</td>
                                 </tr>
 
                             }

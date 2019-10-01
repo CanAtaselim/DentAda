@@ -12,23 +12,15 @@ namespace DentAda.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UniversityDepartment
+    public partial class Banner
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UniversityDepartment()
-        {
-            this.Person = new HashSet<Person>();
-        }
-    
-        public long IdUniversityDepartment { get; set; }
+        public long IdBanner { get; set; }
         public long OperationIdUserRef { get; set; }
         public string OperationIP { get; set; }
         public System.DateTime OperationDate { get; set; }
         public short OperationIsDeleted { get; set; }
-        public long IdFaculty { get; set; }
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public string Description { get; set; }
     }
 }

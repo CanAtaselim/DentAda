@@ -110,14 +110,6 @@ namespace DentAda.Data.UnitOfWork.DentAda
         private IGenericRepository<Person> _personRepository;
         public IGenericRepository<Person> PersonRepository => _personRepository ?? (_personRepository = new GenericRepository<Person>(_context));
 
-        private IGenericRepository<Universities> _universitiesRepository;
-        public IGenericRepository<Universities> UniversitiesRepository => _universitiesRepository ?? (_universitiesRepository = new GenericRepository<Universities>(_context));
-
-        private IGenericRepository<UniversityDepartment> _universityDepartmentRepository;
-        public IGenericRepository<UniversityDepartment> UniversityDepartmentRepository => _universityDepartmentRepository ?? (_universityDepartmentRepository = new GenericRepository<UniversityDepartment>(_context));
-
-        private IGenericRepository<Faculties> _facultiesRepository;
-        public IGenericRepository<Faculties> FacultiesRepository => _facultiesRepository ?? (_facultiesRepository = new GenericRepository<Faculties>(_context));
 
         private IGenericRepository<ContactUs> _contactUsRepository;
         public IGenericRepository<ContactUs> ContactUsRepository => _contactUsRepository ?? (_contactUsRepository = new GenericRepository<ContactUs>(_context));
@@ -125,6 +117,8 @@ namespace DentAda.Data.UnitOfWork.DentAda
         private IGenericRepository<Services> _servicesRepository;
         public IGenericRepository<Services> ServicesRepository => _servicesRepository ?? (_servicesRepository = new GenericRepository<Services>(_context));
 
+        private IGenericRepository<Banner> _bannerRepository;
+        public IGenericRepository<Banner> BannerRepository => _bannerRepository ?? (_bannerRepository = new GenericRepository<Banner>(_context));
 
         #endregion
 

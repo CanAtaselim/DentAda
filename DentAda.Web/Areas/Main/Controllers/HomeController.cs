@@ -34,7 +34,7 @@ namespace DentAda.Web.Areas.Main.Controllers
             ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
             ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.EmployeeType == (short)_Enumeration._EmployeeType.Managers && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
             ViewBag.Services = _adminlocator.ServicesBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).Take(4).ToList();
-            ViewBag.AboutUs = _adminlocator.AboutUsBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).ToList();
+            ViewBag.AboutUs = _adminlocator.AboutUsBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active).FirstOrDefault();
 
             return View();
         }

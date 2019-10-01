@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DentAda.Business.BusinessLogic.Locator;
 using DentAda.Business.ViewModel.Administration;
 using DentAda.Common;
@@ -12,22 +13,22 @@ using Newtonsoft.Json;
 namespace DentAda.Web.Areas.Main.Controllers
 {
     [Area("Main")]
-    public class TeamController : BaseController
+    public class ServicesController : BaseController
     {
         private IMemoryCache _memoryCache;
         private AdministrationBLLocator _adminlocator;
         private IHostingEnvironment _env;
-        public TeamController(AdministrationBLLocator adminLocator, IMemoryCache memoryCache, IHostingEnvironment env) : base(env)
+        public ServicesController(AdministrationBLLocator adminLocator, IMemoryCache memoryCache, IHostingEnvironment env) : base(env)
         {
             _env = env;
             _memoryCache = memoryCache;
             _adminlocator = adminLocator;
         }
         [ContactUsAttribute]
-        public IActionResult Index(short Department = 1)
+        public IActionResult Index()
         {
             ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
-            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.Department == Department && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
+            ViewBag.Services = _adminlocator.ServicesBL.GetVM(filter: m => m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
 
             return View();
         }

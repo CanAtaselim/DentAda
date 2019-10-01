@@ -47,17 +47,11 @@
         <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Town" />
         <AssociationConnector Association="DentAdaModel.FK_SystemUserRoleLocation_Village" />
         <AssociationConnector Association="DentAdaModel.FK_Village_Town" />
-        <EntityTypeShape EntityType="DentAdaModel.Faculties" Width="1.5" PointX="15.625" PointY="13" />
-        <EntityTypeShape EntityType="DentAdaModel.Universities" Width="1.5" PointX="13.375" PointY="13.125" />
-        <EntityTypeShape EntityType="DentAdaModel.UniversityDepartment" Width="1.5" PointX="15.625" PointY="9.125" />
-        <AssociationConnector Association="DentAdaModel.FK_Faculties_Faculties" />
-        <EntityTypeShape EntityType="DentAdaModel.Person" Width="1.5" PointX="17.875" PointY="10" />
-        <AssociationConnector Association="DentAdaModel.FK_Person_Faculties" />
-        <AssociationConnector Association="DentAdaModel.FK_Person_Universities" />
-        <AssociationConnector Association="DentAdaModel.FK_Person_UniversityDepartment" />
         <EntityTypeShape EntityType="DentAdaModel.ContactUs" Width="1.5" PointX="8.375" PointY="15.75" />
         <EntityTypeShape EntityType="DentAdaModel.Services" Width="1.5" PointX="15.375" PointY="4.75" />
         <EntityTypeShape EntityType="DentAdaModel.AboutUs" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DentAdaModel.Banner" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DentAdaModel.Person" Width="1.5" PointX="13.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

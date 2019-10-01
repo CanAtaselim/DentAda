@@ -9,9 +9,6 @@ namespace DentAda.Business.ViewModel.Administration
     public class PersonVM : BaseVM
     {
         public long IdPerson { get; set; }
-        public Nullable<long> IdUniversity { get; set; }
-        public Nullable<long> IdFaculty { get; set; }
-        public Nullable<long> IdUniversityDepartment { get; set; }
         [Required(ErrorMessage = "Çalışan tipi zorunlu.")]
         public short EmployeeType { get; set; }
         [Required(ErrorMessage = "Şube zorunlu.")]
@@ -33,9 +30,6 @@ namespace DentAda.Business.ViewModel.Administration
         public string Gsm { get; set; }
         public string About { get; set; }
         public byte[] Picture { get; set; }
-        public string UniversityName { get; set; }
-        public string FacultyName { get; set; }
-        public string UniversityDepartmentName { get; set; }
 
     }
 }
