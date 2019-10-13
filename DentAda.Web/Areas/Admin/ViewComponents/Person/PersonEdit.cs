@@ -51,11 +51,11 @@ namespace DentAda.Web.Areas.Admin.ViewComponents.Person
         public Task<IViewComponentResult> InvokeAsync(long IdPerson)
         {
 
-
             ViewBag.EmployeeType = EmployeeTypeList;
             ViewBag.DepartmentList = HttpInfo.DepartmentList;
 
             PersonVM person = _mapper.Map<PersonVM>(_administrationBLLocator.PersonBL.CRUD.GetById(IdPerson));
+
 
 
             return Task.FromResult<IViewComponentResult>(View(person ?? new PersonVM()));

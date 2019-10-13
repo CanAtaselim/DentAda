@@ -12,24 +12,14 @@ namespace DentAda.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Talent
     {
-        public long IdPerson { get; set; }
+        public long IdTalent { get; set; }
         public long OperationIdUserRef { get; set; }
         public string OperationIP { get; set; }
         public System.DateTime OperationDate { get; set; }
         public short OperationIsDeleted { get; set; }
-        public short EmployeeType { get; set; }
-        public short Department { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
         public string Title { get; set; }
-        public string Profession { get; set; }
-        public string Phone { get; set; }
-        public string Gsm { get; set; }
-        public string About { get; set; }
-        public byte[] Picture { get; set; }
-        public string EmployeeTypeList { get; set; }
-        public string DepartmentList { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace DentAda.Business.BusinessLogic.Mapping
             CreateMap<Person, PersonVM>();
             CreateMap<Services, ServicesVM>();
             CreateMap<Banner, BannerVM>();
+            CreateMap<Talent, TalentVM>();
         }
 
     }

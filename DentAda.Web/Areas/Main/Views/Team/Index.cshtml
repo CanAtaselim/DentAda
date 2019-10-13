@@ -18,7 +18,7 @@
                     @{
                         string cayyolu = Context.Request.Query["Department"] == "1" ? "nav-link active" : "nav-link";
                         string polatli = Context.Request.Query["Department"] == "2" ? "nav-link active" : "nav-link";
-                        @Html.ActionLink("Çayyolu", "Index", "Team", new { Area = "Main", Department = 1 }, new { @class = cayyolu , @style = "cursor:pointer" })
+                        @Html.ActionLink("Çayyolu", "Index", "Team", new { Area = "Main", Department = 1 }, new { @class = cayyolu, @style = "cursor:pointer" })
                         @Html.ActionLink("Polatlı", "Index", "Team", new { Area = "Main", Department = 2 }, new { @class = polatli, @style = "cursor:pointer" })
 
                     }
@@ -37,71 +37,76 @@
                 </div>
             </div>
             <div class="row justify-content-md-center">
-                @if (person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.Managers).Count() > 0)
-                {
-                    int count = person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.Managers).Count();
+                @{
+                    short managers = (short)_Enumeration._EmployeeType.Managers;
 
-                    @foreach (PersonVM item in person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.Managers))
+                    @if (person.Any(w => w.Employees.Contains(managers.ToString())))
                     {
-                        <div class="col-lg-@(count > 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
-                            <div class="staff">
+                        int count = person.Where(w => w.Employees.Contains(managers.ToString())).Count();
 
-                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                <div class="info text-center">
-                                    <h3>@item.Name @item.Surname</h3>
-                                    <span class="position">@item.Profession</span>
-                                    <div class="text">
-                                        @{
-                                            string about = item.About;
+                        @foreach (PersonVM item in person.Where(w => w.Employees.Contains(managers.ToString())))
+                        {
+                            <div class="col-lg-@(count > 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
+                                <div class="staff">
 
-                                            if (item.About != null && item.About.Length > 250)
-                                            {
-                                                var parts = item.About.Substring(0, 249).Split(' ');
-                                                about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+                                    <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                    <div class="info text-center">
+                                        <h3>@item.Name @item.Surname</h3>
+                                        <span class="position">@item.Profession</span>
+                                        <div class="text">
+                                            @{
+                                                string about = item.About;
+
+                                                if (item.About != null && item.About.Length > 250)
+                                                {
+                                                    var parts = item.About.Substring(0, 249).Split(' ');
+                                                    about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+
+                                                }
+                                                <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
 
                                             }
-                                            <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
-
-                                        }
-                                        @*<ul class="ftco-social">
-                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                            </ul>*@
+                                            @*<ul class="ftco-social">
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                </ul>*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
+                            <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
 
-                                        <div class="staff">
+                                            <div class="staff">
 
-                                            <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                            <div class="info text-center">
-                                                <h3>@item.Name @item.Surname</h3>
-                                                <span class="position">@item.Profession</span>
-                                                <div class="text">
-                                                    <p>@item.About</p>
-                                                    @*<ul class="ftco-social">
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                                        </ul>*@
+                                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                                <div class="info text-center">
+                                                    <h3>@item.Name @item.Surname</h3>
+                                                    <span class="position">@item.Profession</span>
+                                                    <div class="text">
+                                                        <p>@item.About</p>
+                                                        @*<ul class="ftco-social">
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                            </ul>*@
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        }
                     }
+
                 }
 
             </div>
@@ -115,70 +120,74 @@
                 </div>
             </div>
             <div class="row justify-content-center mb-2 pb-2">
-                @if (person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.MedicalStaff).Count() > 0)
-                {
-                    int count = person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.MedicalStaff).Count();
-                    @foreach (PersonVM item in person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.MedicalStaff))
+                @{
+                    short medicalStaff = (short)_Enumeration._EmployeeType.MedicalStaff;
+                    @if (person.Any(w => w.Employees.Contains(medicalStaff.ToString())))
                     {
-                        <div class="col-lg-@(count >= 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
-                            <div class="staff">
+                        int count = person.Where(w => w.Employees.Contains(medicalStaff.ToString())).Count();
+                        @foreach (PersonVM item in person.Where(w => w.Employees.Contains(medicalStaff.ToString())))
+                        {
+                            <div class="col-lg-@(count >= 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
+                                <div class="staff">
 
-                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                <div class="info text-center">
-                                    <h3>@item.Name @item.Surname</h3>
-                                    <span class="position">@item.Profession</span>
-                                    <div class="text">
-                                        @{
-                                            string about = item.About;
+                                    <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                    <div class="info text-center">
+                                        <h3>@item.Name @item.Surname</h3>
+                                        <span class="position">@item.Profession</span>
+                                        <div class="text">
+                                            @{
+                                                string about = item.About;
 
-                                            if (item.About != null && item.About.Length > 250)
-                                            {
-                                                var parts = item.About.Substring(0, 249).Split(' ');
-                                                about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+                                                if (item.About != null && item.About.Length > 250)
+                                                {
+                                                    var parts = item.About.Substring(0, 249).Split(' ');
+                                                    about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+
+                                                }
+                                                <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
 
                                             }
-                                            <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
-
-                                        }
-                                        @*<ul class="ftco-social">
-                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                            </ul>*@
+                                            @*<ul class="ftco-social">
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                </ul>*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
+                            <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
 
-                                        <div class="staff">
+                                            <div class="staff">
 
-                                            <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                            <div class="info text-center">
-                                                <h3>@item.Name @item.Surname</h3>
-                                                <span class="position">@item.Profession</span>
-                                                <div class="text">
-                                                    <p>@item.About</p>
-                                                    @*<ul class="ftco-social">
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                                        </ul>*@
+                                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                                <div class="info text-center">
+                                                    <h3>@item.Name @item.Surname</h3>
+                                                    <span class="position">@item.Profession</span>
+                                                    <div class="text">
+                                                        <p>@item.About</p>
+                                                        @*<ul class="ftco-social">
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                            </ul>*@
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        }
                     }
+
                 }
             </div>
         </div>
@@ -191,70 +200,74 @@
                 </div>
             </div>
             <div class="row justify-content-center mb-2 pb-2">
-                @if (person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.OurTeam).Count() > 0)
-                {
-                    int count = person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.OurTeam).Count();
-                    @foreach (PersonVM item in person.Where(w => w.EmployeeType == (short)_Enumeration._EmployeeType.OurTeam))
+                @{
+                    short ourTeam = (short)_Enumeration._EmployeeType.OurTeam;
+                    @if (person.Any(w => w.Employees.Contains(ourTeam.ToString())))
                     {
-                        <div class="col-lg-@(count >= 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
-                            <div class="staff">
+                        int count = person.Where(w => w.Employees.Contains(ourTeam.ToString())).Count();
+                        @foreach (PersonVM item in person.Where(w => w.Employees.Contains(ourTeam.ToString())))
+                        {
+                            <div class="col-lg-@(count >= 4 ? 3 : 4) col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
+                                <div class="staff">
 
-                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                <div class="info text-center">
-                                    <h3>@item.Name @item.Surname</h3>
-                                    <span class="position">@item.Profession</span>
-                                    <div class="text">
-                                        @{
-                                            string about = item.About;
+                                    <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                    <div class="info text-center">
+                                        <h3>@item.Name @item.Surname</h3>
+                                        <span class="position">@item.Profession</span>
+                                        <div class="text">
+                                            @{
+                                                string about = item.About;
 
-                                            if (item.About != null && item.About.Length > 250)
-                                            {
-                                                var parts = item.About.Substring(0, 249).Split(' ');
-                                                about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+                                                if (item.About != null && item.About.Length > 250)
+                                                {
+                                                    var parts = item.About.Substring(0, 249).Split(' ');
+                                                    about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+
+                                                }
+                                                <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
 
                                             }
-                                            <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
-
-                                        }
-                                        @*<ul class="ftco-social">
-                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                            </ul>*@
+                                            @*<ul class="ftco-social">
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                </ul>*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
+                            <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
 
-                                        <div class="staff">
+                                            <div class="staff">
 
-                                            <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                            <div class="info text-center">
-                                                <h3>@item.Name @item.Surname</h3>
-                                                <span class="position">@item.Profession</span>
-                                                <div class="text">
-                                                    <p>@item.About</p>
-                                                    @*<ul class="ftco-social">
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                                        </ul>*@
+                                                <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                                <div class="info text-center">
+                                                    <h3>@item.Name @item.Surname</h3>
+                                                    <span class="position">@item.Profession</span>
+                                                    <div class="text">
+                                                        <p>@item.About</p>
+                                                        @*<ul class="ftco-social">
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                            </ul>*@
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        }
                     }
+
                 }
             </div>
         </div>

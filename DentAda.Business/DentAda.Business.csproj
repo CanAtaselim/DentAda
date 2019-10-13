@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\Administration\TalentBL.cs" />
     <Compile Include="BusinessLogic\Administration\BannerBL.cs" />
     <Compile Include="BusinessLogic\Administration\ContactUs.cs" />
     <Compile Include="BusinessLogic\Administration\AboutUsBL.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="ViewModel\Administration\AnnouncementVM.cs" />
     <Compile Include="ViewModel\Administration\BannerVM.cs" />
     <Compile Include="ViewModel\Administration\CDCVM.cs" />
+    <Compile Include="ViewModel\Administration\TalentVM.cs" />
     <Compile Include="ViewModel\Administration\CityVM.cs" />
     <Compile Include="ViewModel\Administration\ConnectionLogVM.cs" />
     <Compile Include="ViewModel\Administration\ContactUsVM.cs" />

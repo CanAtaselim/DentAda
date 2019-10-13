@@ -37,8 +37,11 @@ namespace DentAda.Business.BusinessLogic.Administration
                 Gsm = x.Gsm,
                 About = x.About,
                 Picture = x.Picture,
-                EmployeeType = x.EmployeeType
-
+                EmployeeType = x.EmployeeType,
+                EmployeeTypeList = new List<string> { x.EmployeeTypeList },
+                Employees = x.EmployeeTypeList,
+                DepartmentList = new List<string> { x.DepartmentList },
+                Departments = x.DepartmentList,
             }).ToList();
         }
 

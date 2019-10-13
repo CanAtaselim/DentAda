@@ -218,6 +218,9 @@
     <Compile Include="Model\SystemUserTicket.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Talent.cs">
+      <DependentUpon>DentAda_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TopMenu.cs">
       <DependentUpon>DentAda_Model.tt</DependentUpon>
     </Compile>

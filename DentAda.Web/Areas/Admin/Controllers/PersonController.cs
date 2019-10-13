@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DentAda.Web.Areas.Admin.Controllers
 {
@@ -46,7 +47,7 @@ namespace DentAda.Web.Areas.Admin.Controllers
             return ViewComponent("PersonList");
         }
 
-     
+
         [HttpPost]
         public IActionResult Save(PersonVM model)
         {
@@ -64,6 +65,9 @@ namespace DentAda.Web.Areas.Admin.Controllers
                     }
 
 
+                    string delimiter = ",";
+                    string Employees = model.EmployeeTypeList.Aggregate((i, j) => i + delimiter + j);
+                    string Departmens = model.DepartmentList.Aggregate((i, j) => i + delimiter + j);
 
 
                     Person person = new Person();
@@ -81,6 +85,10 @@ namespace DentAda.Web.Areas.Admin.Controllers
                     person.OperationIdUserRef = HttpRequestInfo.UserID;
                     person.OperationIP = HttpRequestInfo.IpAddress;
                     person.OperationIsDeleted = 1;
+                    person.EmployeeTypeList = model.IdPerson > 0 ? Employees : model.Employees;
+                    person.DepartmentList = model.IdPerson > 0 ? Departmens : model.Departments;
+
+
 
 
 

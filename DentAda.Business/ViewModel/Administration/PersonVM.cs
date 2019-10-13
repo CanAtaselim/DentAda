@@ -1,6 +1,7 @@
 ﻿using DentAda.Business.ViewModel.Base;
 using DentAda.Data.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using static DentAda.Common._Enumeration;
 
@@ -30,6 +31,10 @@ namespace DentAda.Business.ViewModel.Administration
         public string Gsm { get; set; }
         public string About { get; set; }
         public byte[] Picture { get; set; }
+        public List<string> EmployeeTypeList { get; set; }
+        public string Employees { get; set; }
+        public List<string> DepartmentList { get; set; }
+        public string Departments { get; set; }
 
     }
 }

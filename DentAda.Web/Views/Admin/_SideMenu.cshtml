@@ -81,6 +81,12 @@
                         <span class="kt-menu__link-text">Galeri</span>
                     </a>
                 </li>
+                <li class="kt-menu__item @(controller == "Talent" ? activeItem : "")" aria-haspopup="true">
+                    <a href='@Url.Action("Index", "Talent", new { Area = "Admin" })' class="kt-menu__link ">
+                        <i class="kt-menu__link-icon fa fa-check-double"></i>
+                        <span class="kt-menu__link-text">Yetenekler</span>
+                    </a>
+                </li>
                 <li class="kt-menu__item @(controller == "Banner" ? activeItem : "")" aria-haspopup="true">
                     <a href='@Url.Action("Index", "Banner", new { Area = "Admin" })' class="kt-menu__link ">
                         <i class="kt-menu__link-icon fa fa-sliders-h"></i>

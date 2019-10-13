@@ -3,6 +3,7 @@
     List<PersonVM> person = ViewBag.Persons;
     List<ServicesVM> services = ViewBag.Services;
     AboutUsVM aboutUs = ViewBag.AboutUs;
+    List<TalentVM> talent = ViewBag.Talent;
     var contactUsCayyolu = contactUs.Where(m => m.Department == 1).FirstOrDefault();
     var contactUsPolatli = contactUs.Where(m => m.Department == 2).FirstOrDefault();
 }
@@ -98,105 +99,104 @@
     <div class="container">
 
         <div class="row">
-            @foreach (ServicesVM item in services)
+            @try
             {
-                <div class="col-lg-3 d-flex ftco-animate" data-toggle="modal" data-target="#services@(item.IdServices) " style="cursor:pointer; padding-left:10px; padding-right:10px;">
-                    <div class="staff" style="padding-left:12px; padding-right:12px;">
-                        <div class="media block-6 services d-block text-center" style="margin-bottom:0px">
-                            <div class="icon d-flex justify-content-center align-items-center">
-                                <span class="@item.Icon"></span>
-                            </div>
-                            <div class="media-body p-">
-                                <h3 class="heading">
-                                    @item.Title
-                                </h3>
-                                @{
-                                    string FullText = item.FullText;
-                                    if (item.FullText.Length > 211)
-                                    {
-                                        var parts = item.FullText.Substring(0, 210).Split(' ');
-                                        FullText = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+                foreach (ServicesVM item in services)
+                {
+                    <div class="col-lg-3 d-flex ftco-animate" data-toggle="modal" data-target="#services@(item.IdServices) " style="cursor:pointer; padding-left:10px; padding-right:10px;">
+                        <div class="staff" style="padding-left:12px; padding-right:12px;">
+                            <div class="media block-6 services d-block text-center" style="margin-bottom:0px">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="@item.Icon"></span>
+                                </div>
+                                <div class="media-body p-">
+                                    <h3 class="heading">
+                                        @item.Title
+                                    </h3>
+                                    @{
+                                        string FullText = item.FullText;
+                                        if (item.FullText.Length > 211)
+                                        {
+                                            var parts = item.FullText.Substring(0, 210).Split(' ');
+                                            FullText = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+
+                                        }
+                                        <span>@Html.Raw(FullText)</span> <br />
+                                        <span style="color:#00aeef; font-size:12px">daha fazlası için tıklayınız..</span>
 
                                     }
-                                    <span>@Html.Raw(FullText)</span> <br />
-                                    <span style="color:#00aeef; font-size:12px">daha fazlası için tıklayınız..</span>
-
-                                }
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal fade" id="services@(item.IdServices)" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-
-                                <div class="staff" style="padding-left:12px; padding-right:12px;">
-                                    <div class="media block-6 services d-block text-center" style="margin-bottom:0px">
-                                        <div class="icon d-flex justify-content-center align-items-center">
-                                            <span class="@item.Icon"></span>
-                                        </div>
-                                        <div class="media-body p-">
-                                            <h3 class="heading">
-                                                @item.Title
-                                            </h3>
-                                            <span>@item.FullText</span> <br />
-
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                </div>
-            }
+                    <div class="modal fade" id="services@(item.IdServices)" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
 
+                                    <div class="staff" style="padding-left:12px; padding-right:12px;">
+                                        <div class="media block-6 services d-block text-center" style="margin-bottom:0px">
+                                            <div class="icon d-flex justify-content-center align-items-center">
+                                                <span class="@item.Icon"></span>
+                                            </div>
+                                            <div class="media-body p-">
+                                                <h3 class="heading">
+                                                    @item.Title
+                                                </h3>
+                                                <span>@item.FullText</span> <br />
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         </div>
     </div>
-    <div class="container-wrap mt-5">
-        <div class="row d-flex no-gutters">
-            <div class="col-md-6 img" style="background-image: url('/frontend/images/about-2.jpg');">
-            </div>
-            <div class="col-md-6 d-flex">
-                <div class="about-wrap">
-                    <div class="heading-section heading-section-white mb-5 ftco-animate">
-                        <h2 class="mb-2">Dentacare with a personal touch</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    @try
+    {
+        @if (talent.Count > 0)
+        {
+            <div class="container-wrap mt-5">
+                <div class="row d-flex no-gutters">
+                    <div class="col-md-6 img" style="background-image: url('/frontend/images/about-2.jpg');">
                     </div>
-                    <div class="list-services d-flex ftco-animate">
-                        <div class="icon d-flex justify-content-center align-items-center">
-                            <span class="icon-check2"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Well Experience Dentist</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-                    <div class="list-services d-flex ftco-animate">
-                        <div class="icon d-flex justify-content-center align-items-center">
-                            <span class="icon-check2"></span>
-                        </div>
-                        <div class="text">
-                            <h3>High Technology Facilities</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-                    </div>
-                    <div class="list-services d-flex ftco-animate">
-                        <div class="icon d-flex justify-content-center align-items-center">
-                            <span class="icon-check2"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Comfortable Clinics</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="col-md-6 d-flex">
+                        <div class="about-wrap">
+                            @foreach (var item in talent)
+                            {
+                                <div class="list-services d-flex ftco-animate">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <span class="icon-check2"></span>
+                                    </div>
+                                    <div class="text">
+                                        <h3>@item.Title</h3>
+                                        <p>@item.Description</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
+    catch (Exception ex)
+    {
+
+    }
+
+
 </section>
 
 
@@ -208,64 +208,71 @@
             </div>
         </div>
         <div class="row">
-            @foreach (PersonVM item in person)
+            @try
             {
-                <div class="col-lg-4 col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
-                    <div class="staff">
+                @foreach (PersonVM item in person)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex mb-sm-4 ftco-animate" data-toggle="modal" data-target="#person@(item.IdPerson)" style="cursor:pointer">
+                        <div class="staff">
 
-                        <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                        <div class="info text-center">
-                            <h3>@item.Name @item.Surname</h3>
-                            <span class="position">@item.Profession</span>
-                            <div class="text">
-                                @{
-                                    string about = item.About;
-                                    if (item.About.Length > 250)
-                                    {
-                                        var parts = item.About.Substring(0, 249).Split(' ');
-                                        about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+                            <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                            <div class="info text-center">
+                                <h3>@item.Name @item.Surname</h3>
+                                <span class="position">@item.Profession</span>
+                                <div class="text">
+                                    @{
+                                        string about = item.About;
+                                        if (item.About.Length > 250)
+                                        {
+                                            var parts = item.About.Substring(0, 249).Split(' ');
+                                            about = string.Join(" ", parts.Take(parts.Length - 1)) + "...";
+
+                                        }
+                                        <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
 
                                     }
-                                    <p>@Html.Raw(about)</p> <span class='position'>daha fazlası için tıklayınız..</span>
-
-                                }
-                                @*<ul class="ftco-social">
-                                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                    </ul>*@
+                                    @*<ul class="ftco-social">
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                        </ul>*@
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
+                    <div class="modal fade" id="person@(item.IdPerson)" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
 
-                                <div class="staff">
+                                    <div class="staff">
 
-                                    <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
-                                    <div class="info text-center">
-                                        <h3>@item.Name @item.Surname</h3>
-                                        <span class="position">@item.Profession</span>
-                                        <div class="text">
-                                            <p>@item.About</p>
-                                            @*<ul class="ftco-social">
-                                                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                                                </ul>*@
+                                        <img class="img mb-4" style="display:block" src="@Url.Action("GetImageFilePath", "Home", new { idPerson = item.IdPerson, area = "Main" })" />
+                                        <div class="info text-center">
+                                            <h3>@item.Name @item.Surname</h3>
+                                            <span class="position">@item.Profession</span>
+                                            <div class="text">
+                                                <p>@item.About</p>
+                                                @*<ul class="ftco-social">
+                                                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                                    </ul>*@
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+
+            }
+            catch (Exception ex)
+            {
             }
 
         </div>
@@ -310,22 +317,22 @@
 
 
 @*<section class="ftco-quote">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 pr-md-5 aside-stretch py-5 choose">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pr-md-5 aside-stretch py-5 choose">
 
-                <div class="ftco-animate">
-                    @aboutUs.Mission
+                    <div class="ftco-animate">
+                        @aboutUs.Mission
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 py-5 pl-md-5">
-                <div class="ftco-animate">
-                    @aboutUs.Vision
+                <div class="col-md-6 py-5 pl-md-5">
+                    <div class="ftco-animate">
+                        @aboutUs.Vision
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>*@
+    </section>*@
 
 
 

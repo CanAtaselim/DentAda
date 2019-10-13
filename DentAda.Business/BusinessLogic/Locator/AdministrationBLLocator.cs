@@ -165,5 +165,13 @@ namespace DentAda.Business.BusinessLogic.Locator
         {
             get { return _BannerBL == null ? _BannerBL = new BannerBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _BannerBL; }
         }
+
+        private TalentBL _TalentBL;
+
+        public TalentBL TalentBL
+        {
+            get { return _TalentBL == null ? _TalentBL = new TalentBL(new UnitOfWork(new DentAdaEntities(ConnectionStrings.DentAda_Prod))) : _TalentBL; }
+        }
+
     }
 }

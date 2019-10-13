@@ -3,6 +3,44 @@
 var vanilla;
 
 jQuery(document).ready(function () {
+
+
+    //$('.employee').selectpicker('val', ['1', '2']);
+
+    var selectedEmployee = [];
+    var selectedDepartment = [];
+
+
+    $('.kt-selectpicker').selectpicker(
+        {
+            noneSelectedText: "Seçiniz"
+        }
+    );
+
+    $('.employee').change(function () {
+
+        selectedEmployee = [];
+        var brands = $('.employee option:selected');
+        $(brands).each(function (index, brand) {
+            if ($(this).val() != "") {
+                selectedEmployee.push([$(this).val()]);
+            }
+        });
+
+    });
+
+    $('.department').change(function () {
+
+        selectedDepartment = [];
+        var brands = $('.department option:selected');
+        $(brands).each(function (index, brand) {
+            if ($(this).val() != "") {
+                selectedDepartment.push([$(this).val()]);
+            }
+        });
+
+    });
+
     $("input[maxlength]").maxlength({
         alwaysShow: true,
         placement: 'right'
@@ -64,6 +102,9 @@ jQuery(document).ready(function () {
         formSerializeArray.forEach(function (item) {
             fileData.append(item.name, item.value);
         });
+
+        fileData.append("Employees", selectedEmployee);
+        fileData.append("Departments", selectedDepartment);
         $.validator.unobtrusive.parse($("form#submit_form"));
 
         $("form#submit_form").validate();

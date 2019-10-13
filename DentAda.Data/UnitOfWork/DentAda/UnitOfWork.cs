@@ -119,6 +119,9 @@ namespace DentAda.Data.UnitOfWork.DentAda
 
         private IGenericRepository<Banner> _bannerRepository;
         public IGenericRepository<Banner> BannerRepository => _bannerRepository ?? (_bannerRepository = new GenericRepository<Banner>(_context));
+        private IGenericRepository<Talent> _talentRepository;
+        public IGenericRepository<Talent> TalentRepository => _talentRepository ?? (_talentRepository = new GenericRepository<Talent>(_context));
+
 
         #endregion
 

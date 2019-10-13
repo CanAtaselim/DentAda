@@ -27,7 +27,7 @@ namespace DentAda.Web.Areas.Main.Controllers
         public IActionResult Index(short Department = 1)
         {
             ViewBag.ContactUs = JsonConvert.DeserializeObject<List<ContactUsVM>>(HttpContext.Session.GetString("ContactUsData"));
-            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.Department == Department && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
+            ViewBag.Persons = _adminlocator.PersonBL.GetVM(filter: m => m.DepartmentList.Contains(Department.ToString()) && m.OperationIsDeleted == (short)_Enumeration.IsOperationDeleted.Active);
 
             return View();
         }
